@@ -1,25 +1,14 @@
-import styled from 'styled-components'
-import {Button} from './Button'
+import '../styles/GameOver.css'
 
-const Title = styled.h1`
-    margin-top: 4em;
-    font-size: 48px;
-`;
-
-const Points = styled.p`
-    font-size: 24px;
-    margin-bottom: 3em;
-`;
-
-const GameOver = ({pts}) => {
+const GameOver = ({ pts }) => {
 
     const refreshPage = () => window.location.reload();
 
     return (
         <>
-            <Title>Game Over</Title>
-            <Points>You did {pts} out of 5!</Points>
-            <Button onClick={refreshPage}>Retry</Button>
+            <h1 id="title">Game Over</h1>
+            <p id="game-summary">You did {pts} out of 5!</p>
+            <button className='button' onClick={refreshPage}>Retry</button>
         </>
     )
 }

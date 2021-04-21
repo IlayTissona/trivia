@@ -1,27 +1,16 @@
 import React from 'react'
-import styled, { css } from 'styled-components/macro'
-import Button from './Button';
+import '../styles/Start.css'
 
-const Intro = styled.div`
-  margin-top: 8em;
-  text-align: center;
-`;
-
-const btnCSS = css`
-    margin-top: 2em;
-`;
-
-
-const Start = ({props}) => {
+const Start = ({ props }) => {
 
     const startQuiz = () => props(true)
- 
+
     return (
-        <Intro>
+        <div id="intro">
             <h1>Take the quiz.</h1>
             <h4>Whenever, you want.</h4>
-            <Button onClick={startQuiz} css={btnCSS}>Begin</Button>
-        </Intro>
+            <button className="button" onClick={startQuiz}>Begin</button>
+        </div>
     )
 }
 
