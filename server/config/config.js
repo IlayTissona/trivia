@@ -9,6 +9,8 @@ module.exports = {
     "database": DB_DEV,
     "host": HOST,
     "dialect": "mysql",
+    "seederStorage": "sequelize",
+    "seederStoragePath": "sequelizeData",
     "logging": false
   },
   "test": {
