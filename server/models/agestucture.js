@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     ageAbove65Years: DataTypes.FLOAT
   }, {
     sequelize,
+    tableName: 'ageStructure',
     modelName: 'AgeStructure',
   });
   return AgeStructure;

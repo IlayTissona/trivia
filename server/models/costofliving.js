@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     localPurchasingPowerIndex: DataTypes.FLOAT
   }, {
     sequelize,
+    tableName: 'costOfLiving',
     modelName: 'CostOfLiving',
   });
   return CostOfLiving;

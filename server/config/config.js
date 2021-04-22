@@ -8,7 +8,8 @@ module.exports = {
     "password": PASS,
     "database": DB_DEV,
     "host": HOST,
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": false
   },
   "test": {
     "username": DB_USERNAME,

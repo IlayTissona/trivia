@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     climateIndex: DataTypes.FLOAT
   }, {
     sequelize,
+    tableName: 'qualityOfLife',
     modelName: 'QualityOfLife',
   });
   return QualityOfLife;

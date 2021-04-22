@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Question_types', [
+    await queryInterface.bulkInsert('question_types', [
       {
         "template_str": "Which country is most populous?",
         "model": "PopulationDensity",
@@ -143,6 +143,6 @@ module.exports = {
   // },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('Question_types', null, {});
+    await queryInterface.bulkDelete('question_types', null, {});
   }
 };

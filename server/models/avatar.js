@@ -11,12 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.Player, { foreignKey: "avatarId" })
     }
   };
   Avatar.init({
     imgSrc: DataTypes.STRING
   }, {
     sequelize,
+    tableName: 'avatars',
     modelName: 'Avatar',
     underscored: true,
   });

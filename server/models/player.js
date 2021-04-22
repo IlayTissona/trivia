@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Avatar, { foreignKey: "avatarId" })
+      this.belongsToMany(models.SavedQuestion, { through: "QuestionAskedPerPlayer", foreignKey: "playerId" })
     }
   };
   Player.init({
@@ -19,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     avatarId: DataTypes.INTEGER
   }, {
     sequelize,
+    tableName: 'players',
     modelName: 'Player',
     underscored: true,
   });

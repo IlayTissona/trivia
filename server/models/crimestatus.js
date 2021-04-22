@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     safetyIndex: DataTypes.FLOAT
   }, {
     sequelize,
+    tableName: 'crimeStatus',
     modelName: 'CrimeStatus',
   });
   return CrimeStatus;

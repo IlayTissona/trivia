@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     continent: DataTypes.STRING
   }, {
     sequelize,
+    tableName: 'capitals',
     modelName: 'Capitals',
     underscored: true,
   });

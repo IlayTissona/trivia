@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.INTEGER
   }, {
     sequelize,
+    tableName: 'question_types',
     modelName: 'QuestionType',
     underscored: true,
   });

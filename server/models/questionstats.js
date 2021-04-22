@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.SavedQuestion, { foreignKey: "id" })
     }
   };
   QuestionStats.init({
@@ -21,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     totalFailed: DataTypes.INTEGER
   }, {
     sequelize,
+    tableName: 'question_stats',
     modelName: 'QuestionStats',
     underscored: true,
   });

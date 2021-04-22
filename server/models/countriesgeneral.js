@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     service: DataTypes.FLOAT
   }, {
     sequelize,
+    tableName: 'countriesGeneral',
     modelName: 'CountriesGeneral',
   });
   return CountriesGeneral;
