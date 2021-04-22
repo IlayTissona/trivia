@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  questionStats.init({
+  QuestionStats.init({
     rankCount: DataTypes.INTEGER,
     rankTotal: DataTypes.INTEGER,
     rankTotalScore: DataTypes.INTEGER,

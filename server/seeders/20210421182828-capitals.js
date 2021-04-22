@@ -13,7 +13,7 @@ module.exports = {
      * country:string,areaByKm2:float,population:integer,densityPopBykm2:float
      * }], {});
     */
-    await queryInterface.bulkInsert('Capitals', [
+    await queryInterface.bulkInsert('capitals', [
       {
         "Country": "Afghanistan",
         "Capital": "Kabul",
@@ -1739,7 +1739,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkInsert('Capitals', null, {})
+    await queryInterface.bulkInsert('capitals', null, {})
 
   }
 };

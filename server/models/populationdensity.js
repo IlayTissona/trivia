@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     densityPopBykm2: DataTypes.FLOAT
   }, {
     sequelize,
-    modelName: 'PopulationDensity',
+    tableName: 'populationDensity',
+    modelName: 'PopulationDensity'
   });
   return PopulationDensity;
 };
