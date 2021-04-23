@@ -12,13 +12,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.Avatar, { foreignKey: "avatarId" })
-      this.belongsToMany(models.SavedQuestion, { through: "QuestionAskedPerPlayer", foreignKey: "playerId" })
+      this.belongsToMany(models.SavedQuestion, { through: models.QuestionAskedPerPlayer })
     }
   };
   Player.init({
     name: DataTypes.STRING,
     score: DataTypes.INTEGER,
-    avatarId: DataTypes.INTEGER
+    avatarId: DataTypes.INTEGER,
+    strikes: DataTypes.INTEGER
   }, {
     sequelize,
     tableName: 'players',

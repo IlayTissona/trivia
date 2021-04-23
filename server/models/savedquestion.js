@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasOne(models.QuestionStats, { foreignKey: "id" })
-      this.belongsToMany(models.Player, { through: "QuestionAskedPerPlayer", foreignKey: "questionId" })
+      this.belongsToMany(models.Player, { through: models.QuestionAskedPerPlayer })
     }
   };
   SavedQuestion.init({

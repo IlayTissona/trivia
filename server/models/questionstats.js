@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     rankTotal: DataTypes.INTEGER,
     rankTotalScore: DataTypes.INTEGER,
     totalPassed: DataTypes.INTEGER,
-    totalFailed: DataTypes.INTEGER
+    totalFailed: DataTypes.INTEGER,
+    finalRank: DataTypes.INTEGER
   }, {
     sequelize,
     tableName: 'question_stats',

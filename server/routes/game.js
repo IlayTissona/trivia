@@ -31,13 +31,19 @@ game.get("/question/:playerId", async (req, res) => {
   const question = await getQuestion();
   //   res.json({question:})
 
+  // DONE!!!!
+  // shouldGenerate --return what question to return generated/saved
+  //questionToClient
+  //shuffleOptions
+  //generateQuestion ---returns new random Question
+  // updatePlayerStats(playerId)
+  // updateQuestionStats
+
+  // UNDONE!!!!
   //   getQuestion(unAskedQuestions) ---- returns a questionObject{text,type,(options 1,2,3,4), answer}
   //---subFunctions :
-  // generateOrSaved --return what question to return generated/saved
   //randomQuestionFromSaved(unAskedQuestions) ---returns random Question from unAskedQuestions
-  //generateQuestion ---returns new random Question
-  //shuffleOptions
-  //questionToClient
+
 });
 
 module.exports = game;
