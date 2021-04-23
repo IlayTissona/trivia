@@ -23,8 +23,7 @@ function generateQuestion() {
             //     return generate()
         }
     })
-        .catch(err => console.log(err))
-    // console.log(models);
+        .catch(err => console.log("generateQuestion error: ", err))
 }
 
 
@@ -111,7 +110,6 @@ async function generateThird({ templateStr, model, questionCol, answerCol, isFir
 async function getQuestion(playerId) {
     const unaskedQuestions = await getUnAskedQuestions(playerId);
     const shold = shouldGenerate(unaskedQuestions.length);
-    console.log("SHOULD GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGENERATE: ", shold);
     if (shold) {
         return await generateQuestion();
     }
@@ -127,8 +125,15 @@ async function setAnswer(playerId, questionId, isRight, totalTime, time) {
         through: { isPassed: isRight },
     });
     const scoreUpdate = (1 - time / totalTime) * 70 + 30;
-    if (!isRight) Dplayer.increment({ strikes: 1 });
-    else Dplayer.increment({ score: scoreUpdate });
+    if (!isRight) {
+        await Dplayer.increment({ strikes: 1 }, { returning: true });
+    }
+    else {
+        await Dplayer.increment({ score: scoreUpdate })
+    }
+    const updatedPlayer = await Dplayer.reload();
+
+    return { strikes: updatedPlayer.strikes, newScore: updatedPlayer.score }
 }
 
 //  get question from the unasked saved questions   V
@@ -270,4 +275,9 @@ function rankToSelect(unAsked) {
     return ranksArr[randNum];
 };
 
-module.exports = { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updatePlayerStats, questionToClient }
+async function isOut(playerId) {
+    const player = await models.Player.findByPk(playerId);
+    return player.strikes >= 3;
+}
+
+module.exports = { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updatePlayerStats, questionToClient, isOut }
