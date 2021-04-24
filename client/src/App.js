@@ -23,10 +23,17 @@ function App() {
   // =========
 
   // 1. end-session http request.
-  // 2. create time functionality.
-  // 3. create rank functionality.
-  // 4. change to routes.
-  // 5. fix spinner and add number countdown.
+  // 2. highscores display in endgame - with player's rank and score.
+  // 3. button to show highscores before game starts.
+  // 4. create time functionality.
+  // 5. create rank functionality.
+  // 6. change to routes.
+  // 7. add 4 question templates.
+  // 8. fix spinner and add number countdown.
+  // Bonuses:
+  //  1. after player's answer, display values differ by the question template.
+  //  2. getting questions smarter.(only for 1 and 3)
+  //  3. lifeline - drops two options, and if answered right gives only 30 points.
 
 
 
