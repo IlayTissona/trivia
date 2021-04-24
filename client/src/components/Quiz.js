@@ -5,54 +5,71 @@ import '../styles/Quiz.css';
 
 const Quiz = () => {
 
-    const quiz = useRef(false)
-    const [quizReady, setQuizReady] = useState(false);
+    const nextQuestion = useRef(false)
+    const spinner = useRef(false)
+    const [quizView, setQuizView] = useState(false);
     const [playerisOut, setPlayerIsOut] = useState(false);
     const [pts, setPts] = useState(0);
+
 
     const pickAnswer = (e) => {
 
         let userAnswer = e.target.innerText;
         console.log(userAnswer);
 
-        axios.post('/api/game/answer/11', { questionId: quiz.current.id, answer: userAnswer, totalTime: 20, time: 5 })
+        axios.post('/api/game/answer/11', { questionId: quizView.id, answer: userAnswer, totalTime: 20, time: 5 })
             .then(({ data: res }) => {
                 console.log("the answer res: ", res);
-                setQuizReady(res);
+                setQuizView(nextQuestion.current);
             })
             .catch(err => console.error(err))
-        // if (quiz[number].answer === userAnswer) setPts(pts + 1);
-        // setNumber(number + 1);
     }
-    // console.log("rendered. quiz ref is: ", quiz.current, "and the state is: ", quizReady);
+    // console.log("rendered. quiz ref is: ", nextQuestion.current, "and the state is: ", quizView);
     useEffect(() => {
 
-        axios.get('/api/game/question/11')
-            .then(({ data: res }) => {
-                quiz.current = res;
-                setQuizReady(true);
-            })
-            .catch(err => console.error(err))
+        getNewQuestion(11).then(res => setQuizView(nextQuestion.current)).catch(err => console.error(err))
 
     }, []);
+    useEffect(() => {
+        if (!quizView) {
+            return
+        }
+        console.log(spinner.current);
+        getNewQuestion(11)
+            .catch(err => console.error(err))
+    }, [quizView]);
+
+    const spinnerGenerator = (showSpinner) => {
+        return (
+            <div id="floatingCirclesG">
+                <div className="f_circleG" id="frotateG_01"></div>
+                <div className="f_circleG" id="frotateG_02"></div>
+                <div className="f_circleG" id="frotateG_03"></div>
+                <div className="f_circleG" id="frotateG_04"></div>
+                <div className="f_circleG" id="frotateG_05"></div>
+                <div className="f_circleG" id="frotateG_06"></div>
+                <div className="f_circleG" id="frotateG_07"></div>
+                <div className="f_circleG" id="frotateG_08"></div>
+            </div>)
+    }
 
     return (
         <div id='quiz-window'>
             <>
-                <div id="floatingCirclesG">
-                    <div class="f_circleG" id="frotateG_01"></div>
-                    <div class="f_circleG" id="frotateG_02"></div>
-                    <div class="f_circleG" id="frotateG_03"></div>
-                    <div class="f_circleG" id="frotateG_04"></div>
-                    <div class="f_circleG" id="frotateG_05"></div>
-                    <div class="f_circleG" id="frotateG_06"></div>
-                    <div class="f_circleG" id="frotateG_07"></div>
-                    <div class="f_circleG" id="frotateG_08"></div>
+                <div id="floatingCirclesG" >
+                    <div className="f_circleG" id="frotateG_01"></div>
+                    <div className="f_circleG" id="frotateG_02"></div>
+                    <div className="f_circleG" id="frotateG_03"></div>
+                    <div className="f_circleG" id="frotateG_04"></div>
+                    <div className="f_circleG" id="frotateG_05"></div>
+                    <div className="f_circleG" id="frotateG_06"></div>
+                    <div className="f_circleG" id="frotateG_07"></div>
+                    <div className="f_circleG" id="frotateG_08"></div>
                 </div>
-                <div id="question" >{quiz.current.text}</div>
+                <div id="question" >{nextQuestion.current.text}</div>
 
                 <div id="options">
-                    {quiz.current.options && quiz.current.options.map((item, index) => (
+                    {nextQuestion.current.options && nextQuestion.current.options.map((item, index) => (
                         <div className="option" key={index} onClick={pickAnswer}>{item} </div>
                     ))}
                 </div>
@@ -64,6 +81,22 @@ const Quiz = () => {
             }
         </div>
     )
-}
 
+    // Functions
+    // ==========
+
+    // gets a new question and set the question ref with it.
+    async function getNewQuestion(playerId) {
+        axios.get(`/api/game/question/${playerId}`)
+            .then(({ data: res }) => {
+                nextQuestion.current = res;
+            })
+            .catch(err => console.error(err))
+    }
+    async function questionCheck(playerId) {
+
+
+    }
+
+}
 export default Quiz
