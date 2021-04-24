@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,CAAA;EAET,WAAW,EAAE,CAAC;CACjB",
+    "sources": [
+        "PlayerStatus.scss"
+    ],
+    "names": [],
+    "file": "PlayerStatus.css"
+}

@@ -3,16 +3,11 @@ const app = express();
 let game = express.Router();
 const { Player, SavedQuestions } = require("../models");
 const { Op } = require("sequelize");
-<<<<<<< HEAD
-const { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updatePlayerStats, questionToClient, isOut } = require('../utils');
-
-=======
 const { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updateQuestionsRank, questionToClient, isOut, getLeaderBoard, getPlayerStats } = require('../utils');
 
 // IMORTANT!!!
 // generate first throws the error:
 //     "TypeError: Cannot read property 'findAll' of undefined"
->>>>>>> b6d2f1ea9fede00856711fa5b0a0b938a8c59edd
 
 game.post("/new_session", async (req, res) => {
   console.log("in new session");
@@ -72,38 +67,28 @@ game.get("/end_session/:playerId", async (req, res) => {
   updateQuestionsRank(playerId);
   return
 });
-// GET endGame /: playerId      // updates the stats after the return
-// return { leaderBoard, playerStats }
 
-// add isout function to get question request
-// create route for rank question
-// 
+game.get("/retry/:playerId", async (req, res) => {
+  console.log("kbnsdfknlkandsfklsdnf");
+  const { playerId } = req.params;
+  const Dplayer = await Player.findByPk(playerId);
+  const { name, avatarId } = Dplayer;
+  const newPlayer = await Player.create(
+    { name, avatarId, score: 0 },
+    { returning: true }
+  );
+
+  const avatar = await newPlayer.getAvatar({ through: "AvatarId" });
+
+  res.json({
+    id: newPlayer.id,
+    userName: newPlayer.name,
+    score: newPlayer.score,
+    avatarUrl: avatar.imgSrc,
+  });
+});
 
 
-//  UNDONE !!!!!!
-
-// POST rank
-// body{ questionId, rank }
-// return { updated: true }
-
-// GET endGame /: playerId      // updates the stats after the return
-// return { leaderBoard, playerStats }
-
-
-
-
-
-// DONE !!!!!
-// POST session / new
-//     body{ username, avatar }
-// return { updated: true, player }
-
-// GET question: playerId
-// return { question }
-
-// POST answer
-// body{ playerId, questionId, answer }
-// return { pass: true, player }      // generated baseScore(*time)/ saves calculatedScore(*time)
 
 
 module.exports = game

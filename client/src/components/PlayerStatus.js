@@ -1,14 +1,20 @@
 import React from 'react';
+import LivesLast from './LivesLast'
+import '../styles/PlayerStatus.css'
 
 function PlayerStatus(props) {
+    const player = props.player;
     return (
-        <div className="PlayerStatus">
+        <div id="PlayerStatus">
             <h3>Quiz</h3>
             <span className="playerDetails">
-                <img src={player.getAvatar()} />
+                <img src={player.src} />
+                <br />
                 playerName : {player.name}
+                <br />
                 score:  {player.score}
-                <LivesLast />
+                <br />
+                <LivesLast numOfStrikes={player.strikes} />
             </span>
         </div>
     );

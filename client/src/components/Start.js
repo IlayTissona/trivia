@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // import { useForm } from 'react-hook-form';
 
-const Start = ({ setShouldStart }) => {
+const Start = ({ setNewPlayer }) => {
 
     // const generateGame = async (playerName) => {
 
@@ -18,7 +18,7 @@ const Start = ({ setShouldStart }) => {
         try {
             const { data: playerStats } = await axios.post('/api/game/new_session', { userName: playerName, avatar: 1 })
             console.log(playerStats);
-            setShouldStart(true)
+            setNewPlayer(playerStats)
         }
         catch (err) { console.log(err) }
     }

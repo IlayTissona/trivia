@@ -1,24 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
-import GameOver from './GameOver';
 import '../styles/Quiz.css';
 import Spinner from './Spinner'
+import PlayerStatus from './PlayerStatus';
+// import LivesLast from './LivesLast';
 
-const Quiz = () => {
+
+const Quiz = ({ player, setPlayer, playerisOut, setPlayerIsOut }) => {
 
     const nextQuestion = useRef(false)
-    const playerId = useRef(11)
+
 
     // const spinner = useRef(false)
     const [spinner, setSpinner] = useState(true);
     const [questionView, setQuestionView] = useState(false);
-    const [playerisOut, setPlayerIsOut] = useState(false);
     const [pts, setPts] = useState(0);
 
 
     useEffect(() => {
         // console.log("in the DidMount", nextQuestion.current);
-        getNewQuestion(11).then(res => {
+        getNewQuestion(player.id).then(res => {
             setQuestionView({ ...nextQuestion.current, spinner: <Spinner /> });
             // console.log("after the ", nextQuestion.current);
             // setSpinner(generateSpinner());
@@ -37,7 +38,7 @@ const Quiz = () => {
         // console.log(spinner);
         // spinner.hidden = false
 
-        getNewQuestion(11)
+        getNewQuestion(player.id)
             .catch(err => console.error(err))
     }, [questionView]);
 
@@ -46,27 +47,25 @@ const Quiz = () => {
         state ? setState(false) : setState(true)
     }
 
+    // {/* {spinner && <Spinner spinner={spinner} setSpinner={setSpinner} />} */}
 
-    // {questionView && <Spinner />}
+
     return (
-        <>
+        <div>
 
-            <div id='quiz-window'>
-                {spinner && <Spinner spinner={spinner} setSpinner={setSpinner} />}
-                <div id="question" >{questionView.text}</div>
+            <Spinner answerCheck />
+            <PlayerStatus player={{ id: player.id, score: player.score, src: player.src, name: player.playerName, strikes: player.strikes }} />
+            {playerisOut ? null : <div id='quiz-window'>
+                <> <div id="question" >{questionView.text}</div>
 
-                <div id="options">
-                    {questionView.options && questionView.options.map((item, index) => (
-                        <div className="option" key={index} onClick={(e) => answerCheck(e, playerId)}>{item} </div>
-                    ))}
-                </div>
-
-
-                {
-                    // playerisOut && <GameOver pts={pts} />
-                }
-            </div>
-        </>
+                    <div id="options">
+                        {questionView.options && questionView.options.map((item, index) => (
+                            <div className="option" key={index} onClick={(e) => answerCheck(e, player.id)}>{item} </div>
+                        ))}
+                    </div>
+                </>
+            </div>}
+        </div>
     )
 
     // Functions
@@ -82,12 +81,17 @@ const Quiz = () => {
 
     function answerCheck(e, playerId) {
 
-        let userAnswer = e.target.innerText;
+        let userAnswer = e ? e.target.innerText : null;
         console.log(userAnswer);
 
-        axios.post('/api/game/answer/11', { questionId: questionView.id, answer: userAnswer, totalTime: 20, time: 5 })
+        axios.post(`/api/game/answer/${playerId}`, { questionId: questionView.id, answer: userAnswer, totalTime: 20, time: 5 })
             .then(({ data: res }) => {
                 console.log("the answer res: ", res);
+                setPlayer({ id: player.id, score: res.newScore, strikes: res.strikes, avatarUrl: player.avatarUrl })
+                if (res.strikes >= 3) {
+                    console.log("player is out");
+                    setPlayerIsOut(true);
+                }
                 // setSpinner((<>{spinner}</>))
                 setQuestionView({ ...nextQuestion.current, spinner: <><Spinner /></> });
 
@@ -97,6 +101,9 @@ const Quiz = () => {
             })
             .catch(err => console.error(err))
     }
+
+
+
 
     function generateSpinner(showSpinner) {
         return (
