@@ -1,62 +1,66 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import GameOver from './GameOver';
 import '../styles/Quiz.css';
 
 const Quiz = () => {
 
-    const [quiz, setQuiz] = useState([]);
-    const [number, setNumber] = useState(0);
+    const quiz = useRef(false)
+    const [quizReady, setQuizReady] = useState(false);
+    const [playerisOut, setPlayerIsOut] = useState(false);
     const [pts, setPts] = useState(0);
-
-    const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 
     const pickAnswer = (e) => {
 
         let userAnswer = e.target.innerText;
-        console.log(userAnswer, quiz[number].answer);
+        console.log(userAnswer);
 
-        if (quiz[number].answer === userAnswer) setPts(pts + 1);
-        setNumber(number + 1);
+        axios.post('/api/game/answer/11', { questionId: quiz.current.id, answer: userAnswer, totalTime: 20, time: 5 })
+            .then(({ data: res }) => {
+                console.log("the answer res: ", res);
+                setQuizReady(res);
+            })
+            .catch(err => console.error(err))
+        // if (quiz[number].answer === userAnswer) setPts(pts + 1);
+        // setNumber(number + 1);
     }
-
+    // console.log("rendered. quiz ref is: ", quiz.current, "and the state is: ", quizReady);
     useEffect(() => {
 
-        axios.get('https://opentdb.com/api.php?amount=5&category=15&difficulty=easy&type=multiple')
-            .then(res => {
-                setQuiz(res.data.results.map(item => (
-
-                    {
-                        question: item.question,
-                        options: shuffle([...item.incorrect_answers, item.correct_answer]),
-                        answer: item.correct_answer
-                    }
-
-                )));
+        axios.get('/api/game/question/11')
+            .then(({ data: res }) => {
+                quiz.current = res;
+                setQuizReady(true);
             })
             .catch(err => console.error(err))
 
     }, []);
 
-
     return (
         <div id='quiz-window'>
+            <>
+                <div id="floatingCirclesG">
+                    <div class="f_circleG" id="frotateG_01"></div>
+                    <div class="f_circleG" id="frotateG_02"></div>
+                    <div class="f_circleG" id="frotateG_03"></div>
+                    <div class="f_circleG" id="frotateG_04"></div>
+                    <div class="f_circleG" id="frotateG_05"></div>
+                    <div class="f_circleG" id="frotateG_06"></div>
+                    <div class="f_circleG" id="frotateG_07"></div>
+                    <div class="f_circleG" id="frotateG_08"></div>
+                </div>
+                <div id="question" >{quiz.current.text}</div>
 
-            { quiz[number] &&
+                <div id="options">
+                    {quiz.current.options && quiz.current.options.map((item, index) => (
+                        <div className="option" key={index} onClick={pickAnswer}>{item} </div>
+                    ))}
+                </div>
+            </>
 
-                <>
-                    <div id="question" >{quiz[number].question}</div>
 
-                    <div id="options">
-                        {quiz[number].options.map((item, index) => (
-                            <div className="option" key={index} onClick={pickAnswer}>{item} </div>
-                        ))}
-                    </div>
-                </>
-
-            }
             {
-                number === 5 && <GameOver pts={pts} />
+                playerisOut && <GameOver pts={pts} />
             }
         </div>
     )

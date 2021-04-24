@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css'
 import Start from './components/Start'
 import Quiz from './components/Quiz'
 
 function App() {
 
-  const [start, setStart] = useState(false);
+  const [shouldStart, setShouldStart] = useState(false);
 
   return (
     <div className="quiz">
-      { start ? <Quiz /> : <Start props={setStart} />} 
+      { shouldStart ? <Quiz /> : <Start setShouldStart={setShouldStart} />}
     </div>
   );
 }
