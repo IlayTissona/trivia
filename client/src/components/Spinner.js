@@ -1,14 +1,11 @@
 
 import React from 'react'
 import '../styles/Spinner.css'
-function Spinner() {
-
-    function hide(e) {
-        e.target.hidden = false;
-    }
-
+function Spinner({ refreshSpinner }) {
+    // const [state, setstate] = useState(true)
+    // refreshSpinner()
     return (
-        <div id="floatingCirclesG" onAnimationEnd={hide}>
+        <div id="floatingCirclesG" >
             <div className="f_circleG" id="frotateG_01"></div>
             <div className="f_circleG" id="frotateG_02"></div>
             <div className="f_circleG" id="frotateG_03"></div>

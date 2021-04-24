@@ -1,18 +1,20 @@
 import React from 'react'
 import '../styles/Start.css'
 import axios from 'axios';
+
+
 // import { useForm } from 'react-hook-form';
 
 const Start = ({ setShouldStart }) => {
 
-    const generateGame = async (playerName) => {
+    // const generateGame = async (playerName) => {
 
-    }
+    // }
 
     const startQuiz = async (e) => {
         e.preventDefault();
         const playerName = e.target[0].value;
-        generateGame(playerName)
+        // generateGame(playerName)
         try {
             const { data: playerStats } = await axios.post('/api/game/new_session', { userName: playerName, avatar: 1 })
             console.log(playerStats);
