@@ -1,7 +1,7 @@
 const models = require('./models');
 const Sequelize = require('sequelize');
 const { Op, literal } = require('sequelize');
-const { generateQuestion, getQuestion } = require('./utils')
+const { generateQuestion, getQuestion, generateFirst } = require('./utils')
 // const generateQuestion = requ
 // models.Avatar.create(
 //     {

@@ -3,35 +3,11 @@ const app = express();
 let game = express.Router();
 const { Player, SavedQuestions } = require("../models");
 const { Op } = require("sequelize");
-const { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updatePlayerStats, questionToClient, isOut } = require('../utils');
+const { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updateQuestionsRank, questionToClient, isOut, getLeaderBoard, getPlayerStats } = require('../utils');
 
-// game.post("/new_session", async (req, res) => {
-//   const userName = req.body.userName;
-//   const userAvatar = req.body.avatar;
-//   const player = await Player.create(
-//     { name: userName, avatarId: userAvatar, score: 0 },
-//     { returning: true }
-//   );
-//   const avatar = await player.getAvatar();
-//   res.send({
-//     id: player.id,
-//     userName: player.name,
-//     score: player.score,
-//     avatarUrl: avatar.imgSrc,
-//   });
-// });
-
-// game.get("/question/:playerId", async (req, res) => {
-//   const askedQuestions = await Player.getSavedQuestions();
-//   const unAskedQuestions = await SavedQuestions.findAll({
-//     where: {
-//       id: { [Op.notIn]: askedQuestions },
-//     },
-//   });
-//   const question = await getQuestion();
-
-// });
-
+// IMORTANT!!!
+// generate first throws the error:
+//     "TypeError: Cannot read property 'findAll' of undefined"
 
 game.post("/new_session", async (req, res) => {
   const userName = req.body.userName;
@@ -46,7 +22,7 @@ game.post("/new_session", async (req, res) => {
   const avatar = await player.getAvatar(
     { through: "AvatarId" }
   );
-  res.send({
+  return res.send({
     id: player.id,
     userName: player.name,
     score: player.score,
@@ -55,18 +31,42 @@ game.post("/new_session", async (req, res) => {
 });
 
 game.get("/question/:playerId", async (req, res) => {
-  const playerId = req.params.playerId;
+  const playerId = Number(req.params.playerId);
+
+  const isPlayerOut = await isOut(playerId);
+  if (isPlayerOut) return res.json({ isOut: true })
   const question = await getQuestion(playerId);
-  res.json(questionToClient(question));
+
+  return res.json(questionToClient(question));
 });
 game.post("/answer/:playerId", async (req, res) => {
-  const playerId = req.params.playerId;
+  const playerId = Number(req.params.playerId);
   const { questionId, answer, totalTime, time } = req.body;
   const isCorrect = await isRightAnswer(questionId, answer);
   const { newScore, strikes } = await setAnswer(playerId, questionId, isCorrect, totalTime, time);
-  res.json({ isCorrect, newScore, strikes })
+  return res.json({ isCorrect, newScore, strikes })
 });
 
+game.post("/rank/:playerId", async (req, res) => {
+  const playerId = Number(req.params.playerId);
+  const { questionId, rank } = req.body;
+
+  const didUpdate = await setPlayerRank(playerId, questionId, rank);
+  console.log(didUpdate);
+  return res.json({ updated: Boolean(didUpdate) });
+});
+
+game.get("/end_session/:playerId", async (req, res) => {
+  const playerId = Number(req.params.playerId);
+  console.log(playerId, typeof (playerId));
+  const leaderBoard = await getLeaderBoard(playerId);
+  const playerStats = await getPlayerStats(playerId);
+  res.json({ leaderBoard, playerStats })
+  updateQuestionsRank(playerId);
+  return
+});
+// GET endGame /: playerId      // updates the stats after the return
+// return { leaderBoard, playerStats }
 
 // add isout to get question request
 // create route for rank question
@@ -85,11 +85,5 @@ game.post("/answer/:playerId", async (req, res) => {
 // body{ playerId, questionId, answer }
 // return { pass: true, player }      // generated baseScore(*time)/ saves calculatedScore(*time)
 
-// POST rank
-// body{ questionId, rank }
-// return { updated: true }
-
-// GET endGame /: playerId      // updates the stats after the return
-// return { leaderBoard, playerStats }
 
 module.exports = game
