@@ -6,11 +6,11 @@ const { Op, literal } = require('sequelize');
 function generateQuestion() {
 
     return models.QuestionType.findOne({
-        order: literal('rand()')
-        // where: { type: 2 }
+        order: literal('rand()'),
+        where: { type: 3 }
     }).then(rawRandomQuestionTemplate => {
-
         const randomQuestionTemplate = rawRandomQuestionTemplate.toJSON()
+        console.log(randomQuestionTemplate);
         switch (randomQuestionTemplate.type) {
 
             case 1:
@@ -25,7 +25,6 @@ function generateQuestion() {
     })
         .catch(err => console.log("generateQuestion error: ", err))
 }
-
 
 //  generates a question with type 1    V
 async function generateFirst({ templateStr, model, questionCol, answerCol, isFirst }) {
@@ -223,8 +222,8 @@ function shouldGenerate(unAskedLength) {
     return random > chanceForSaved;
 };
 
-// updates question statistics depends on player's answers. V
-async function updatePlayerStats(playerId) {
+// updates questions statistics depends on player's answers in the end of the game. V
+async function updateQuestionsRank(playerId) {
     const player = await models.Player.findByPk(playerId);
     const playerQuestions = (await player
         .getSavedQuestions({ through: models.QuestionAskedPerPlayer }))
@@ -245,16 +244,21 @@ async function updatePlayerStats(playerId) {
     }
     questionsToDelete = playerQuestions.filter(q => !q.QuestionAskedPerPlayer.rank)
     playerQuestionsIds = questionsToDelete.map(q => q.id);
+
+    console.log("player: ", player);
+    console.log("playerQuestions: ", playerQuestions);
+    console.log("TODELETE: ", questionsToDelete);
+    console.log("TOplayerQuestionsIds: ", playerQuestionsIds);
     models.SavedQuestion.destroy(
         { where: { id: { [Op.or]: playerQuestionsIds } } });
 }
 
 // updates question rank    V
 async function setPlayerRank(PlayerId, SavedQuestionId, rank) {
-    return await models.QuestionAskedPerPlayer.update(
+    return (await models.QuestionAskedPerPlayer.update(
         { rank },
         { where: { SavedQuestionId, PlayerId } }
-    );
+    ))[0];
 }
 
 //  calculates and randomize which rank should be the next saved question.  V
@@ -280,4 +284,52 @@ async function isOut(playerId) {
     return player.strikes >= 3;
 }
 
-module.exports = { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updatePlayerStats, questionToClient, isOut }
+// getLeaderBoard(24).then(res => console.log(res));
+
+async function getPlayerStats(playerId) {
+    const player = await models.Player.findOne({
+        where: { id: playerId }
+    });
+    const playerQuestions = await player.getSavedQuestions({
+        through: {
+            where: { isPassed: true }
+        },
+    })
+    const { score, name, id } = player
+
+    // const playerStats = await player.get
+    return { id, name, score, passed: playerQuestions.length }
+}
+// gets the leaderBoard
+async function getLeaderBoard(playerId) {
+    const topTwenty = await models.Player.findAll({
+        order: models.Player.score,
+        limit: 20,
+        attributes: ["id", "score", "name", [Sequelize.literal("RANK() over (order by score DESC)"), "rank"]],
+    });
+
+    const isPlayerTopTwenty = topTwenty.some((player) => player.id === playerId);
+
+    console.log(isPlayerTopTwenty);
+    if (isPlayerTopTwenty) return topTwenty;
+
+    const Dplayer = await models.Player.findByPk(playerId);
+
+    const playersAboveDplayer = await models.Player.findAll({
+        where: { score: { [Op.gte]: Dplayer.score } },
+        attributes: [
+            "id",
+            "score",
+            "name",
+            [Sequelize.literal("RANK() OVER (order by score DESC)"), "rank"],
+        ],
+    });
+
+    const DplayerWithRank = playersAboveDplayer.find(player => player.id === Dplayer.id)
+    topTwenty.pop()
+    topTwenty.push(DplayerWithRank);
+
+    return topTwenty;
+}
+
+module.exports = { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updateQuestionsRank, questionToClient, isOut, getLeaderBoard, getPlayerStats, generateQuestion, generateFirst }

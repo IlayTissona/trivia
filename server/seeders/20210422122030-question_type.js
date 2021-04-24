@@ -53,7 +53,7 @@ module.exports = {
       },
       {
         "template_str": "Which country has the most cell phones per person?",
-        "model": "countriesGeneral",
+        "model": "CountriesGeneral",
         "answer_col": "country",
         "question_col": "phonesPer1000",
         "is_first": true,
