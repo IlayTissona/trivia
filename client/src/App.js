@@ -6,7 +6,8 @@ import Quiz from './components/Quiz'
 
 function App() {
 
-  const [shouldStart, setShouldStart] = useState(false);
+  // set as false to begin with start page
+  const [shouldStart, setShouldStart] = useState(true);
 
   return (
     <div className="quiz">
