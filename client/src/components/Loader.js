@@ -1,7 +1,8 @@
 import React from "react";
+import Skeleton from "@yisheng90/react-loading";
 
 function Loader(props) {
-  return <div>LOADING.............</div>;
+  return <Skeleton rows={20} />;
 }
 
 export default Loader;
