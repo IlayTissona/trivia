@@ -51,7 +51,7 @@ const Quiz = ({ player, setPlayer, playerisOut, setPlayerIsOut }) => {
 
 
     return (
-        <div>
+        <>
 
             <Spinner answerCheck />
             <PlayerStatus player={{ id: player.id, score: player.score, src: player.src, name: player.playerName, strikes: player.strikes }} />
@@ -65,7 +65,7 @@ const Quiz = ({ player, setPlayer, playerisOut, setPlayerIsOut }) => {
                     </div>
                 </>
             </div>}
-        </div>
+        </>
     )
 
     // Functions

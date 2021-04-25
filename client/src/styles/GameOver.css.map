@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,MAAM,CAAA;EACF,UAAU,EAAE,GAAG;EACf,SAAS,EAAE,IAAI;CAClB;;AAED,AAAA,aAAa,CAAC;EACV,SAAS,EAAE,IAAI;EACf,aAAa,EAAE,GAAG;CACrB",
-    "sources": [
-        "GameOver.scss"
-    ],
-    "names": [],
-    "file": "GameOver.css"
-}

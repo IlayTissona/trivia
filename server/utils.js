@@ -2,15 +2,17 @@ const models = require('./models');
 const Sequelize = require('sequelize');
 const { Op, literal } = require('sequelize');
 
+// array with all "falsy" values.
+const falsyValues = ["N/A", null, "", "null", " ", "NULL", undefined, "undefined"]
+
 //  generates a random type question. returns a promises    V
 function generateQuestion() {
 
     return models.QuestionType.findOne({
         order: literal('rand()'),
-        where: { type: 3 }
+        where: { type: 1 }
     }).then(rawRandomQuestionTemplate => {
         const randomQuestionTemplate = rawRandomQuestionTemplate.toJSON()
-        console.log(randomQuestionTemplate);
         switch (randomQuestionTemplate.type) {
 
             case 1:
@@ -19,25 +21,35 @@ function generateQuestion() {
                 return generateSecond(randomQuestionTemplate);
             case 3:
                 return generateThird(randomQuestionTemplate);
-            // default:
-            //     return generate()
+            default:
+                return generateQuestion();
         }
     })
-        .catch(err => console.log("generateQuestion error: ", err))
+        .catch(err => console.error(`generateQuestion error: ${err}`))
 }
 
 //  generates a question with type 1    V
 async function generateFirst({ templateStr, model, questionCol, answerCol, isFirst }) {
     const questionObj = { text: templateStr, type: 1 };
-    const results = await models[model].findAll({
+    const options = await models[model].findAll({
+        where: {
+            [questionCol]: { [Op.notIn]: falsyValues },
+            [answerCol]: { [Op.notIn]: falsyValues },
+        },
         limit: 4,
         order: Sequelize.literal("rand()")
-    }, { fields: [questionCol, answerCol] });
-    const finalResult = results.map(answer => answer.toJSON()).sort((a, b) => { return b[questionCol] - a[questionCol] })
-    questionObj.answer = isFirst ? finalResult[0][answerCol] : finalResult[finalResult.length - 1][answerCol];
-    finalResult.forEach((option, index) => {
+    }, {
+        fields: [questionCol, answerCol]
+    });
+    const finalOptions = options.sort((a, b) => b[questionCol] - a[questionCol]) // getters set on model instance.
+    questionObj.answer = isFirst ?
+        finalOptions[0][answerCol] :
+        finalOptions[options.length - 1][answerCol];
+
+    finalOptions.forEach((option, index) => {
         questionObj["option" + (index + 1)] = option[answerCol]
-    })  // only the string
+    })
+
     const questionSaved = models.SavedQuestion.findAll({
         where: questionObj
     });
@@ -49,26 +61,27 @@ async function generateFirst({ templateStr, model, questionCol, answerCol, isFir
 
 //  generates a question with type 2    V
 async function generateSecond({ templateStr, model, questionCol, answerCol, isFirst }) {
-    const results = await models[model].findAll({
+    const options = await models[model].findAll({
         where: {
-            [questionCol]: { [Op.and]: [{ [Op.notLike]: "N/A" }, { [Op.ne]: null }] },
+            [questionCol]: { [Op.notIn]: falsyValues },
+            [answerCol]: { [Op.notIn]: falsyValues },
         },
         limit: 4,
         order: Sequelize.literal("rand()")
     }, { fields: [questionCol, answerCol] });
-    const finalResult = results.map(answer => answer.toJSON())
+    const finalOption = options.map(option => option.toJSON())
 
-    const questionStr = templateStr.replace("<value>", finalResult[0][answerCol])
+    const questionStr = templateStr.replace("<value>", finalOption[0][answerCol])
     const questionObj = { text: questionStr, type: 2 };
-    questionObj.answer = finalResult[0][questionCol]
-    finalResult.forEach((option, index) => {
+    questionObj.answer = finalOption[0][questionCol]
+    finalOption.forEach((option, index) => {
         questionObj["option" + (index + 1)] = option[questionCol]
     })
     const questionSaved = models.SavedQuestion.findAll({
         where: questionObj
     });
     if (questionSaved[0]) {
-        return await generateFirst({ templateStr, model, questionCol, answerCol, isFirst })
+        return await generateSecond({ templateStr, model, questionCol, answerCol, isFirst })
     }
     return await models.SavedQuestion.create(questionObj)
 }
@@ -76,22 +89,26 @@ async function generateSecond({ templateStr, model, questionCol, answerCol, isFi
 //  generates a question with type 3    V
 async function generateThird({ templateStr, model, questionCol, answerCol, isFirst }) {
 
-    const results = await models[model].findAll({
+    const options = await models[model].findAll({
+        where: {
+            [questionCol]: { [Op.notIn]: falsyValues },
+            [answerCol]: { [Op.notIn]: falsyValues },
+        },
         limit: 2,
         order: Sequelize.literal("rand()")
     }, { fields: [questionCol, answerCol] });
 
-    const finalResult = results.map(answer => answer.toJSON())
-    const questionStr = templateStr.replace("<value1>", finalResult[0][answerCol]).replace("<value2>", finalResult[1][answerCol])
+    const finalOption = options.map(option => option.toJSON())
+    const questionStr = templateStr.replace("<value1>", finalOption[0][answerCol]).replace("<value2>", finalOption[1][answerCol])
 
     const questionObj = { text: questionStr, type: 3, option1: "Yes", option2: "No" };
 
     if (isFirst) {
 
-        questionObj.answer = finalResult[0][questionCol] > finalResult[1][questionCol] ? "Yes" : "No";
+        questionObj.answer = finalOption[0][questionCol] > finalOption[1][questionCol] ? "Yes" : "No";
     }
     else {
-        questionObj.answer = finalResult[0][questionCol] < finalResult[1][questionCol] ? "Yes" : "No";
+        questionObj.answer = finalOption[0][questionCol] < finalOption[1][questionCol] ? "Yes" : "No";
     }
 
     const questionSaved = models.SavedQuestion.findAll({
@@ -108,8 +125,8 @@ async function generateThird({ templateStr, model, questionCol, answerCol, isFir
 // gets a question - generates a new one if needed.     V
 async function getQuestion(playerId) {
     const unaskedQuestions = await getUnAskedQuestions(playerId);
-    const shold = shouldGenerate(unaskedQuestions.length);
-    if (shold) {
+    const should = shouldGenerate(unaskedQuestions.length);
+    if (should) {
         return await generateQuestion();
     }
     else {
@@ -125,7 +142,7 @@ async function setAnswer(playerId, questionId, isRight, totalTime, time) {
     });
     const scoreUpdate = (1 - time / totalTime) * 70 + 30;
     if (!isRight) {
-        await Dplayer.increment({ strikes: 1 }, { returning: true });
+        await Dplayer.increment({ strikes: 1 });
     }
     else {
         await Dplayer.increment({ score: scoreUpdate })
@@ -139,7 +156,7 @@ async function setAnswer(playerId, questionId, isRight, totalTime, time) {
 async function getRandomSavedQuestion(unaskedQuestions) {
     const rankFromRankToSelect = rankToSelect(unaskedQuestions);
     // filter questions with specific rank
-    const rankQuestions = unaskedQuestions.filter(question => question.QuestionStat ? question.QuestionStat.finalRank == rankFromRankToSelect : true)   // used '==' because we compare only simple numbers, and we needed 'null' to equal 'undefined'.
+    const rankQuestions = unaskedQuestions.filter(question => question.QuestionStat ? question.QuestionStat.finalRank === rankFromRankToSelect : true);
     return rankQuestions[
         Math.floor(Math.random() * rankQuestions.length - 1)
     ];
@@ -147,10 +164,10 @@ async function getRandomSavedQuestion(unaskedQuestions) {
 
 //  gets all unasked saved questions for player V
 async function getUnAskedQuestions(playerId) {
-    const Dplayer = await models.Player.findByPk(playerId, {
+    const Dplayer = await models.Player.findByPk(playerId, {    // TODO: change to one request from saved question includes player where player.id not equel playerId.
         include: models.SavedQuestion,
     });
-    const askedQuestionsIds = await Dplayer.SavedQuestions.map((q) => q.id);
+    const askedQuestionsIds = Dplayer.SavedQuestions.map((q) => q.id);
     const unAskedQuestions = await models.SavedQuestion.findAll({
         where: {
             id: { [Op.notIn]: askedQuestionsIds }
@@ -170,7 +187,7 @@ function questionToClient(question) {
         question.option4,
     ].filter(option => option);
     for (let i = optionsArr.length - 1; i > 0; i--) {
-        const newIndex = Math.floor(Math.random() * (i + 1));
+        const newIndex = Math.round(Math.random() * (i));
         const oldValue = optionsArr[newIndex];
         optionsArr[newIndex] = optionsArr[i];
         optionsArr[i] = oldValue;
@@ -245,10 +262,6 @@ async function updateQuestionsRank(playerId) {
     questionsToDelete = playerQuestions.filter(q => !q.QuestionAskedPerPlayer.rank)
     playerQuestionsIds = questionsToDelete.map(q => q.id);
 
-    console.log("player: ", player);
-    console.log("playerQuestions: ", playerQuestions);
-    console.log("TODELETE: ", questionsToDelete);
-    console.log("TOplayerQuestionsIds: ", playerQuestionsIds);
     models.SavedQuestion.destroy(
         { where: { id: { [Op.or]: playerQuestionsIds } } });
 }
@@ -263,21 +276,30 @@ async function setPlayerRank(PlayerId, SavedQuestionId, rank) {
 
 //  calculates and randomize which rank should be the next saved question.  V
 function rankToSelect(unAsked) {
-    const ranksArr = [];
-    const ranksCount = unAsked.reduce((prev, q) => {
-        return prev += q.QuestionStat ? q.QuestionStat.finalRank : 0
-    }, 0
-    );
+    console.log("unasked!!!", unAsked);
+    const ranks = [, 0, 0, 0, 0, 0];
+    const probability = [];
+    let ranksSum = 0;
 
-    for (let i = 1; i <= 5 && i <= ranksCount; i++) {
-        const iPropabilty = Math.round((i / ranksCount) * 100);
-        for (let j = 0; j < iPropabilty; j++) {
-            ranksArr.push(i);
+    unAsked.forEach(q => {
+        if (!q.QuestionStat) return
+        console.log(q.QuestionStat.finalRank);
+        ranksSum += q.QuestionStat.finalRank;
+        ranks[q.QuestionStat.finalRank] += q.QuestionStat.finalRank
+    })
+
+    for (let i = 1; i <= 5 && i <= ranksSum; i++) {
+        const iProbability = Math.round((ranks[i] / ranksSum) * 100);
+        console.log("iprob", i, iProbability);
+        for (let j = 0; j < iProbability; j++) {
+            probability.push(i);
         }
     }
-    const randNum = Math.floor(Math.random() * ranksArr.length);
-    return ranksArr[randNum];
+
+    const randNum = Math.floor(Math.random() * probability.length);
+    return probability[randNum];
 };
+
 
 async function isOut(playerId) {
     const player = await models.Player.findByPk(playerId);
@@ -305,12 +327,16 @@ async function getLeaderBoard(playerId) {
     const topTwenty = await models.Player.findAll({
         order: models.Player.score,
         limit: 20,
-        attributes: ["id", "score", "name", [Sequelize.literal("RANK() over (order by score DESC)"), "rank"]],
+        attributes: [
+            "id",
+            "score",
+            "name",
+            [Sequelize.literal("RANK() over (order by score DESC)"), "rank"]
+        ],
     });
 
     const isPlayerTopTwenty = topTwenty.some((player) => player.id === playerId);
 
-    console.log(isPlayerTopTwenty);
     if (isPlayerTopTwenty) return topTwenty;
 
     const Dplayer = await models.Player.findByPk(playerId);

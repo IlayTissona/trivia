@@ -13,11 +13,11 @@ const GameOver = ({ playerId, pts }) => {
 
 
     return (
-        <>
+        <div id="game-over">
             <h1 id="title">Game Over</h1>
             <p id="game-summary">You did {pts} out of 5!</p>
             <button className='button' onClick={() => refreshPage(playerId)}>Retry</button>
-        </>
+        </div>
     )
 }
 

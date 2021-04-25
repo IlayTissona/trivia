@@ -5,7 +5,7 @@ import '../styles/PlayerStatus.css'
 function PlayerStatus(props) {
     const player = props.player;
     return (
-        <div id="PlayerStatus">
+        <div id="playerStatus">
             <h3>Quiz</h3>
             <span className="playerDetails">
                 <img src={player.src} />

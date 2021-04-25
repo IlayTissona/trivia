@@ -1,0 +1,39 @@
+
+
+Routes:
+    1./start
+    2./game
+    3./game-over
+
+App
+    player main state(should name "Game")
+
+
+1.Start
+    Components:
+         - miniLeaderBoard
+            + top3.
+         - Form
+            + Name
+            + Button
+            + Avatar
+
+
+2.Game
+    Components:
+        - PlayerStats
+        - Main
+            + Question
+            + Options
+            + Spinner
+                @ timer
+            + Rank
+        
+
+3.GameOver
+    Components:
+        - FullLeaderBoard
+        - FullPlayerStats
+        - Restart
+
+

@@ -59,7 +59,10 @@ const { generateQuestion, getQuestion, generateFirst } = require('./utils')
 //     //     console.log(mashu[0].QuestionAskedPerPlayer.toJSON());
 // }
 // bla()
-
+SavedQuestion.findAll({
+    group: ['finalRank'],
+    include: models.QuestionStats
+})
 
 generateQuestion()
 generateQuestion()
