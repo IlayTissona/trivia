@@ -1,16 +1,20 @@
-import React, { useContext, useParams } from "react";
+import React, { useContext, useEffect, useParams } from "react";
 import { GameContext } from "./GameProvider";
 import axios from ("axios")
 import "GameOver.css"
+import Loader from "./Loader"
 
 function GameOver() {
   const gameContext = useContext(GameContext);
   const { playerId } = gameContext;
   const [endGameData, setEndGameData] = useState(null)
 
-  axios.get(`/end_session/${playerId}`).then(endGame=>{
-      setEndGameData(endGame.data)
-  })
+  useEffect(() => {
+      axios.get(`/end_session/${playerId}`).then(endGame=>{
+          setEndGameData(endGame.data)
+      })
+  },[])
+
   return !endGameData? <Loader /> : 
   <> 
   
@@ -27,7 +31,7 @@ function GameOver() {
           <th className="table-header">Name</th>
           <th className="table-header">Score</th>
       </thead>
-      {endGameData.leaderBoard.map(player, i => {
+      {endGameData.leaderBoard.map((player, i) => {
           return (<tr key={i} className="lb-player" >
               <td className="lb-player-rank">{player.rank}</td>
               <td><img className="lb-player-avatar" src={player.avatarUrl} /></td>
