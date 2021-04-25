@@ -1,25 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom'
+import GameProvider from './components/GameProvider.js'
+import GameOver from './components/GameOver.js'
+// , Game, Start
+// const game = useContext(GameContext);
+// const setGame = useContext(updateGameContext);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GameProvider>
+      <BrowserRouter>
+        {/* <Route path="/start" component={Start} />
+        <Route path="/game" component={Game} /> */}
+        <Route path="/" component={GameOver} /> {/* game-over*/}
+      </BrowserRouter>
+    </GameProvider>
   );
-}
 
+
+
+
+}
 export default App;

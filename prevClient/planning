@@ -1,17 +1,21 @@
-
-
-Routes:
-    1./start
-    2./game
-    3./game-over
-
 App
-    player main state(should name "Game")
 
+    - PlayerStats
+
+    Routes:
+        1./start
+        2./game
+        3./game-over
+
+    player main context(should name "Game")
+    question
+    Options
+    strikes
+    {player}
 
 1.Start
     Components:
-         - miniLeaderBoard
+         - LeaderBoard
             + top3.
          - Form
             + Name
@@ -21,7 +25,7 @@ App
 
 2.Game
     Components:
-        - PlayerStats
+        
         - Main
             + Question
             + Options
@@ -32,7 +36,7 @@ App
 
 3.GameOver
     Components:
-        - FullLeaderBoard
+        - LeaderBoard
         - FullPlayerStats
         - Restart
 
