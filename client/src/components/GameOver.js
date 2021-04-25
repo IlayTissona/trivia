@@ -9,11 +9,14 @@ function GameOver() {
     const { playerId } = gameContext;
     const [endGameData, setEndGameData] = useState(null)
 
-    axios.get(`/end_session/${playerId}`).then(endGame => {
-        setEndGameData(endGame.data)
-    })
+    useEffect(() => {
+        axios.get(`/end_session/${playerId}`).then(endGame => {
+            setEndGameData(endGame.data)
+        })
+    }, [])
+
     return !endGameData ? <Loader /> :
-        <Loader>
+        <>
 
             <div id="player-stats" >
                 {endGameData.playerStats.name}
@@ -28,7 +31,7 @@ function GameOver() {
                     <th className="table-header">Name</th>
                     <th className="table-header">Score</th>
                 </thead>
-                {endGameData.leaderBoard.map(player, i => {
+                {endGameData.leaderBoard.map((player, i) => {
                     return (<tr key={i} className="lb-player" >
                         <td className="lb-player-rank">{player.rank}</td>
                         <td><img className="lb-player-avatar" src={player.avatarUrl} /></td>
@@ -38,7 +41,7 @@ function GameOver() {
                 })
                 }
             </table>
-        </Loader>
+        </>
 }
 
 export default GameOver;

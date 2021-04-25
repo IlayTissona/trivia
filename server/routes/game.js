@@ -3,7 +3,17 @@ const app = express();
 let game = express.Router();
 const { Player, SavedQuestions } = require("../models");
 const { Op } = require("sequelize");
-const { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updateQuestionsRank, questionToClient, isOut, getLeaderBoard, getPlayerStats } = require('../utils');
+const {
+  getQuestion,
+  isRightAnswer,
+  setAnswer,
+  setPlayerRank,
+  updateQuestionsRank,
+  questionToClient,
+  isOut,
+  getLeaderBoard,
+  getPlayerStats,
+} = require("../utils");
 
 // IMORTANT!!!
 // generate first throws the error:
@@ -20,9 +30,7 @@ game.post("/new_session", async (req, res) => {
     { returning: true }
   );
   console.log(player);
-  const avatar = await player.getAvatar(
-    { through: "AvatarId" }
-  );
+  const avatar = await player.getAvatar({ through: "AvatarId" });
   return res.send({
     id: player.id,
     userName: player.name,
@@ -35,7 +43,7 @@ game.get("/question/:playerId", async (req, res) => {
   const playerId = Number(req.params.playerId);
 
   const isPlayerOut = await isOut(playerId);
-  if (isPlayerOut) return res.json({ isOut: true })
+  if (isPlayerOut) return res.json({ isOut: true });
   const question = await getQuestion(playerId);
 
   return res.json(questionToClient(question));
@@ -45,8 +53,14 @@ game.post("/answer/:playerId", async (req, res) => {
   const { questionId, answer, totalTime, time } = req.body;
   console.log(playerId, questionId, answer, totalTime, time);
   const isCorrect = await isRightAnswer(questionId, answer);
-  const { newScore, strikes } = await setAnswer(playerId, questionId, isCorrect, totalTime, time);
-  return res.json({ isCorrect, newScore, strikes })
+  const { newScore, strikes } = await setAnswer(
+    playerId,
+    questionId,
+    isCorrect,
+    totalTime,
+    time
+  );
+  return res.json({ isCorrect, newScore, strikes });
 });
 
 game.post("/rank/:playerId", async (req, res) => {
@@ -60,12 +74,26 @@ game.post("/rank/:playerId", async (req, res) => {
 
 game.get("/end_session/:playerId", async (req, res) => {
   const playerId = Number(req.params.playerId);
-  console.log(playerId, typeof (playerId));
+  console.log(playerId, typeof playerId);
   const leaderBoard = await getLeaderBoard(playerId);
   const playerStats = await getPlayerStats(playerId);
-  res.json({ leaderBoard, playerStats })
+  res.json({ leaderBoard, playerStats });
   updateQuestionsRank(playerId);
-  return
+  return;
+});
+
+game.get("/leader_board", async (req, res) => {
+  const leaderBoard = await models.Player.findAll({
+    order: models.Player.score,
+    limit: 20,
+    attributes: [
+      "id",
+      "score",
+      "name",
+      [Sequelize.literal("RANK() over (order by score DESC)"), "rank"],
+    ],
+  });
+  return res.json(leaderBoard);
 });
 
 game.get("/retry/:playerId", async (req, res) => {
@@ -88,7 +116,4 @@ game.get("/retry/:playerId", async (req, res) => {
   });
 });
 
-
-
-
-module.exports = game
+module.exports = game;
