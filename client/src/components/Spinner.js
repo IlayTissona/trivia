@@ -1,20 +1,17 @@
-import { React, useContext, useState, useEffect, useRef } from 'react';
-import { GameContext, updateTimeContext, TimeContext } from './GameProvider'
+import { React, useContext, useEffect, useRef } from 'react';
+import { GameContext } from './GameProvider'
 
 
-function Spinner({ stopTimer, setStopTimer }) {
+function Spinner({ time, startTime, setTime, sendAnswer }) {
     const game = useContext(GameContext);
-    // const setGame = useContext(updateGameContext);
-    const setTimeControl = useContext(updateTimeContext)
-    let { timeUntilAnswer, timeForQuestion } = useContext(TimeContext);
-    const startTime = useRef(20)
-    const [time, setTime] = useState(timeForQuestion);
-    // const setTimeoutIsOff = useRef(true)
+
+
     const timeUpSwitch = useRef(false)
     useEffect(() => {
         if (!time) {
+            sendAnswer(game.id, game.question.id, "false answer", startTime.current, time)
             setTimeout(() => {
-                startTime.current = startTime.current - 0.5;
+                if (startTime.current > 5) startTime.current = startTime.current - 0.5;
                 setTime(startTime.current)
             }, 5000
             )
@@ -32,6 +29,8 @@ function Spinner({ stopTimer, setStopTimer }) {
             {time ? time : "TimeUp!"}
         </div>
     );
+
+
 }
 
 export default Spinner;

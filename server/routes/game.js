@@ -1,8 +1,6 @@
 const express = require("express");
-const app = express();
 let game = express.Router();
-const { Player, SavedQuestions } = require("../models");
-const { Op } = require("sequelize");
+const { Player } = require("../models");
 const Sequelize = require("sequelize");
 const {
   getQuestion,

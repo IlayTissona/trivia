@@ -1,8 +1,8 @@
 import React from "react";
-import Skeleton from "@yisheng90/react-loading";
+import "../styles/Loader.css"
 
 function Loader(props) {
-  return <Skeleton rows={20} />;
+  return <div className="loader"></div>;
 }
 
 export default Loader;

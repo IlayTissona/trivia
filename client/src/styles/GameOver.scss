@@ -1,9 +1,7 @@
 #game-over{
-  background-image: url("./QuizBackGround.jpg");
-  background-repeat: no-repeat;
-  background-position: cover;
   display:grid;
   grid-template-columns: 30% 40% 30%;
+  grid-template-rows: 20% 80%;
   width:100vw;
   height: 100vh; 
   background-color: #6600cc;
@@ -11,9 +9,13 @@
   font-family: 'Bangers', cursive;
   
  #leader-board{
-     grid-column:2;
+     grid-column:2; 
+     grid-row: 2;
      background-color: none;
-   
-     
  }
+ #playerStats{
+   grid-column: 2;
+   grid-row: 1;
+ }
+
 }

@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { GameContext, updateGameContext } from './GameProvider';
 import '../styles/Start.css';
 
-function Start(props) {
+function Start() {
   const [leaderBoard, setLeaderBoard] = useState();
   const setGame = useContext(updateGameContext)
   const game = useContext(GameContext)

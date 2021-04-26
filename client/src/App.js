@@ -4,11 +4,8 @@ import GameProvider from './components/GameProvider.js'
 import GameOver from './components/GameOver.js'
 import Start from './components/Start.js'
 import Game from './components/Game.js'
-// , Game, Start
-// const game = useContext(GameContext);
-// const setGame = useContext(updateGameContext);
 
-function App() {
+function App(props) {
   return (
     <GameProvider>
       <BrowserRouter>

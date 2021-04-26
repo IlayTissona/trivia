@@ -123,6 +123,7 @@ async function generateThird({ templateStr, model, questionCol, answerCol, isFir
 
 // gets a question - generates a new one if needed.     V
 async function getQuestion(playerId) {
+    console.log(playerId)
     const unaskedQuestions = await getUnAskedQuestions(playerId);
     const should = shouldGenerate(unaskedQuestions.length);
     if (should) {

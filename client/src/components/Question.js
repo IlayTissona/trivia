@@ -1,17 +1,17 @@
-import { React, useEffect, useContext, useRef } from 'react';
+import { React, useEffect, useContext, useState } from 'react';
 import { GameContext, updateGameContext, TimeContext, updateTimeContext, UtilsContext, updateUtilsContext } from "./GameProvider";
 import Loader from "./Loader"
 import Rank from "./Rank"
 import axios from "axios"
+import "../styles/Question.css"
 
-function Question({ setStopTimer }) {
+function Question({ time, startTime, sendAnswer, nextQuestion, getQuestion, setCorrectAnswer, correctAnswer }) {
     const setGame = useContext(updateGameContext)
     const game = useContext(GameContext);
     const setTimeControl = useContext(updateTimeContext)
     let { timeForQuestion } = useContext(TimeContext);
-    const setUtils = useContext(updateUtilsContext)
-    let { setAnswer } = useContext(UtilsContext);
-    const nextQuestion = useRef(false)
+
+
     const setQuestion = (question) => {
         game.question = question
         setGame({ ...game })
@@ -20,7 +20,6 @@ function Question({ setStopTimer }) {
     useEffect(() => {
         console.log(game.id)
         getQuestion(game.id).then((res) => {
-            console.log(res)
             setTimeControl({ timeForQuestion, timeUntilAnswer: timeForQuestion })
             setQuestion(res);
 
@@ -43,33 +42,22 @@ function Question({ setStopTimer }) {
 
 
 
-    function sendAnswer(playerId, questionId, answer, totalTime, time) {
-        setStopTimer(true);
-        axios.post(`/answer/${playerId}`, {
-            questionId, answer, totalTime, time
-        }).then(res => {
-            game.score = res.score;
-            game.strikes = res.strikes;
-            setGame({ ...game })
-        })
-    }
+
     function createOptions() {
         const { options } = game.question
         const questionOptions = [];
         for (let i = 0; i < options.length; i++) {
             questionOptions.push(
-                <li key={i} onClick={() => {
-                    setAnswer(options[i])
+                <li key={i} className={correctAnswer === i ? " correct" : null} onClick={() => {
+                    if (correctAnswer) return;
+                    setCorrectAnswer(true);
+                    sendAnswer(game.id, game.question.id, options[i], startTime.current, startTime.current - time).then(isCorrect => setCorrectAnswer(i))
                 }
                 } className="option" > {options[i]}</li >)
         }
         return questionOptions;
     }
-    function getQuestion(playerId) {
-        console.log(playerId);
-        return axios.get(`/question/${playerId}`)
-            .then(newQuestion => newQuestion.data)
-    }
+
 }
 
 export default Question;

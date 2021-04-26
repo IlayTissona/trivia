@@ -6,11 +6,10 @@ import Loader from './Loader'
 
 function GameOver() {
     const gameContext = useContext(GameContext);
-    const { id } = gameContext;
     const [endGameData, setEndGameData] = useState(null)
-    // ${playerId}
+
     useEffect(() => {
-        axios.get(`/end_session/${id}`).then(endGame => {
+        axios.get(`/end_session/${gameContext.id}`).then(endGame => {
             setEndGameData(endGame.data)
         })
     }, [])
@@ -21,15 +20,17 @@ function GameOver() {
             <div id="player-stats" >
                 {endGameData.playerStats.name}
                 {endGameData.playerStats.avatarUrl}
-                {endGameData.playerStats.score}
-                {endGameData.playerStats.passed}
-                {endGameData.playerStats.passed}
+               Score: {endGameData.playerStats.score}
+               Passed: {endGameData.playerStats.passed}
             </div>
             <table id="leader-board">
                 <thead id="table-headers">
-                    <th className="table-header">Rank</th>
-                    <th className="table-header">Name</th>
-                    <th className="table-header">Score</th>
+                    <tr>
+                        <th className="table-header">Name</th>
+                        <th className="table-header">Avatar</th>
+                        <th className="table-header">Name</th>
+                        <th className="table-header">Score</th>
+                    </tr>
                 </thead>
                 <tbody>
 
