@@ -1,5 +1,5 @@
 import { React, useEffect, useContext, useRef } from 'react';
-import { GameContext, updateGameContext, TimeContext, updateTimeContext } from "./GameProvider";
+import { GameContext, updateGameContext, TimeContext, updateTimeContext, UtilsContext, updateUtilsContext } from "./GameProvider";
 import Loader from "./Loader"
 import Rank from "./Rank"
 import axios from "axios"
@@ -9,6 +9,8 @@ function Question({ setStopTimer }) {
     const game = useContext(GameContext);
     const setTimeControl = useContext(updateTimeContext)
     let { timeForQuestion } = useContext(TimeContext);
+    const setUtils = useContext(updateUtilsContext)
+    let { setAnswer } = useContext(UtilsContext);
     const nextQuestion = useRef(false)
     const setQuestion = (question) => {
         game.question = question
@@ -41,7 +43,7 @@ function Question({ setStopTimer }) {
 
 
 
-    function setAnswer(playerId, questionId, answer, totalTime, time) {
+    function sendAnswer(playerId, questionId, answer, totalTime, time) {
         setStopTimer(true);
         axios.post(`/answer/${playerId}`, {
             questionId, answer, totalTime, time
@@ -56,8 +58,10 @@ function Question({ setStopTimer }) {
         const questionOptions = [];
         for (let i = 0; i < options.length; i++) {
             questionOptions.push(
-                <li key={i} onClick={() => setAnswer(game.id, game.question.id,
-                    options[i], game.timeForQuestion, game.timeUntilAnswer)} className="option">{options[i]}</li>)
+                <li key={i} onClick={() => {
+                    setAnswer(options[i])
+                }
+                } className="option" > {options[i]}</li >)
         }
         return questionOptions;
     }

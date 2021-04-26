@@ -22,20 +22,10 @@ function Spinner({ stopTimer, setStopTimer }) {
         }
 
     }, [time])
-
-    if (game.timerStopped) {
-        console.log("in timerStopped!");
-        setTime(timeForQuestion)
-    }
     if (time > 0) {
         console.log(" in 0.5 decrementor");
         setTimeout(() =>
             setTime(time - 0.5), 500)
-    }
-    else if (timeUpSwitch.current === false && time === 0) {
-        console.log(" in timeUp!");
-        timeUpSwitch.current = true;
-        return "TimeUp!"
     }
     return (
         <div id="spinner">
