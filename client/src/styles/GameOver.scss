@@ -1,3 +1,19 @@
-#player-stats{
-    background-color: aquamarine;
+#game-over{
+  background-image: url("./QuizBackGround.jpg");
+  background-repeat: no-repeat;
+  background-position: cover;
+  display:grid;
+  grid-template-columns: 30% 40% 30%;
+  width:100vw;
+  height: 100vh; 
+  background-color: #6600cc;
+  color:  #4dffc3;
+  font-family: 'Bangers', cursive;
+  
+ #leader-board{
+     grid-column:2;
+     background-color: none;
+   
+     
+ }
 }

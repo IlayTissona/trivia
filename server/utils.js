@@ -6,26 +6,25 @@ const { Op, literal } = require('sequelize');
 const falsyValues = ["N/A", null, "", "null", " ", "NULL", undefined, "undefined"]
 
 //  generates a random type question. returns a promises    V
-function generateQuestion() {
+async function generateQuestion() {
 
     return models.QuestionType.findOne({
-        order: literal('rand()'),
-        where: { type: 1 }
-    }).then(rawRandomQuestionTemplate => {
+        order: literal('rand()')
+    }).then(async (rawRandomQuestionTemplate) => {
         const randomQuestionTemplate = rawRandomQuestionTemplate.toJSON()
         switch (randomQuestionTemplate.type) {
 
             case 1:
-                return generateFirst(randomQuestionTemplate);
+                return await generateFirst(randomQuestionTemplate);
             case 2:
-                return generateSecond(randomQuestionTemplate);
+                return await generateSecond(randomQuestionTemplate);
             case 3:
-                return generateThird(randomQuestionTemplate);
+                return await generateThird(randomQuestionTemplate);
             default:
-                return generateQuestion();
+                return await generateQuestion();
         }
     })
-        .catch(err => console.error(`generateQuestion error: ${err}`))
+    // .catch(err => console.error(`generateQuestion error: ${err}`))
 }
 
 //  generates a question with type 1    V
@@ -33,8 +32,8 @@ async function generateFirst({ templateStr, model, questionCol, answerCol, isFir
     const questionObj = { text: templateStr, type: 1 };
     const options = await models[model].findAll({
         where: {
-            [questionCol]: { [Op.notIn]: falsyValues },
-            [answerCol]: { [Op.notIn]: falsyValues },
+            [questionCol]: { [Op.ne]: null },
+            [answerCol]: { [Op.ne]: null },
         },
         limit: 4,
         order: Sequelize.literal("rand()")
@@ -63,8 +62,8 @@ async function generateFirst({ templateStr, model, questionCol, answerCol, isFir
 async function generateSecond({ templateStr, model, questionCol, answerCol, isFirst }) {
     const options = await models[model].findAll({
         where: {
-            [questionCol]: { [Op.notIn]: falsyValues },
-            [answerCol]: { [Op.notIn]: falsyValues },
+            [questionCol]: { [Op.ne]: null },
+            [answerCol]: { [Op.ne]: null },
         },
         limit: 4,
         order: Sequelize.literal("rand()")
@@ -91,8 +90,8 @@ async function generateThird({ templateStr, model, questionCol, answerCol, isFir
 
     const options = await models[model].findAll({
         where: {
-            [questionCol]: { [Op.notIn]: falsyValues },
-            [answerCol]: { [Op.notIn]: falsyValues },
+            [questionCol]: { [Op.ne]: null },
+            [answerCol]: { [Op.ne]: null },
         },
         limit: 2,
         order: Sequelize.literal("rand()")
@@ -179,6 +178,7 @@ async function getUnAskedQuestions(playerId) {
 
 //  removes question's answer and unnessesary properties before sending to client, shuffles options #VakninInvestments       V
 function questionToClient(question) {
+    console.log(question);
     const questionText = question.text;
     const optionsArr = [
         question.option1,

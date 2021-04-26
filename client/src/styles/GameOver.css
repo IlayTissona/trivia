@@ -1,4 +1,21 @@
-#player-stats {
-  background-color: aquamarine;
+#game-over {
+  background-image: url("./QuizBackGround.jpg");
+  background-repeat: no-repeat;
+  background-position: cover;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 30% 40% 30%;
+      grid-template-columns: 30% 40% 30%;
+  width: 100vw;
+  height: 100vh;
+}
+
+#game-over #leader-board {
+  -ms-grid-column: 2;
+  grid-column: 2;
+  background-color: none;
+  -webkit-filter: blur(8px);
+          filter: blur(8px);
+  color: white;
 }
 /*# sourceMappingURL=GameOver.css.map */

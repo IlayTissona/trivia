@@ -1,0 +1,10 @@
+.picked{background-color: black;
+}
+#rank{
+    width: fit-content
+}
+.empty-star{
+    width: 3rem;
+    height: 3rem;
+    background-image: url('../assets/empty-star-512.webp');
+}

@@ -3,6 +3,7 @@ const app = express();
 let game = express.Router();
 const { Player, SavedQuestions } = require("../models");
 const { Op } = require("sequelize");
+const Sequelize = require("sequelize");
 const {
   getQuestion,
   isRightAnswer,
@@ -20,20 +21,17 @@ const {
 //     "TypeError: Cannot read property 'findAll' of undefined"
 
 game.post("/new_session", async (req, res) => {
-  console.log("in new session");
   const userName = req.body.userName;
   const userAvatar = req.body.avatar;
 
-  console.log(userName, userAvatar);
   const player = await Player.create(
     { name: userName, avatarId: userAvatar, score: 0 },
     { returning: true }
   );
-  console.log(player);
   const avatar = await player.getAvatar({ through: "AvatarId" });
   return res.send({
     id: player.id,
-    userName: player.name,
+    name: player.name,
     score: player.score,
     avatarUrl: avatar.imgSrc,
   });
@@ -41,7 +39,7 @@ game.post("/new_session", async (req, res) => {
 
 game.get("/question/:playerId", async (req, res) => {
   const playerId = Number(req.params.playerId);
-
+  console.log(playerId);
   const isPlayerOut = await isOut(playerId);
   if (isPlayerOut) return res.json({ isOut: true });
   const question = await getQuestion(playerId);
@@ -83,8 +81,8 @@ game.get("/end_session/:playerId", async (req, res) => {
 });
 
 game.get("/leader_board", async (req, res) => {
-  const leaderBoard = await models.Player.findAll({
-    order: models.Player.score,
+  const leaderBoard = await Player.findAll({
+    order: Player.score,
     limit: 20,
     attributes: [
       "id",

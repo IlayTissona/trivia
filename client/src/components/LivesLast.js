@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { GameContext } from "./GameProvider"
 
 
-function LivesLast({ numOfStrikes }) {
+function LivesLast({ }) {
 
-
-
-    const [strikes, setStrikes] = useState([true, true, true]);
+    const game = useContext(GameContext)
+    // const setGame = useContext(updateGameContext)
+    const { strikes } = game;
 
     // function updateStrikes() {
     //     const newStrikes = [true, true, true];
@@ -16,9 +17,9 @@ function LivesLast({ numOfStrikes }) {
     // }
 
     function createStrikeIcon() {
-        const hearts = []
+        const hearts = [];
         for (let i = 0; i < 3; i++) {
-            if (i < numOfStrikes) {
+            if (i < strikes) {
                 hearts.unshift(<i key={i} className="fas fa-heart-broken"></i>)
             }
             else hearts.unshift(<i key={i} className="fas fa-heart"></i>)

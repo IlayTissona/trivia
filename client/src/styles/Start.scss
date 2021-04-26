@@ -1,0 +1,30 @@
+.start{
+     display:grid;
+     grid-template-columns: 25% 50% 25%;
+     grid-row:20% 10% 70%;
+     align-items: center;
+     text-align: center;
+     background-color: #6600cc;
+     color:  #4dffc3;
+    
+    h1{
+        grid-column: 2;
+        grid-row:1;
+        margin:auto;
+        font-family: 'Bangers', cursive;
+
+    }
+
+   #start-form{
+       grid-column: 2;
+        grid-row:2;
+       margin:auto;
+
+   }
+   
+   #leader-board{
+       margin:auto;
+       grid-column: 2;
+       grid-row:3;
+   }
+}

@@ -1,0 +1,24 @@
+#question{
+    background-color: #6600cc;
+    color:  #4dffc3;
+    display:grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: 30% 40% 30%;
+    width:100vw;
+    height: 100vh; 
+    h1{
+        grid-column: 2;
+        grid-row: 1;
+         font-family: 'Bangers', cursive;
+    }
+    #options{
+
+        grid-column: 2;
+        grid-row: 2;
+        list-style: none;
+        li{
+            text-align: center;
+            margin: auto;
+        }
+    }
+}

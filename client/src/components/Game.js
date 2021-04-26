@@ -1,38 +1,29 @@
-import React from 'react';
-import { GameContext, updateGameContext } from './components/GameProvider'
+import React, { useState } from 'react';
+// import { GameContext, updateGameContext } from './GameProvider'
+import Question from './Question.js'
+import Spinner from './Spinner.js'
+import PlayerStatsBar from './PlayerStatsBar.js'
+
+
 
 function Game(props) {
-    const game = useContext(GameContext)
-    const setGame = useContext(updateGameContext)
-    const nextQuestion = useRef(false)
-
+    // const game = useContext(GameContext)
+    // const setGame = useContext(updateGameContext)
+    const [stopTimer, setStopTimer] = useState("b")
 
     return (
         <div>
             <PlayerStatsBar />
-            <Question />
-
+            <Question setStopTimer={setStopTimer} />
+            <Spinner stopTimer={stopTimer} setStopTimer={setStopTimer} />
         </div>
     );
 
     // Functions
     // =========
 
-    function getQuestion(playerId) {
-        axios.get(`/api/game/question/${playerId}`).then(newQuestion => {
-            nextQuestion.current = newQuestion;
-        })
-    }
 
-    function setAnswer(playerId, questionId, answer, totalTime, time) {
-        axios.post(`/api/game/answer/${playerId}`, {
-            questionId, answer, totalTime, time
-        }).then(res => {
-            game.score = res.score;
-            game.strikes = res.strikes;
-            setGame({ ...game })
-        })
-    }
+
 
 }
 
