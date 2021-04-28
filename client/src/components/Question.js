@@ -4,116 +4,122 @@ import Rank from "./Rank";
 import axios from "axios";
 import "../styles/Question.css";
 import { useDispatch, useSelector } from "react-redux";
-import { postAnswer, setQuestion, setAnswer } from "../store/actions/questionActions";
+import {
+  postAnswer,
+  setQuestion,
+  setAnswer,
+} from "../store/actions/questionActions";
 import MiniLoader from "./MiniLoader";
-import Timer from "./Timer"
+import Timer from "./Timer";
 
-function Question({ }) {
-    const dispatch = useDispatch();
-    const player = useSelector((store) => store.player);
-    const question = useSelector(store => store.question)
-    // const timer = useRef(useSelector((store) => store.timer))
-    // const timer = useRef()
-    // timer.current = useSelector((store) => store.timer)
+function Question({}) {
+  const dispatch = useDispatch();
+  const player = useSelector((store) => store.player);
+  const question = useSelector((store) => store.question);
+  // const timer = useRef(useSelector((store) => store.timer))
+  // const timer = useRef()
+  // timer.current = useSelector((store) => store.timer)
 
-    useEffect(() => {
-        console.log("TIMERCAUSEDTHIS")
-    }, [])
+  useEffect(() => {
+    console.log("TIMERCAUSEDTHIS");
+  }, []);
 
-    const nextQuestion = useRef({});
+  const nextQuestion = useRef({});
 
+  useEffect(() => {
+    getNextQuestion()
+      .then((newQuestion) => {
+        nextQuestion.current = newQuestion;
+      })
+      .catch((e) =>
+        getNextQuestion().then((newQuestion) => {
+          nextQuestion.current = newQuestion;
+        })
+      )
+      .catch((e) => {
+        nextQuestion.current = {
+          id: "ERROR",
+          text: "Network Error, can't load next question",
+        };
+      });
+  }, [question.id]);
 
-    useEffect(() => {
-        getNextQuestion()
-            .then((newQuestion) => {
-                nextQuestion.current = newQuestion;
-            })
-            .catch((e) => getNextQuestion()
-                .then((newQuestion) => {
-                    nextQuestion.current = newQuestion;
-                })).catch((e) => {
-                    nextQuestion.current = {
-                        id: "ERROR",
-                        text: "Network Error, can't load next question"
-                    };
-                });
-    }, [question.id]);
+  useEffect(() => {
+    axios.get(`/question/${player.id}`).then((res) => {
+      dispatch(setQuestion(res.data));
+    });
+  }, []);
 
-    useEffect(() => {
-        axios.get(`/question/${player.id}`).then((res) => {
-            dispatch(setQuestion(res.data));
-        });
-    }, []);
+  function goToNextQuestion(next) {
+    console.log(next);
+    dispatch(setQuestion(next));
+    dispatch(setAnswer(null));
+  }
 
-    function goToNextQuestion(next) {
-        console.log(next);
-        dispatch(setQuestion(next));
-        dispatch(setAnswer(null))
-    };
+  console.log("QUESTION RENDERRRRRRRRRRRRRRRRR");
+  async function getNextQuestion() {
+    return axios
+      .get(`/question/${player.id}`)
+      .then((res) => res.data)
+      .catch((e) => {
+        console.log(`/question/${player.id}`);
+      });
+  }
 
-    console.log("QUESTION RENDERRRRRRRRRRRRRRRRR")
-    async function getNextQuestion() {
-        return axios
-            .get(`/question/${player.id}`)
-            .then((res) => res.data)
-            .catch((e) => {
-                console.log(`/question/${player.id}`);
-            });
-    };
+  if (!player.id) return <Redirect to="/" />;
+  return (
+    <>
+      <div id="question">
+        <h1>{question.text}</h1>
+        <ul id="options">{createOptions(question.correctAnswer)}</ul>
+      </div>
+      {question.correctAnswer ? (
+        <Rank
+          playerId={player.id}
+          questionId={question.id}
+          goToNextQuestion={goToNextQuestion}
+          nextQuestion={nextQuestion}
+        />
+      ) : (
+        <Timer
+          timeUp={() => {
+            dispatch(postAnswer(player.id, question.id, null));
+          }}
+        />
+      )}
+    </>
+  );
 
-
-    if (!player.id) return <Redirect to="/" />;
-    return (
-        <>
-            <div id="question">
-                <h1>{question.text}</h1>
-                <ul id="options">{createOptions(question.correctAnswer)}</ul>
-            </div>
-            {question.correctAnswer ? (
-                <Rank
-                    playerId={player.id}
-                    questionId={question.id}
-                    goToNextQuestion={goToNextQuestion}
-                    nextQuestion={nextQuestion}
-                />
-            ) : (
-                <Timer />
-            )}
-        </>
-    );
-
-
-
-    function createOptions(correctAnswer) {
-        const { options } = question;
-        const questionOptions = [];
-        for (let i = 0; i < options.length; i++) {
-            questionOptions.push(
-                <li
-                    key={i}
-                    className={
-                        "option" + correctAnswer === options[i] ? " correct" : " incorrect"
-                    }
-                    onClick={() => {
-                        if (correctAnswer) return;
-                        // const timer = useSelector((store) => store.timer)
-                        dispatch(
-                            postAnswer(
-                                player.id,
-                                question.id,
-                                options[i],
-                                // timer.totalTime,
-                                // timer.timePassed
-                            )
-                        );
-                    }}
-                >
-                    {correctAnswer === "LOADING" ? <MiniLoader /> : options[i]}
-                </li>
+  function createOptions(correctAnswer) {
+    const { options } = question;
+    const questionOptions = [];
+    for (let i = 0; i < options.length; i++) {
+      questionOptions.push(
+        <li
+          key={i}
+          className={
+            "option" + correctAnswer === options[i] ? " correct" : " incorrect"
+          }
+          onClick={() => {
+            if (correctAnswer) return;
+            // const timer = useSelector((store) => store.timer)
+            dispatch(
+              postAnswer(
+                player.id,
+                question.id,
+                options[i]
+                // timer.totalTime,
+                // timer.timePassed
+              )
             );
-        }
-        return questionOptions;
+          }}
+        >
+          {correctAnswer === "LOADING" ? <MiniLoader /> : options[i]}
+        </li>
+      );
     }
+    return questionOptions;
+  }
 }
 
 export default Question;
