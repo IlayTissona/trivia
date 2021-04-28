@@ -94,6 +94,7 @@ function Question({ }) {
                     }
                     onClick={() => {
                         if (correctAnswer) return;
+                        if (question.timeUp) return;
                         dispatch(
                             postAnswer(
                                 player.id,
