@@ -10,12 +10,6 @@ export const tick = () => {
     type: "TICK",
   };
 };
-export const timeUp = (wrongAnswer) => {
-  return {
-    type: "TIME_UP",
-    wrongAnswer
-  };
-};
 
 export const totalTimeDecrease = () => {
   return {

@@ -5,6 +5,7 @@ const initialState = {
     text: null,
     options: [],
     correctAnswer: null,
+    timeUp: false
 };
 
 const questionReducer = (state = initialState, action) => {
@@ -16,6 +17,11 @@ const questionReducer = (state = initialState, action) => {
             newState.text = action.question.text;
             newState.options = action.question.options;
             newState.id = action.question.id;
+            newState.timeUp = false;
+            break;
+
+        case "TIME_UP":
+            newState.timeUp = true;
             break;
 
         case "SET_ANSWER":

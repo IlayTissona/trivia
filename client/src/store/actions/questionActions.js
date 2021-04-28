@@ -11,6 +11,13 @@ export const setQuestion = (nQuestion) => {
   };
 };
 
+export const setTimeUp = () => {
+  return {
+    type: "TIME_UP"
+  };
+};
+
+
 export const loadingAnswer = () => {
   return {
     type: "LOADING_ANSWER",

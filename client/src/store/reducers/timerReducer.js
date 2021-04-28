@@ -18,11 +18,6 @@ const timerReducer = (state = initialState, action) => {
     case "START":
       newState.timePassed = 0;
       break;
-    case "TIME_UP":
-      newState.totalTime = state.totalTime
-      return (dispatch) => {
-        dispatch(postAnswer(action.wrongAnswer))
-      };
     default:
       newState = state;
       break;
