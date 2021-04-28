@@ -3,12 +3,8 @@ import { GameContext } from "./GameProvider";
 import { Redirect } from "react-router-dom";
 
 
-function LivesLast({ }) {
 
-    const game = useContext(GameContext)
-
-    const { strikes } = game;
-
+function LivesLast({ strikes }) {
 
     function createStrikeIcon() {
         const hearts = [];

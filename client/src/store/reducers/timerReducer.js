@@ -1,3 +1,5 @@
+import { postAnswer } from '../actions/questionActions'
+
 const initialState = {
   totalTime: 20,
   timePassed: 0,
@@ -15,6 +17,12 @@ const timerReducer = (state = initialState, action) => {
       break;
     case "START":
       newState.timePassed = 0;
+      break;
+    case "TIME_UP":
+      newState.totalTime = state.totalTime
+      return (dispatch) => {
+        dispatch(postAnswer(action.wrongAnswer))
+      }
       break;
     default:
       break;

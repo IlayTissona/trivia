@@ -1,11 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { GameContext } from "./GameProvider"
+import React, { useState } from 'react';
 import axios from "axios"
 import "../styles/Rank.css"
 
-function Rank() {
+function Rank({ playerId, questionId, goToNextQuestion }) {
     const [ranks, setRank] = useState([false, false, false, false, false])
-    const game = useContext(GameContext)
+    const timeOut = setTimeout(goToNextQuestion, 3000);
 
 
     const hoverHandler = (rank) => {
@@ -15,8 +14,9 @@ function Rank() {
     }
 
     const clickHandler = (rank) => {
-
-        axios.post(`/rank/${game.id}`, { questionId: game.question.id, rank })
+        console.log(rank);
+        axios.post(`/rank/${playerId}`, { questionId: questionId, rank }).then(goToNextQuestion);
+        clearTimeout(timeOut)
     }
 
     return (

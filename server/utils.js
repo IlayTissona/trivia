@@ -205,7 +205,9 @@ async function isRightAnswer(questionId, answer) {
     const questionObj = await models.SavedQuestion.findOne({
         where: { id: questionId },
     });
-    return questionObj.answer === answer;
+    const isCorrect = questionObj.answer === answer
+    const correctAnswer = questionObj.answer
+    return { isCorrect, correctAnswer }
 };
 
 // updates the question statistics.         V

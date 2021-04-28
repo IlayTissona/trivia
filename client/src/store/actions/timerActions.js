@@ -1,6 +1,7 @@
-export const timeUp = () => {
+
+export const start = () => {
   return {
-    type: "TIME_UP",
+    type: "START",
   };
 };
 
@@ -9,3 +10,18 @@ export const tick = () => {
     type: "TICK",
   };
 };
+export const timeUp = (wrongAnswer) => {
+  return {
+    type: "TIME_UP",
+    wrongAnswer
+  };
+};
+
+export const totalTimeDecrease = () => {
+  return {
+    type: "TOTAL_TIME_DECREASE",
+  };
+};
+
+
+

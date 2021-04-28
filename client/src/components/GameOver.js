@@ -1,15 +1,15 @@
-import React, { useContext, useState, useEffect } from "react";
-import { GameContext } from "./GameProvider";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from './Loader'
+import LeaderBoard from "./LeaderBoard";
 import axios from "axios"
 import "../styles/GameOver.css"
-import Loader from './Loader'
 
 function GameOver() {
-    const gameContext = useContext(GameContext);
     const [endGameData, setEndGameData] = useState(null)
-
+    const player = useSelector(state => state.player)
     useEffect(() => {
-        axios.get(`/end_session/${gameContext.id}`).then(endGame => {
+        axios.get(`/end_session/${player.id}`).then(endGame => {
             setEndGameData(endGame.data)
         })
     }, [])
@@ -23,28 +23,7 @@ function GameOver() {
                Score: {endGameData.playerStats.score}
                Passed: {endGameData.playerStats.passed}
             </div>
-            <table id="leader-board">
-                <thead id="table-headers">
-                    <tr>
-                        <th className="table-header">Name</th>
-                        <th className="table-header">Avatar</th>
-                        <th className="table-header">Name</th>
-                        <th className="table-header">Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {endGameData.leaderBoard.map((player, i) => {
-                        return (<tr key={i} className="lb-player" >
-                            <td className="lb-player-rank">{player.rank}</td>
-                            <td><img className="lb-player-avatar" alt="Avatar" src={player.avatarUrl} /></td>
-                            <td className="lb-player-name">{player.name}</td>
-                            <td className="lb-player-score">{player.score}</td>
-                        </tr>)
-                    })
-                    }
-                </tbody>
-            </table>
+            <LeaderBoard />
         </div>
 }
 

@@ -1,63 +1,95 @@
-import { React, useEffect, useContext, useState } from 'react';
-import { GameContext, updateGameContext, TimeContext, updateTimeContext, UtilsContext, updateUtilsContext } from "./GameProvider";
-import Loader from "./Loader"
-import Rank from "./Rank"
-import axios from "axios"
-import "../styles/Question.css"
+import { React, useEffect, useContext, useState, useRef } from "react";
+import { Redirect } from "react-router-dom"
+import Timer from "./Timer";
+import Rank from "./Rank";
+import axios from "axios";
+import "../styles/Question.css";
+import { useDispatch, useSelector } from "react-redux";
+import { postAnswer, setQuestion } from "../store/actions/questionActions";
+import MiniLoader from "./MiniLoader";
 
-function Question({ time, startTime, sendAnswer, nextQuestion, getQuestion, setCorrectAnswer, correctAnswer }) {
-    const setGame = useContext(updateGameContext)
-    const game = useContext(GameContext);
-    const setTimeControl = useContext(updateTimeContext)
-    let { timeForQuestion } = useContext(TimeContext);
+function Question() {
+    const dispatch = useDispatch();
+    const question = useSelector((store) => store.question);
+    const player = useSelector((store) => store.player);
+    const timer = useSelector((store) => store.timer);
 
-
-    const setQuestion = (question) => {
-        game.question = question
-        setGame({ ...game })
-    }
+    const nextQuestion = useRef({});
 
     useEffect(() => {
-        console.log(game.id)
-        getQuestion(game.id).then((res) => {
-            setTimeControl({ timeForQuestion, timeUntilAnswer: timeForQuestion })
-            setQuestion(res);
+        const getNextQuestion = async () => {
+            axios.get(`/question/${player.id}`).then((res) => res.data).catch(e => {
+                console.log(`/question/${player.id}`)
+            })
+        };
 
-            getQuestion(game.id)
-                .then((res) => nextQuestion.current = res)
+        getNextQuestion()
+            .then((newQuestion) => {
+                nextQuestion.current = newQuestion;
+            })
+            .catch((e) => getNextQuestion());
+    }, [question.id]);
+
+    useEffect(() => {
+        axios.get(`/question/${player.id}`).then((res) => {
+            dispatch(setQuestion(res.data))
         })
-
     }, [])
 
+    const goToNextQuestion = () => {
+        console.log(nextQuestion.current)
+        dispatch(setQuestion(nextQuestion.current));
+    };
 
-    return game.question.text ? (
-        <div id="question">
-            <h1>{game.question.text}</h1>
-            <ul id="options">
-                {createOptions()}
-            </ul>
-            <Rank nextQuestion={nextQuestion} />
-        </div>
-    ) : <Loader />;
+    if (!player.id) return <Redirect to="/" />
 
+    return (
+        <>
+            <div id="question">
+                <h1>{question.text}</h1>
+                <ul id="options">{createOptions(question.correctAnswer)}</ul>
+            </div>
+            {question.correctAnswer ? (
+                <Rank
+                    playerId={player.id}
+                    questionId={question.id}
+                    goToNextQuestion={goToNextQuestion}
+                />
+            ) : (
+                <Timer playerId={player.id} questionId={question.id} />
+            )}
+        </>
+    );
 
-
-
-    function createOptions() {
-        const { options } = game.question
+    function createOptions(correctAnswer) {
+        const { options } = question;
         const questionOptions = [];
         for (let i = 0; i < options.length; i++) {
             questionOptions.push(
-                <li key={i} className={correctAnswer === i ? " correct" : null} onClick={() => {
-                    if (correctAnswer) return;
-                    setCorrectAnswer(true);
-                    sendAnswer(game.id, game.question.id, options[i], startTime.current, startTime.current - time).then(isCorrect => setCorrectAnswer(i))
-                }
-                } className="option" > {options[i]}</li >)
+                <li
+                    key={i}
+                    className={
+                        "option" + correctAnswer === options[i] ? " correct" : " incorrect"
+                    }
+                    onClick={() => {
+                        if (correctAnswer) return;
+                        dispatch(
+                            postAnswer(
+                                player.id,
+                                question.id,
+                                options[i],
+                                timer.totalTime,
+                                timer.timePassed
+                            )
+                        );
+                    }}
+                >
+                    {correctAnswer === "LOADING" ? <MiniLoader /> : options[i]}
+                </li>
+            );
         }
         return questionOptions;
     }
-
 }
 
 export default Question;

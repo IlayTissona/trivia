@@ -48,7 +48,7 @@ game.post("/answer/:playerId", async (req, res) => {
   const playerId = Number(req.params.playerId);
   const { questionId, answer, totalTime, time } = req.body;
   console.log(playerId, questionId, answer, totalTime, time);
-  const isCorrect = await isRightAnswer(questionId, answer);
+  const { isCorrect, correctAnswer } = await isRightAnswer(questionId, answer);
   const { newScore, strikes } = await setAnswer(
     playerId,
     questionId,
@@ -56,7 +56,7 @@ game.post("/answer/:playerId", async (req, res) => {
     totalTime,
     time
   );
-  return res.json({ isCorrect, newScore, strikes });
+  return res.json({ isCorrect, newScore, strikes, correctAnswer });
 });
 
 game.post("/rank/:playerId", async (req, res) => {
