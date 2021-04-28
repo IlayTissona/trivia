@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from 'react-router-dom'
 import Loader from './Loader'
 import LeaderBoard from "./LeaderBoard";
 import axios from "axios"
@@ -13,7 +14,7 @@ function GameOver() {
             setEndGameData(endGame.data)
         })
     }, [])
-
+    if (!player.id) return <Redirect to="/" />;
     return !endGameData ? <Loader /> :
         <div id="game-over">
 

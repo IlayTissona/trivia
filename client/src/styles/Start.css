@@ -1,6 +1,8 @@
 .start {
   display: -ms-grid;
   display: grid;
+  width: 100vw;
+  height: 100vh;
   -ms-grid-columns: 25% 50% 25%;
       grid-template-columns: 25% 50% 25%;
   grid-row: 20% 10% 70%;
@@ -27,6 +29,22 @@
   -ms-grid-row: 2;
   grid-row: 2;
   margin: auto;
+}
+
+.start #start-form input {
+  border: none;
+  padding: 2px;
+  color: 4dffc3;
+  background-color: #9949e9;
+  height: 80%;
+}
+
+.start #start-form button {
+  padding: 2px;
+  border: none;
+  color: 4dffc3;
+  background-color: #9949e9;
+  height: 80%;
 }
 
 .start #leader-board {

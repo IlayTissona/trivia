@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { GameContext } from "./GameProvider";
+import React from 'react';
 import { Redirect } from "react-router-dom";
 
 
@@ -15,6 +14,7 @@ function LivesLast({ strikes }) {
             else hearts.unshift(<i key={i} className="fas fa-heart"></i>)
 
         }
+
 
         return strikes < 3 ? hearts : <Redirect to="/game-over" />
     }

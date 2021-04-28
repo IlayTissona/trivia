@@ -1,3 +1,5 @@
+
+
 const initialState = {
     id: null,
     text: null,
@@ -6,7 +8,8 @@ const initialState = {
 };
 
 const questionReducer = (state = initialState, action) => {
-    const newState = { ...state };
+    if (action.type === "TICK") return state
+    let newState = { ...state };
 
     switch (action.type) {
         case "SET_NEXT_QUESTION":
@@ -23,6 +26,7 @@ const questionReducer = (state = initialState, action) => {
             newState.correctAnswer = "LOADING";
             break;
         default:
+            newState = state;
             break;
     }
     return newState;

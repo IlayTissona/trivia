@@ -7,6 +7,7 @@ const playerInitialState = {
 }
 
 const playerReducer = (state = playerInitialState, action) => {
+    if (action.type === "TICK") return state
     let newState = { ...state };
     switch (action.type) {
 
@@ -15,7 +16,7 @@ const playerReducer = (state = playerInitialState, action) => {
             break;
 
         case "SET_SCORE":
-            newState.score += action.score
+            newState.score = action.score
             break;
         case "SET_PLAYER":
             newState = { ...action.player }
@@ -24,6 +25,7 @@ const playerReducer = (state = playerInitialState, action) => {
 
             break;
         default:
+            newState = state;
             break;
     }
     return newState;

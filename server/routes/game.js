@@ -23,13 +23,15 @@ game.post("/new_session", async (req, res) => {
   const userAvatar = req.body.avatar;
 
   const player = await Player.create(
-    { name: userName, avatarId: userAvatar, score: 0 },
+    { name: userName, avatarId: userAvatar, score: 0, strikes: 0 },
     { returning: true }
   );
   const avatar = await player.getAvatar({ through: "AvatarId" });
-  return res.send({
+  console.log(player.toJSON())
+  return res.json({
     id: player.id,
     name: player.name,
+    strikes: player.strikes,
     score: player.score,
     avatarUrl: avatar.imgSrc,
   });
@@ -37,24 +39,22 @@ game.post("/new_session", async (req, res) => {
 
 game.get("/question/:playerId", async (req, res) => {
   const playerId = Number(req.params.playerId);
-  console.log(playerId);
   const isPlayerOut = await isOut(playerId);
   if (isPlayerOut) return res.json({ isOut: true });
   const question = await getQuestion(playerId);
-
   return res.json(questionToClient(question));
 });
 game.post("/answer/:playerId", async (req, res) => {
   const playerId = Number(req.params.playerId);
-  const { questionId, answer, totalTime, time } = req.body;
-  console.log(playerId, questionId, answer, totalTime, time);
+  const { questionId, answer, totalTime, timePassed } = req.body;
+  console.log(playerId, typeof (playerId), answer, typeof (answer), totalTime, typeof (totalTime), timePassed, typeof (timePassed));
   const { isCorrect, correctAnswer } = await isRightAnswer(questionId, answer);
   const { newScore, strikes } = await setAnswer(
     playerId,
     questionId,
     isCorrect,
     totalTime,
-    time
+    timePassed
   );
   return res.json({ isCorrect, newScore, strikes, correctAnswer });
 });

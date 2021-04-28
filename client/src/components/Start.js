@@ -28,8 +28,7 @@ function Start() {
         <h1 id="landing-page-title">Welcome To Trivia Game</h1>
         <form id="start-form">
           <label htmlFor="name">
-            {" "}
-            Name:
+
             <input required type="text" name="name" ref={inputRef} placeholder="Name..." />
           </label>
           <button onClick={start}> Start </button>

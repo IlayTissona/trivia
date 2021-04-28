@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const timerReducer = (state = initialState, action) => {
-  const newState = { ...state };
+  let newState = { ...state };
 
   switch (action.type) {
     case "TICK":
@@ -22,9 +22,9 @@ const timerReducer = (state = initialState, action) => {
       newState.totalTime = state.totalTime
       return (dispatch) => {
         dispatch(postAnswer(action.wrongAnswer))
-      }
-      break;
+      };
     default:
+      newState = state;
       break;
   }
   return newState;

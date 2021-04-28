@@ -1,48 +1,68 @@
-import { React, useEffect, useContext, useState, useRef } from "react";
-import { Redirect } from "react-router-dom"
-import Timer from "./Timer";
+import React, { useEffect, useMemo, useRef } from "react";
+import { Redirect } from "react-router-dom";
 import Rank from "./Rank";
 import axios from "axios";
 import "../styles/Question.css";
 import { useDispatch, useSelector } from "react-redux";
-import { postAnswer, setQuestion } from "../store/actions/questionActions";
+import { postAnswer, setQuestion, setAnswer } from "../store/actions/questionActions";
 import MiniLoader from "./MiniLoader";
+import Timer from "./Timer"
 
-function Question() {
+function Question({ }) {
     const dispatch = useDispatch();
-    const question = useSelector((store) => store.question);
     const player = useSelector((store) => store.player);
-    const timer = useSelector((store) => store.timer);
+    const question = useSelector(store => store.question)
+    // const timer = useRef(useSelector((store) => store.timer))
+    // const timer = useRef()
+    // timer.current = useSelector((store) => store.timer)
+
+    useEffect(() => {
+        console.log("TIMERCAUSEDTHIS")
+    }, [])
 
     const nextQuestion = useRef({});
 
-    useEffect(() => {
-        const getNextQuestion = async () => {
-            axios.get(`/question/${player.id}`).then((res) => res.data).catch(e => {
-                console.log(`/question/${player.id}`)
-            })
-        };
 
+    useEffect(() => {
         getNextQuestion()
             .then((newQuestion) => {
                 nextQuestion.current = newQuestion;
             })
-            .catch((e) => getNextQuestion());
+            .catch((e) => getNextQuestion()
+                .then((newQuestion) => {
+                    nextQuestion.current = newQuestion;
+                })).catch((e) => {
+                    nextQuestion.current = {
+                        id: "ERROR",
+                        text: "Network Error, can't load next question"
+                    };
+                });
     }, [question.id]);
 
     useEffect(() => {
         axios.get(`/question/${player.id}`).then((res) => {
-            dispatch(setQuestion(res.data))
-        })
-    }, [])
+            dispatch(setQuestion(res.data));
+        });
+    }, []);
 
-    const goToNextQuestion = () => {
-        console.log(nextQuestion.current)
-        dispatch(setQuestion(nextQuestion.current));
+    function goToNextQuestion(next) {
+        console.log(next);
+        dispatch(setQuestion(next));
+        dispatch(setAnswer(null))
     };
 
-    if (!player.id) return <Redirect to="/" />
+    console.log("QUESTION RENDERRRRRRRRRRRRRRRRR")
+    async function getNextQuestion() {
+        return axios
+            .get(`/question/${player.id}`)
+            .then((res) => res.data)
+            .catch((e) => {
+                console.log(`/question/${player.id}`);
+            });
+    };
 
+
+    if (!player.id) return <Redirect to="/" />;
     return (
         <>
             <div id="question">
@@ -54,12 +74,15 @@ function Question() {
                     playerId={player.id}
                     questionId={question.id}
                     goToNextQuestion={goToNextQuestion}
+                    nextQuestion={nextQuestion}
                 />
             ) : (
-                <Timer playerId={player.id} questionId={question.id} />
+                <Timer />
             )}
         </>
     );
+
+
 
     function createOptions(correctAnswer) {
         const { options } = question;
@@ -73,13 +96,14 @@ function Question() {
                     }
                     onClick={() => {
                         if (correctAnswer) return;
+                        // const timer = useSelector((store) => store.timer)
                         dispatch(
                             postAnswer(
                                 player.id,
                                 question.id,
                                 options[i],
-                                timer.totalTime,
-                                timer.timePassed
+                                // timer.totalTime,
+                                // timer.timePassed
                             )
                         );
                     }}

@@ -1,10 +1,13 @@
 import axios from "axios";
 import { setScore, setStrikes } from "./playerActions";
+import timerReducer from "../reducers/timerReducer"
+import { start } from "../actions/timerActions"
 
-export const setQuestion = (nextQuestion) => {
+
+export const setQuestion = (nQuestion) => {
   return {
     type: "SET_NEXT_QUESTION",
-    question: nextQuestion,
+    question: nQuestion,
   };
 };
 
@@ -35,19 +38,35 @@ export const correctAnswer = (answer, score) => {
   };
 };
 
-export const postAnswer = (playerId, questionId, answer, totalTime, time) => {
-  return (dispatch) => {
+export const postAnswer = (playerId, questionId, answer) => {
+  return (dispatch, getState) => {
+    const { totalTime, timePassed } = getState().timer
+    console.log(playerId,
+      questionId,
+      answer,
+      totalTime,
+      timePassed,
+    )
     dispatch(loadingAnswer());
+    dispatch(start())
     axios
       .post(`/answer/${playerId}`, {
         questionId,
         answer,
         totalTime,
-        time,
+        timePassed,
       })
       .then((res) => {
-        if (res.data.isCorrect) dispatch(correctAnswer(answer, res.data.score));
-        else dispatch(wrongAnswer(res.data.correctAnswer, res.data.strikes));
-      });
+        if (res.data.isCorrect) {
+          dispatch(setScore(res.data.newScore));
+          dispatch(setAnswer(answer));
+        }
+        else {
+          dispatch(setStrikes(res.data.strikes));
+          dispatch(setAnswer(answer));
+        }
+      }).catch(e => {
+        console.log(e)
+      })
   };
 };

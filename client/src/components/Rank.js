@@ -1,23 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios"
 import "../styles/Rank.css"
 
-function Rank({ playerId, questionId, goToNextQuestion }) {
+function Rank({ playerId, questionId, goToNextQuestion, nextQuestion }) {
     const [ranks, setRank] = useState([false, false, false, false, false])
-    const timeOut = setTimeout(goToNextQuestion, 3000);
+
+
 
 
     const hoverHandler = (rank) => {
-        console.log("in hover, and rank is: ", rank);
         const newRanks = ranks.map((v, i) => i < rank)
         setRank(newRanks)
     }
 
     const clickHandler = (rank) => {
-        console.log(rank);
-        axios.post(`/rank/${playerId}`, { questionId: questionId, rank }).then(goToNextQuestion);
-        clearTimeout(timeOut)
+        axios.post(`/rank/${playerId}`, { questionId: questionId, rank }).then(() => goToNextQuestion(nextQuestion.current));
     }
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            goToNextQuestion(nextQuestion.current)
+        }, 6000);
+        return () => {
+            clearTimeout(timeOut)
+        }
+    }, []);
 
     return (
         <div id="rank">

@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,eAAe,CAAA;EACX,MAAM,EAAC,IAAI;EACX,OAAO,EAAC,IAAI;EACZ,gBAAgB,EAAE,OAAO;EACzB,KAAK,EAAC,OAAO;CAChB",
+    "mappings": "AAAA,AAAA,eAAe,CAAA;EACX,KAAK,EAAC,KAAK;EACX,OAAO,EAAC,IAAI;EAGZ,gBAAgB,EAAE,OAAO;EACzB,WAAW,EAAE,kBAAkB;EAC/B,KAAK,EAAC,OAAO;CAChB",
     "sources": [
         "PlayerStatsBar.scss"
     ],

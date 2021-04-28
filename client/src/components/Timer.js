@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import React, { useContext, useEffect, useRef } from 'react';
-import { start, tick, timeUp, totalTimeDecrease } from "../store/actions/timerActions";
+import React, { useEffect } from 'react';
+import { tick } from "../store/actions/timerActions";
 
 // const timeUpAnswer =mashu
 
@@ -10,12 +10,8 @@ export default function Timer() {
     useEffect(() => {
         const interval = setInterval(() => dispatch(tick()), 500);
         return () => clearInterval(interval);
-    });
-    useEffect(() => {
-        if (timer.totalTime - timer.timePassed === 0) {
-            // timeUp(timeUpAnswer)
-        }
-    }, [timer]);
+    }, []);
+
     return (
 
         <>

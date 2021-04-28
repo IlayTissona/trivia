@@ -1,7 +1,10 @@
 #playerStatsBar {
-  margin: auto;
-  padding: auto;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background-color: #4dffc3;
+  font-family: 'Bangers', cursive;
   color: #6600cc;
 }
 /*# sourceMappingURL=PlayerStatsBar.css.map */
