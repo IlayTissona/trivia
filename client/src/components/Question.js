@@ -15,15 +15,7 @@ import Timer from "./Timer";
 function Question({ }) {
     const dispatch = useDispatch();
     const player = useSelector((store) => store.player);
-    const question = useSelector((store) => store.question);
-    // const timer = useRef(useSelector((store) => store.timer))
-    // const timer = useRef()
-    // timer.current = useSelector((store) => store.timer)
-
-    useEffect(() => {
-        console.log("TIMERCAUSEDTHIS");
-    }, []);
-
+    const question = useSelector(store => store.question)
     const nextQuestion = useRef({});
 
     useEffect(() => {
@@ -51,12 +43,10 @@ function Question({ }) {
     }, []);
 
     function goToNextQuestion(next) {
-        console.log(next);
         dispatch(setQuestion(next));
         dispatch(setAnswer(null));
     }
 
-    console.log("QUESTION RENDERRRRRRRRRRRRRRRRR");
     async function getNextQuestion() {
         return axios
             .get(`/question/${player.id}`)
@@ -104,15 +94,11 @@ function Question({ }) {
                     }
                     onClick={() => {
                         if (correctAnswer) return;
-                        if (question.timeUp) return;
-                        // const timer = useSelector((store) => store.timer)
                         dispatch(
                             postAnswer(
                                 player.id,
                                 question.id,
-                                options[i]
-                                // timer.totalTime,
-                                // timer.timePassed
+                                options[i],
                             )
                         );
                     }}
