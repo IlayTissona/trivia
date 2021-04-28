@@ -1,7 +1,7 @@
 import axios from "axios";
 import { setScore, setStrikes } from "./playerActions";
 import timerReducer from "../reducers/timerReducer"
-import { start } from "../actions/timerActions"
+import { start, totalTimeDecrease } from "../actions/timerActions"
 
 
 export const setQuestion = (nQuestion) => {
@@ -65,6 +65,8 @@ export const postAnswer = (playerId, questionId, answer) => {
       })
       .then((res) => {
         if (res.data.isCorrect) {
+
+          dispatch(totalTimeDecrease());
           dispatch(setScore(res.data.newScore));
           dispatch(setAnswer(answer));
         }
