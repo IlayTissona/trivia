@@ -15,7 +15,7 @@ function Start() {
     e.preventDefault();
     const userName = inputRef.current.value;
     if (!userName) return;
-    axios.post("/new_session", { userName, avatar: 1 }).then(({ data: player }) => {
+    axios.post("/new_session", { userName, avatar: 4 }).then(({ data: player }) => {
       dispatch(setPlayer({ ...player }));
     })
       .catch((err) => console.log("error in new_session in Start Component: ", err));

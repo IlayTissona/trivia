@@ -1,5 +1,6 @@
 const express = require("express");
 let game = express.Router();
+const avatar = require("./avatars")
 const { Player } = require("../models");
 const Sequelize = require("sequelize");
 const {
@@ -17,6 +18,7 @@ const {
 // IMORTANT!!!
 // generate first throws the error:
 //     "TypeError: Cannot read property 'findAll' of undefined"
+game.use("/api/avatar", avatar)
 
 game.post("/new_session", async (req, res) => {
   const userName = req.body.userName;

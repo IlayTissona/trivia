@@ -3,8 +3,10 @@ const express = require("express");
 const app = express();
 let port = process.env.PORT || 3005;
 let game = require("./routes/game");
+
 app.use(express.json());
 app.use("/api/game", game);
+
 
 
 const lastRoute = (req, res, next) => {
