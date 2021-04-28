@@ -11,3 +11,17 @@ export const setScore = (score) => {
     score,
   };
 };
+
+export const setPlayer = (player) => {
+  return {
+    type: "SET_PLAYER",
+    player,
+  };
+};
+
+export const setFinalPlayerStats = (playerStats) => {
+  return {
+    type: "SET_FINAL_PLAYER_STATS",
+    playerStats,
+  };
+};

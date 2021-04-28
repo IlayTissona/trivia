@@ -18,19 +18,13 @@ export const strikeUp = () => {
   };
 };
 
-export const timeUp = () => {
-  return {
-    type: "TIME_UP",
-  };
-};
-
-export const tick = () => {
-  return {
-    type: "TICK",
-  };
-};
-
 export const totalTimeDecrease = () => {
+  return {
+    type: "TOTAL_TIME_DECREASE",
+  };
+};
+
+export const question = () => {
   return {
     type: "TOTAL_TIME_DECREASE",
   };
@@ -47,24 +41,6 @@ export const ageUpAsync = (val) => {
         dispatch(failure());
       }
     }, 5000);
-  };
-};
-
-export const loading = () => {
-  return {
-    type: "LOADING",
-  };
-};
-
-export const success = () => {
-  return {
-    type: "SUCCESS",
-  };
-};
-
-export const failure = () => {
-  return {
-    type: "FAILURE",
   };
 };
 
