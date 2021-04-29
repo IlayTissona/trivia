@@ -131,21 +131,9 @@ module.exports = {
         "is_first": null,
         "type": 3
       }
-    ].map(a => {
-      a.created_at = new Date();
-      a.updated_at = new Date();
-      return a
-    })
+    ]
     );
   },
-  // {
-  //   "template_str": "Which country is most populous?",
-  //   "model": "PopulationDensity",
-  //   "answer_col": "country",
-  //   "question_col": "population",
-  //   "is_first": true,
-  //   "type": 2
-  // },
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('question_types', null, {});

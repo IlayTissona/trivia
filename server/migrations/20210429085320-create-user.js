@@ -6,33 +6,33 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       password: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       total_score: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       games_played: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       high_score: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
     });
   },

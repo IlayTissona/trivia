@@ -2,15 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+
     await queryInterface.bulkInsert('populationDensity', [
       {
         "country": "Macau",
@@ -1519,9 +1511,7 @@ module.exports = {
         "densityPopByKm2": 0.03,
       }
     ])
-
   },
-
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('populationDensity', null, {});
   }

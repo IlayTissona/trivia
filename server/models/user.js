@@ -16,13 +16,13 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       totalScore: DataTypes.INTEGER,
       gamesPlayed: DataTypes.INTEGER,
-      highScore: DataTypes.INTEGER,
+      highScore: DataTypes.INTEGER
     },
     {
       sequelize,
       modelName: "User",
       tableName: "users",
-      underscored: true,
+      underscored: true
     }
   );
   return User;

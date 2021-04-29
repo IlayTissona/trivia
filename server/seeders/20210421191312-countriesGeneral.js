@@ -2,15 +2,6 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People'. [{
-     *   name: 'John Doe'.
-     *   isBetaMember: false
-     * }]. {});
-    */
     await queryInterface.bulkInsert('countriesGeneral', [
       {
         "country": "Afghanistan",
@@ -29,9 +20,7 @@ module.exports = {
         "deathrate": "20.34",
         "agriculture": "0.38",
         "industry": "0.24",
-        "service": "0.38",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.38"
       },
       {
         "country": "Albania",
@@ -50,9 +39,7 @@ module.exports = {
         "deathrate": "5.22",
         "agriculture": "0.232",
         "industry": "0.188",
-        "service": "0.579",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.579"
       },
       {
         "country": "Algeria",
@@ -71,9 +58,7 @@ module.exports = {
         "deathrate": "4.61",
         "agriculture": "0.101",
         "industry": "0.6",
-        "service": "0.298",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.298"
       },
       {
         "country": "American Samoa",
@@ -92,9 +77,7 @@ module.exports = {
         "deathrate": "3.27",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Andorra",
@@ -113,9 +96,7 @@ module.exports = {
         "deathrate": "6.25",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
 
@@ -135,9 +116,7 @@ module.exports = {
         "deathrate": "24.2",
         "agriculture": "0.096",
         "industry": "0.658",
-        "service": "0.246",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.246"
       },
       {
         "country": "Anguilla",
@@ -156,9 +135,7 @@ module.exports = {
         "deathrate": "5.34",
         "agriculture": "0.04",
         "industry": "0.18",
-        "service": "0.78",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.78"
       },
       {
         "country": "Antigua & Barbuda",
@@ -177,9 +154,7 @@ module.exports = {
         "deathrate": "5.37",
         "agriculture": "0.038",
         "industry": "0.22",
-        "service": "0.743",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.743"
       },
       {
         "country": "Argentina",
@@ -198,9 +173,7 @@ module.exports = {
         "deathrate": "7.55",
         "agriculture": "0.095",
         "industry": "0.358",
-        "service": "0.547",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.547"
       },
       {
         "country": "Armenia",
@@ -219,9 +192,7 @@ module.exports = {
         "deathrate": "8.23",
         "agriculture": "0.239",
         "industry": "0.343",
-        "service": "0.418",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.418"
       },
       {
         "country": "Aruba",
@@ -240,9 +211,7 @@ module.exports = {
         "deathrate": "6.68",
         "agriculture": "0.004",
         "industry": "0.333",
-        "service": "0.663",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.663"
       },
       {
         "country": "Australia",
@@ -261,9 +230,7 @@ module.exports = {
         "deathrate": "7.51",
         "agriculture": "0.038",
         "industry": "0.262",
-        "service": "0.7",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.7"
       },
       {
         "country": "Austria",
@@ -282,9 +249,7 @@ module.exports = {
         "deathrate": "9.76",
         "agriculture": "0.018",
         "industry": "0.304",
-        "service": "0.678",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.678"
       },
       {
         "country": "Azerbaijan",
@@ -303,9 +268,7 @@ module.exports = {
         "deathrate": "9.75",
         "agriculture": "0.141",
         "industry": "0.457",
-        "service": "0.402",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.402"
       },
       {
         "country": "Bahamas. The",
@@ -324,9 +287,7 @@ module.exports = {
         "deathrate": "9.05",
         "agriculture": "0.03",
         "industry": "0.07",
-        "service": "0.9",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.9"
       },
       {
         "country": "Bahrain",
@@ -345,9 +306,7 @@ module.exports = {
         "deathrate": "4.14",
         "agriculture": "0.005",
         "industry": "0.387",
-        "service": "0.608",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.608"
       },
       {
         "country": "Bangladesh",
@@ -366,9 +325,7 @@ module.exports = {
         "deathrate": "8.27",
         "agriculture": "0.199",
         "industry": "0.198",
-        "service": "0.603",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.603"
       },
       {
         "country": "Barbados",
@@ -387,9 +344,7 @@ module.exports = {
         "deathrate": "8.67",
         "agriculture": "0.06",
         "industry": "0.16",
-        "service": "0.78",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.78"
       },
       {
         "country": "Belarus",
@@ -408,9 +363,7 @@ module.exports = {
         "deathrate": "14.02",
         "agriculture": "0.093",
         "industry": "0.316",
-        "service": "0.591",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.591"
       },
       {
         "country": "Belgium",
@@ -429,9 +382,7 @@ module.exports = {
         "deathrate": "10.27",
         "agriculture": "0.01",
         "industry": "0.24",
-        "service": "0.749",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.749"
       },
       {
         "country": "Belize",
@@ -450,9 +401,7 @@ module.exports = {
         "deathrate": "5.72",
         "agriculture": "0.142",
         "industry": "0.152",
-        "service": "0.612",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.612"
       },
       {
         "country": "Benin",
@@ -471,9 +420,7 @@ module.exports = {
         "deathrate": "12.22",
         "agriculture": "0.316",
         "industry": "0.138",
-        "service": "0.546",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.546"
       },
       {
         "country": "Bermuda",
@@ -492,9 +439,7 @@ module.exports = {
         "deathrate": "7.74",
         "agriculture": "0.01",
         "industry": "0.1",
-        "service": "0.89",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.89"
       },
       {
         "country": "Bhutan",
@@ -513,9 +458,7 @@ module.exports = {
         "deathrate": "12.7",
         "agriculture": "0.258",
         "industry": "0.379",
-        "service": "0.363",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.363"
       },
       {
         "country": "Bolivia",
@@ -534,9 +477,7 @@ module.exports = {
         "deathrate": "7.53",
         "agriculture": "0.128",
         "industry": "0.352",
-        "service": "0.52",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.52"
       },
       {
         "country": "Bosnia & Herzegovina",
@@ -555,9 +496,7 @@ module.exports = {
         "deathrate": "8.27",
         "agriculture": "0.142",
         "industry": "0.308",
-        "service": "0.55",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.55"
       },
       {
         "country": "Botswana",
@@ -576,9 +515,7 @@ module.exports = {
         "deathrate": "29.5",
         "agriculture": "0.024",
         "industry": "0.469",
-        "service": "0.507",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.507"
       },
       {
         "country": "Brazil",
@@ -597,9 +534,7 @@ module.exports = {
         "deathrate": "6.17",
         "agriculture": "0.084",
         "industry": "0.4",
-        "service": "0.516",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.516"
       },
       {
         "country": "British Virgin Is.",
@@ -618,9 +553,7 @@ module.exports = {
         "deathrate": "4.42",
         "agriculture": "0.018",
         "industry": "0.062",
-        "service": "0.92",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.92"
       },
       {
         "country": "Brunei",
@@ -639,9 +572,7 @@ module.exports = {
         "deathrate": "3.45",
         "agriculture": "0.036",
         "industry": "0.561",
-        "service": "0.403",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.403"
       },
       {
         "country": "Bulgaria",
@@ -660,9 +591,7 @@ module.exports = {
         "deathrate": "14.27",
         "agriculture": "0.093",
         "industry": "0.304",
-        "service": "0.603",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.603"
       },
       {
         "country": "Burkina Faso",
@@ -681,9 +610,7 @@ module.exports = {
         "deathrate": "15.6",
         "agriculture": "0.322",
         "industry": "0.196",
-        "service": "0.482",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.482"
       },
       {
         "country": "Burma",
@@ -702,9 +629,7 @@ module.exports = {
         "deathrate": "9.83",
         "agriculture": "0.564",
         "industry": "0.082",
-        "service": "0.353",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.353"
       },
       {
         "country": "Burundi",
@@ -723,9 +648,7 @@ module.exports = {
         "deathrate": "13.46",
         "agriculture": "0.463",
         "industry": "0.203",
-        "service": "0.334",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.334"
       },
       {
         "country": "Cambodia",
@@ -744,9 +667,7 @@ module.exports = {
         "deathrate": "9.06",
         "agriculture": "0.35",
         "industry": "0.3",
-        "service": "0.35",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.35"
       },
       {
         "country": "Cameroon",
@@ -765,9 +686,7 @@ module.exports = {
         "deathrate": "13.47",
         "agriculture": "0.448",
         "industry": "0.17",
-        "service": "0.382",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.382"
       },
       {
         "country": "Canada",
@@ -786,9 +705,7 @@ module.exports = {
         "deathrate": "7.8",
         "agriculture": "0.022",
         "industry": "0.294",
-        "service": "0.684",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.684"
       },
       {
         "country": "Cape Verde",
@@ -807,9 +724,7 @@ module.exports = {
         "deathrate": "6.55",
         "agriculture": "0.121",
         "industry": "0.219",
-        "service": "0.66",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.66"
       },
       {
         "country": "Cayman Islands",
@@ -828,9 +743,7 @@ module.exports = {
         "deathrate": "4.89",
         "agriculture": "0.014",
         "industry": "0.032",
-        "service": "0.954",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.954"
       },
       {
         "country": "Central African Rep.",
@@ -849,9 +762,7 @@ module.exports = {
         "deathrate": "18.65",
         "agriculture": "0.55",
         "industry": "0.2",
-        "service": "0.25",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.25"
       },
       {
         "country": "Chad",
@@ -870,9 +781,7 @@ module.exports = {
         "deathrate": "16.38",
         "agriculture": "0.335",
         "industry": "0.259",
-        "service": "0.406",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.406"
       },
       {
         "country": "Chile",
@@ -891,9 +800,7 @@ module.exports = {
         "deathrate": "5.81",
         "agriculture": "0.06",
         "industry": "0.493",
-        "service": "0.447",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.447"
       },
       {
         "country": "China",
@@ -912,9 +819,7 @@ module.exports = {
         "deathrate": "6.97",
         "agriculture": "0.125",
         "industry": "0.473",
-        "service": "0.403",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.403"
       },
       {
         "country": "Colombia",
@@ -933,9 +838,7 @@ module.exports = {
         "deathrate": "5.58",
         "agriculture": "0.125",
         "industry": "0.342",
-        "service": "0.533",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.533"
       },
       {
         "country": "Comoros",
@@ -954,9 +857,7 @@ module.exports = {
         "deathrate": "8.2",
         "agriculture": "0.4",
         "industry": "0.04",
-        "service": "0.56",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.56"
       },
       {
         "country": "Congo. Dem. Rep.",
@@ -975,9 +876,7 @@ module.exports = {
         "deathrate": "13.27",
         "agriculture": "0.55",
         "industry": "0.11",
-        "service": "0.34",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.34"
       },
       {
         "country": "Congo. Repub. of the",
@@ -996,9 +895,7 @@ module.exports = {
         "deathrate": "12.93",
         "agriculture": "0.062",
         "industry": "0.57",
-        "service": "0.369",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.369"
       },
       {
         "country": "Cook Islands",
@@ -1017,9 +914,7 @@ module.exports = {
         "deathrate": null,
         "agriculture": "0.151",
         "industry": "0.096",
-        "service": "0.753",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.753"
       },
       {
         "country": "Costa Rica",
@@ -1038,9 +933,7 @@ module.exports = {
         "deathrate": "4.36",
         "agriculture": "0.088",
         "industry": "0.299",
-        "service": "0.614",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.614"
       },
       {
         "country": "Cote d'Ivoire",
@@ -1059,9 +952,7 @@ module.exports = {
         "deathrate": "14.84",
         "agriculture": "0.279",
         "industry": "0.171",
-        "service": "0.55",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.55"
       },
       {
         "country": "Croatia",
@@ -1080,9 +971,7 @@ module.exports = {
         "deathrate": "11.48",
         "agriculture": "0.07",
         "industry": "0.308",
-        "service": "0.622",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.622"
       },
       {
         "country": "Cuba",
@@ -1101,9 +990,7 @@ module.exports = {
         "deathrate": "7.22",
         "agriculture": "0.055",
         "industry": "0.261",
-        "service": "0.684",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.684"
       },
       {
         "country": "Cyprus",
@@ -1122,9 +1009,7 @@ module.exports = {
         "deathrate": "7.68",
         "agriculture": "0.037",
         "industry": "0.198",
-        "service": "0.765",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.765"
       },
       {
         "country": "Czech Republic",
@@ -1143,9 +1028,7 @@ module.exports = {
         "deathrate": "10.59",
         "agriculture": "0.034",
         "industry": "0.393",
-        "service": "0.573",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.573"
       },
       {
         "country": "Denmark",
@@ -1164,9 +1047,7 @@ module.exports = {
         "deathrate": "10.36",
         "agriculture": "0.018",
         "industry": "0.246",
-        "service": "0.735",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.735"
       },
       {
         "country": "Djibouti",
@@ -1185,9 +1066,7 @@ module.exports = {
         "deathrate": "19.31",
         "agriculture": "0.179",
         "industry": "0.225",
-        "service": "0.596",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.596"
       },
       {
         "country": "Dominica",
@@ -1206,9 +1085,7 @@ module.exports = {
         "deathrate": "6.73",
         "agriculture": "0.177",
         "industry": "0.328",
-        "service": "0.495",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.495"
       },
       {
         "country": "Dominican Republic",
@@ -1227,9 +1104,7 @@ module.exports = {
         "deathrate": "5.73",
         "agriculture": "0.112",
         "industry": "0.306",
-        "service": "0.582",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.582"
       },
       {
         "country": "East Timor",
@@ -1248,9 +1123,7 @@ module.exports = {
         "deathrate": "6.24",
         "agriculture": "0.085",
         "industry": "0.231",
-        "service": "0.684",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.684"
       },
       {
         "country": "Ecuador",
@@ -1269,9 +1142,7 @@ module.exports = {
         "deathrate": "4.23",
         "agriculture": "0.07",
         "industry": "0.312",
-        "service": "0.618",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.618"
       },
       {
         "country": "Egypt",
@@ -1290,9 +1161,7 @@ module.exports = {
         "deathrate": "5.23",
         "agriculture": "0.149",
         "industry": "0.357",
-        "service": "0.493",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.493"
       },
       {
         "country": "El Salvador",
@@ -1311,9 +1180,7 @@ module.exports = {
         "deathrate": "5.78",
         "agriculture": "0.099",
         "industry": "0.302",
-        "service": "0.599",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.599"
       },
       {
         "country": "Equatorial Guinea",
@@ -1332,9 +1199,7 @@ module.exports = {
         "deathrate": "15.06",
         "agriculture": "0.03",
         "industry": "0.906",
-        "service": "0.062",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.062"
       },
       {
         "country": "Eritrea",
@@ -1353,9 +1218,7 @@ module.exports = {
         "deathrate": "9.6",
         "agriculture": "0.102",
         "industry": "0.254",
-        "service": "0.643",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.643"
       },
       {
         "country": "Estonia",
@@ -1374,9 +1237,7 @@ module.exports = {
         "deathrate": "13.25",
         "agriculture": "0.04",
         "industry": "0.294",
-        "service": "0.666",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.666"
       },
       {
         "country": "Ethiopia",
@@ -1395,9 +1256,7 @@ module.exports = {
         "deathrate": "14.86",
         "agriculture": "0.475",
         "industry": "0.099",
-        "service": "0.426",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.426"
       },
       {
         "country": "Faroe Islands",
@@ -1416,9 +1275,7 @@ module.exports = {
         "deathrate": "8.7",
         "agriculture": "0.27",
         "industry": "0.11",
-        "service": "0.62",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.62"
       },
       {
         "country": "Fiji",
@@ -1437,9 +1294,7 @@ module.exports = {
         "deathrate": "5.65",
         "agriculture": "0.089",
         "industry": "0.135",
-        "service": "0.776",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.776"
       },
       {
         "country": "Finland",
@@ -1458,9 +1313,7 @@ module.exports = {
         "deathrate": "9.86",
         "agriculture": "0.028",
         "industry": "0.295",
-        "service": "0.676",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.676"
       },
       {
         "country": "France",
@@ -1479,9 +1332,7 @@ module.exports = {
         "deathrate": "9.14",
         "agriculture": "0.022",
         "industry": "0.214",
-        "service": "0.764",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.764"
       },
       {
         "country": "French Guiana",
@@ -1500,9 +1351,7 @@ module.exports = {
         "deathrate": "4.88",
         "agriculture": "0.066",
         "industry": "0.156",
-        "service": "0.778",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.778"
       },
       {
         "country": "French Polynesia",
@@ -1521,9 +1370,7 @@ module.exports = {
         "deathrate": "4.69",
         "agriculture": "0.031",
         "industry": "0.19",
-        "service": "0.769",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.769"
       },
       {
         "country": "Gabon",
@@ -1542,9 +1389,7 @@ module.exports = {
         "deathrate": "12.25",
         "agriculture": "0.061",
         "industry": "0.592",
-        "service": "0.348",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.348"
       },
       {
         "country": "Gambia. The",
@@ -1563,9 +1408,7 @@ module.exports = {
         "deathrate": "12.25",
         "agriculture": "0.308",
         "industry": "0.142",
-        "service": "0.549",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.549"
       },
       {
         "country": "Gaza Strip",
@@ -1584,9 +1427,7 @@ module.exports = {
         "deathrate": "3.8",
         "agriculture": "0.03",
         "industry": "0.283",
-        "service": "0.687",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.687"
       },
       {
         "country": "Georgia",
@@ -1605,9 +1446,7 @@ module.exports = {
         "deathrate": "9.23",
         "agriculture": "0.172",
         "industry": "0.275",
-        "service": "0.553",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.553"
       },
       {
         "country": "Germany",
@@ -1626,9 +1465,7 @@ module.exports = {
         "deathrate": "10.62",
         "agriculture": "0.009",
         "industry": "0.296",
-        "service": "0.695",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.695"
       },
       {
         "country": "Ghana",
@@ -1647,9 +1484,7 @@ module.exports = {
         "deathrate": "9.72",
         "agriculture": "0.366",
         "industry": "0.246",
-        "service": "0.387",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.387"
       },
       {
         "country": "Gibraltar",
@@ -1668,9 +1503,7 @@ module.exports = {
         "deathrate": "9.31",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Greece",
@@ -1689,9 +1522,7 @@ module.exports = {
         "deathrate": "10.24",
         "agriculture": "0.054",
         "industry": "0.213",
-        "service": "0.733",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.733"
       },
       {
         "country": "Greenland",
@@ -1710,9 +1541,7 @@ module.exports = {
         "deathrate": "7.84",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Grenada",
@@ -1731,9 +1560,7 @@ module.exports = {
         "deathrate": "6.88",
         "agriculture": "0.054",
         "industry": "0.18",
-        "service": "0.766",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.766"
       },
       {
         "country": "Guadeloupe",
@@ -1752,9 +1579,7 @@ module.exports = {
         "deathrate": "6.09",
         "agriculture": "0.15",
         "industry": "0.17",
-        "service": "0.68",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.68"
       },
       {
         "country": "Guam",
@@ -1773,9 +1598,7 @@ module.exports = {
         "deathrate": "4.48",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Guatemala",
@@ -1794,9 +1617,7 @@ module.exports = {
         "deathrate": "5.2",
         "agriculture": "0.227",
         "industry": "0.188",
-        "service": "0.585",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.585"
       },
       {
         "country": "Guernsey",
@@ -1815,9 +1636,7 @@ module.exports = {
         "deathrate": "10.01",
         "agriculture": "0.03",
         "industry": "0.1",
-        "service": "0.87",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.87"
       },
       {
         "country": "Guinea",
@@ -1836,9 +1655,7 @@ module.exports = {
         "deathrate": "15.48",
         "agriculture": "0.237",
         "industry": "0.362",
-        "service": "0.401",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.401"
       },
       {
         "country": "Guinea-Bissau",
@@ -1857,9 +1674,7 @@ module.exports = {
         "deathrate": "16.53",
         "agriculture": "0.62",
         "industry": "0.12",
-        "service": "0.26",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.26"
       },
       {
         "country": "Guyana",
@@ -1878,9 +1693,7 @@ module.exports = {
         "deathrate": "8.28",
         "agriculture": "0.37",
         "industry": "0.203",
-        "service": "0.427",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.427"
       },
       {
         "country": "Haiti",
@@ -1899,9 +1712,7 @@ module.exports = {
         "deathrate": "12.17",
         "agriculture": "0.28",
         "industry": "0.2",
-        "service": "0.52",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.52"
       },
       {
         "country": "Honduras",
@@ -1920,9 +1731,7 @@ module.exports = {
         "deathrate": "5.28",
         "agriculture": "0.139",
         "industry": "0.312",
-        "service": "0.549",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.549"
       },
       {
         "country": "Hong Kong",
@@ -1941,9 +1750,7 @@ module.exports = {
         "deathrate": "6.29",
         "agriculture": "0.001",
         "industry": "0.092",
-        "service": "0.906",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.906"
       },
       {
         "country": "Hungary",
@@ -1962,9 +1769,7 @@ module.exports = {
         "deathrate": "13.11",
         "agriculture": "0.037",
         "industry": "0.312",
-        "service": "0.651",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.651"
       },
       {
         "country": "Iceland",
@@ -1983,9 +1788,7 @@ module.exports = {
         "deathrate": "6.72",
         "agriculture": "0.086",
         "industry": "0.15",
-        "service": "0.765",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.765"
       },
       {
         "country": "India",
@@ -2004,9 +1807,7 @@ module.exports = {
         "deathrate": "8.18",
         "agriculture": "0.186",
         "industry": "0.276",
-        "service": "0.538",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.538"
       },
       {
         "country": "Indonesia",
@@ -2025,9 +1826,7 @@ module.exports = {
         "deathrate": "6.25",
         "agriculture": "0.134",
         "industry": "0.458",
-        "service": "0.408",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.408"
       },
       {
         "country": "Iran",
@@ -2046,9 +1845,7 @@ module.exports = {
         "deathrate": "5.55",
         "agriculture": "0.116",
         "industry": "0.424",
-        "service": "0.46",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.46"
       },
       {
         "country": "Iraq",
@@ -2067,9 +1864,7 @@ module.exports = {
         "deathrate": "5.37",
         "agriculture": "0.073",
         "industry": "0.666",
-        "service": "0.261",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.261"
       },
       {
         "country": "Ireland",
@@ -2088,9 +1883,7 @@ module.exports = {
         "deathrate": "7.82",
         "agriculture": "0.05",
         "industry": "0.46",
-        "service": "0.49",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.49"
       },
       {
         "country": "Isle of Man",
@@ -2109,9 +1902,7 @@ module.exports = {
         "deathrate": "11.19",
         "agriculture": "0.01",
         "industry": "0.13",
-        "service": "0.86",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.86"
       },
       {
         "country": "Israel",
@@ -2130,9 +1921,7 @@ module.exports = {
         "deathrate": "6.18",
         "agriculture": "0.026",
         "industry": "0.317",
-        "service": "0.657",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.657"
       },
       {
         "country": "Italy",
@@ -2151,9 +1940,7 @@ module.exports = {
         "deathrate": "10.4",
         "agriculture": "0.021",
         "industry": "0.291",
-        "service": "0.688",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.688"
       },
       {
         "country": "Jamaica",
@@ -2172,9 +1959,7 @@ module.exports = {
         "deathrate": "6.52",
         "agriculture": "0.049",
         "industry": "0.337",
-        "service": "0.615",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.615"
       },
       {
         "country": "Japan",
@@ -2193,9 +1978,7 @@ module.exports = {
         "deathrate": "9.16",
         "agriculture": "0.017",
         "industry": "0.258",
-        "service": "0.725",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.725"
       },
       {
         "country": "Jersey",
@@ -2214,9 +1997,7 @@ module.exports = {
         "deathrate": "9.28",
         "agriculture": "0.05",
         "industry": "0.02",
-        "service": "0.93",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.93"
       },
       {
         "country": "Jordan",
@@ -2235,9 +2016,7 @@ module.exports = {
         "deathrate": "2.65",
         "agriculture": "0.033",
         "industry": "0.287",
-        "service": "0.68",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.68"
       },
       {
         "country": "Kazakhstan",
@@ -2256,9 +2035,7 @@ module.exports = {
         "deathrate": "9.42",
         "agriculture": "0.067",
         "industry": "0.386",
-        "service": "0.547",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.547"
       },
       {
         "country": "Kenya",
@@ -2277,9 +2054,7 @@ module.exports = {
         "deathrate": "14.02",
         "agriculture": "0.163",
         "industry": "0.188",
-        "service": "0.651",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.651"
       },
       {
         "country": "Kiribati",
@@ -2298,9 +2073,7 @@ module.exports = {
         "deathrate": "8.26",
         "agriculture": "0.089",
         "industry": "0.242",
-        "service": "0.668",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.668"
       },
       {
         "country": "Korea. North",
@@ -2319,9 +2092,7 @@ module.exports = {
         "deathrate": "7.13",
         "agriculture": "0.3",
         "industry": "0.34",
-        "service": "0.36",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.36"
       },
       {
         "country": "Korea. South",
@@ -2340,9 +2111,7 @@ module.exports = {
         "deathrate": "5.85",
         "agriculture": "0.033",
         "industry": "0.403",
-        "service": "0.563",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.563"
       },
       {
         "country": "Kuwait",
@@ -2361,9 +2130,7 @@ module.exports = {
         "deathrate": "2.41",
         "agriculture": "0.004",
         "industry": "0.479",
-        "service": "0.516",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.516"
       },
       {
         "country": "Kyrgyzstan",
@@ -2382,9 +2149,7 @@ module.exports = {
         "deathrate": "7.08",
         "agriculture": "0.353",
         "industry": "0.208",
-        "service": "0.439",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.439"
       },
       {
         "country": "Laos",
@@ -2403,9 +2168,7 @@ module.exports = {
         "deathrate": "11.55",
         "agriculture": "0.455",
         "industry": "0.287",
-        "service": "0.258",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.258"
       },
       {
         "country": "Latvia",
@@ -2424,9 +2187,7 @@ module.exports = {
         "deathrate": "13.66",
         "agriculture": "0.04",
         "industry": "0.261",
-        "service": "0.699",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.699"
       },
       {
         "country": "Lebanon",
@@ -2445,9 +2206,7 @@ module.exports = {
         "deathrate": "6.21",
         "agriculture": "0.12",
         "industry": "0.21",
-        "service": "0.67",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.67"
       },
       {
         "country": "Lesotho",
@@ -2466,9 +2225,7 @@ module.exports = {
         "deathrate": "28.71",
         "agriculture": "0.163",
         "industry": "0.443",
-        "service": "0.394",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.394"
       },
       {
         "country": "Liberia",
@@ -2487,9 +2244,7 @@ module.exports = {
         "deathrate": "23.1",
         "agriculture": "0.769",
         "industry": "0.054",
-        "service": "0.177",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.177"
       },
       {
         "country": "Libya",
@@ -2508,9 +2263,7 @@ module.exports = {
         "deathrate": "3.48",
         "agriculture": "0.076",
         "industry": "0.499",
-        "service": "0.425",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.425"
       },
       {
         "country": "Liechtenstein",
@@ -2529,9 +2282,7 @@ module.exports = {
         "deathrate": "7.18",
         "agriculture": "0.06",
         "industry": "0.39",
-        "service": "0.55",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.55"
       },
       {
         "country": "Lithuania",
@@ -2550,9 +2301,7 @@ module.exports = {
         "deathrate": "10.98",
         "agriculture": "0.055",
         "industry": "0.325",
-        "service": "0.62",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.62"
       },
       {
         "country": "Luxembourg",
@@ -2571,9 +2320,7 @@ module.exports = {
         "deathrate": "8.41",
         "agriculture": "0.01",
         "industry": "0.13",
-        "service": "0.86",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.86"
       },
       {
         "country": "Macau",
@@ -2592,9 +2339,7 @@ module.exports = {
         "deathrate": "4.47",
         "agriculture": "0.001",
         "industry": "0.072",
-        "service": "0.927",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.927"
       },
       {
         "country": "Macedonia",
@@ -2613,9 +2358,7 @@ module.exports = {
         "deathrate": "8.77",
         "agriculture": "0.118",
         "industry": "0.319",
-        "service": "0.563",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.563"
       },
       {
         "country": "Madagascar",
@@ -2634,9 +2377,7 @@ module.exports = {
         "deathrate": "11.11",
         "agriculture": "0.276",
         "industry": "0.165",
-        "service": "0.559",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.559"
       },
       {
         "country": "Malawi",
@@ -2655,9 +2396,7 @@ module.exports = {
         "deathrate": "19.33",
         "agriculture": "0.342",
         "industry": "0.158",
-        "service": "0.499",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.499"
       },
       {
         "country": "Malaysia",
@@ -2676,9 +2415,7 @@ module.exports = {
         "deathrate": "5.05",
         "agriculture": "0.084",
         "industry": "0.48",
-        "service": "0.436",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.436"
       },
       {
         "country": "Maldives",
@@ -2697,9 +2434,7 @@ module.exports = {
         "deathrate": "7.06",
         "agriculture": "0.2",
         "industry": "0.18",
-        "service": "0.62",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.62"
       },
       {
         "country": "Mali",
@@ -2718,9 +2453,7 @@ module.exports = {
         "deathrate": "16.89",
         "agriculture": "0.45",
         "industry": "0.17",
-        "service": "0.38",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.38"
       },
       {
         "country": "Malta",
@@ -2739,9 +2472,7 @@ module.exports = {
         "deathrate": "8.1",
         "agriculture": "0.03",
         "industry": "0.23",
-        "service": "0.74",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.74"
       },
       {
         "country": "Marshall Islands",
@@ -2760,9 +2491,7 @@ module.exports = {
         "deathrate": "4.78",
         "agriculture": "0.317",
         "industry": "0.149",
-        "service": "0.534",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.534"
       },
       {
         "country": "Martinique",
@@ -2781,9 +2510,7 @@ module.exports = {
         "deathrate": "6.48",
         "agriculture": "0.06",
         "industry": "0.11",
-        "service": "0.83",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.83"
       },
       {
         "country": "Mauritania",
@@ -2802,9 +2529,7 @@ module.exports = {
         "deathrate": "12.16",
         "agriculture": "0.25",
         "industry": "0.29",
-        "service": "0.46",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.46"
       },
       {
         "country": "Mauritius",
@@ -2823,9 +2548,7 @@ module.exports = {
         "deathrate": "6.86",
         "agriculture": "0.059",
         "industry": "0.298",
-        "service": "0.643",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.643"
       },
       {
         "country": "Mayotte",
@@ -2844,9 +2567,7 @@ module.exports = {
         "deathrate": "7.7",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Mexico",
@@ -2865,9 +2586,7 @@ module.exports = {
         "deathrate": "4.74",
         "agriculture": "0.038",
         "industry": "0.259",
-        "service": "0.702",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.702"
       },
       {
         "country": "Micronesia. Fed. St.",
@@ -2886,9 +2605,7 @@ module.exports = {
         "deathrate": "4.75",
         "agriculture": "0.289",
         "industry": "0.152",
-        "service": "0.559",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.559"
       },
       {
         "country": "Moldova",
@@ -2907,9 +2624,7 @@ module.exports = {
         "deathrate": "12.64",
         "agriculture": "0.213",
         "industry": "0.233",
-        "service": "0.555",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.555"
       },
       {
         "country": "Monaco",
@@ -2928,9 +2643,7 @@ module.exports = {
         "deathrate": "12.91",
         "agriculture": "0.17",
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Mongolia",
@@ -2949,9 +2662,7 @@ module.exports = {
         "deathrate": "6.95",
         "agriculture": "0.206",
         "industry": "0.214",
-        "service": "0.58",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.58"
       },
       {
         "country": "Montserrat",
@@ -2970,9 +2681,7 @@ module.exports = {
         "deathrate": "7.1",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Morocco",
@@ -2991,9 +2700,7 @@ module.exports = {
         "deathrate": "5.58",
         "agriculture": "0.217",
         "industry": "0.357",
-        "service": "0.426",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.426"
       },
       {
         "country": "Mozambique",
@@ -3012,9 +2719,7 @@ module.exports = {
         "deathrate": "21.35",
         "agriculture": "0.262",
         "industry": "0.348",
-        "service": "0.39",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.39"
       },
       {
         "country": "Namibia",
@@ -3033,9 +2738,7 @@ module.exports = {
         "deathrate": "18.86",
         "agriculture": "0.097",
         "industry": "0.315",
-        "service": "0.588",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.588"
       },
       {
         "country": "Nauru",
@@ -3054,9 +2757,7 @@ module.exports = {
         "deathrate": "6.7",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Nepal",
@@ -3075,9 +2776,7 @@ module.exports = {
         "deathrate": "9.31",
         "agriculture": "0.38",
         "industry": "0.21",
-        "service": "0.41",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.41"
       },
       {
         "country": "Netherlands",
@@ -3096,9 +2795,7 @@ module.exports = {
         "deathrate": "8.68",
         "agriculture": "0.021",
         "industry": "0.244",
-        "service": "0.736",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.736"
       },
       {
         "country": "Netherlands Antilles",
@@ -3117,9 +2814,7 @@ module.exports = {
         "deathrate": "6.45",
         "agriculture": "0.01",
         "industry": "0.15",
-        "service": "0.84",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.84"
       },
       {
         "country": "New Caledonia",
@@ -3138,9 +2833,7 @@ module.exports = {
         "deathrate": "5.69",
         "agriculture": "0.15",
         "industry": "0.088",
-        "service": "0.762",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.762"
       },
       {
         "country": "New Zealand",
@@ -3159,9 +2852,7 @@ module.exports = {
         "deathrate": "7.53",
         "agriculture": "0.043",
         "industry": "0.273",
-        "service": "0.684",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.684"
       },
       {
         "country": "Nicaragua",
@@ -3180,9 +2871,7 @@ module.exports = {
         "deathrate": "4.45",
         "agriculture": "0.165",
         "industry": "0.275",
-        "service": "0.56",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.56"
       },
       {
         "country": "Niger",
@@ -3201,9 +2890,7 @@ module.exports = {
         "deathrate": "20.91",
         "agriculture": "0.39",
         "industry": "0.17",
-        "service": "0.44",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.44"
       },
       {
         "country": "Nigeria",
@@ -3222,9 +2909,7 @@ module.exports = {
         "deathrate": "16.94",
         "agriculture": "0.269",
         "industry": "0.487",
-        "service": "0.244",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.244"
       },
       {
         "country": "N. Mariana Islands",
@@ -3243,9 +2928,7 @@ module.exports = {
         "deathrate": "2.29",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Norway",
@@ -3264,9 +2947,7 @@ module.exports = {
         "deathrate": "9.4",
         "agriculture": "0.021",
         "industry": "0.415",
-        "service": "0.564",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.564"
       },
       {
         "country": "Oman",
@@ -3285,9 +2966,7 @@ module.exports = {
         "deathrate": "3.81",
         "agriculture": "0.027",
         "industry": "0.39",
-        "service": "0.583",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.583"
       },
       {
         "country": "Pakistan",
@@ -3306,9 +2985,7 @@ module.exports = {
         "deathrate": "8.23",
         "agriculture": "0.216",
         "industry": "0.251",
-        "service": "0.533",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.533"
       },
       {
         "country": "Palau",
@@ -3327,9 +3004,7 @@ module.exports = {
         "deathrate": "6.8",
         "agriculture": "0.062",
         "industry": "0.12",
-        "service": "0.818",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.818"
       },
       {
         "country": "Panama",
@@ -3348,9 +3023,7 @@ module.exports = {
         "deathrate": "5.36",
         "agriculture": "0.068",
         "industry": "0.156",
-        "service": "0.776",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.776"
       },
       {
         "country": "Papua New Guinea",
@@ -3369,9 +3042,7 @@ module.exports = {
         "deathrate": "7.25",
         "agriculture": "0.353",
         "industry": "0.381",
-        "service": "0.266",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.266"
       },
       {
         "country": "Paraguay",
@@ -3390,9 +3061,7 @@ module.exports = {
         "deathrate": "4.49",
         "agriculture": "0.224",
         "industry": "0.207",
-        "service": "0.569",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.569"
       },
       {
         "country": "Peru",
@@ -3411,9 +3080,7 @@ module.exports = {
         "deathrate": "6.23",
         "agriculture": "0.08",
         "industry": "0.27",
-        "service": "0.65",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.65"
       },
       {
         "country": "Philippines",
@@ -3432,9 +3099,7 @@ module.exports = {
         "deathrate": "5.41",
         "agriculture": "0.144",
         "industry": "0.326",
-        "service": "0.53",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.53"
       },
       {
         "country": "Poland",
@@ -3453,9 +3118,7 @@ module.exports = {
         "deathrate": "9.89",
         "agriculture": "0.05",
         "industry": "0.311",
-        "service": "0.64",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.64"
       },
       {
         "country": "Portugal",
@@ -3474,9 +3137,7 @@ module.exports = {
         "deathrate": "10.5",
         "agriculture": "0.053",
         "industry": "0.274",
-        "service": "0.673",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.673"
       },
       {
         "country": "Puerto Rico",
@@ -3495,9 +3156,7 @@ module.exports = {
         "deathrate": "7.65",
         "agriculture": "0.01",
         "industry": "0.45",
-        "service": "0.54",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.54"
       },
       {
         "country": "Qatar",
@@ -3516,9 +3175,7 @@ module.exports = {
         "deathrate": "4.72",
         "agriculture": "0.002",
         "industry": "0.801",
-        "service": "0.197",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.197"
       },
       {
         "country": "Reunion",
@@ -3537,9 +3194,7 @@ module.exports = {
         "deathrate": "5.49",
         "agriculture": "0.08",
         "industry": "0.19",
-        "service": "0.73",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.73"
       },
       {
         "country": "Romania",
@@ -3558,9 +3213,7 @@ module.exports = {
         "deathrate": "11.77",
         "agriculture": "0.101",
         "industry": "0.35",
-        "service": "0.549",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.549"
       },
       {
         "country": "Russia",
@@ -3579,9 +3232,7 @@ module.exports = {
         "deathrate": "14.65",
         "agriculture": "0.054",
         "industry": "0.371",
-        "service": "0.575",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.575"
       },
       {
         "country": "Rwanda",
@@ -3600,9 +3251,7 @@ module.exports = {
         "deathrate": "16.09",
         "agriculture": "0.401",
         "industry": "0.229",
-        "service": "0.37",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.37"
       },
       {
         "country": "Saint Helena",
@@ -3621,9 +3270,7 @@ module.exports = {
         "deathrate": "6.53",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Saint Kitts & Nevis",
@@ -3642,9 +3289,7 @@ module.exports = {
         "deathrate": "8.33",
         "agriculture": "0.035",
         "industry": "0.258",
-        "service": "0.707",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.707"
       },
       {
         "country": "Saint Lucia",
@@ -3663,9 +3308,7 @@ module.exports = {
         "deathrate": "5.08",
         "agriculture": "0.07",
         "industry": "0.2",
-        "service": "0.73",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.73"
       },
       {
         "country": "St Pierre & Miquelon",
@@ -3684,9 +3327,7 @@ module.exports = {
         "deathrate": "6.83",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Saint Vincent and the Grenadines",
@@ -3705,9 +3346,7 @@ module.exports = {
         "deathrate": "5.98",
         "agriculture": "0.1",
         "industry": "0.26",
-        "service": "0.64",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.64"
       },
       {
         "country": "Samoa",
@@ -3726,9 +3365,7 @@ module.exports = {
         "deathrate": "6.62",
         "agriculture": "0.114",
         "industry": "0.584",
-        "service": "0.302",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.302"
       },
       {
         "country": "San Marino",
@@ -3747,9 +3384,7 @@ module.exports = {
         "deathrate": "8.17",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Sao Tome & Principe",
@@ -3768,9 +3403,7 @@ module.exports = {
         "deathrate": "6.47",
         "agriculture": "0.167",
         "industry": "0.148",
-        "service": "0.684",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.684"
       },
       {
         "country": "Saudi Arabia",
@@ -3789,9 +3422,7 @@ module.exports = {
         "deathrate": "2.58",
         "agriculture": "0.033",
         "industry": "0.613",
-        "service": "0.354",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.354"
       },
       {
         "country": "Senegal",
@@ -3810,9 +3441,7 @@ module.exports = {
         "deathrate": "9.42",
         "agriculture": "0.172",
         "industry": "0.209",
-        "service": "0.619",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.619"
       },
       {
         "country": "Serbia",
@@ -3831,9 +3460,7 @@ module.exports = {
         "deathrate": null,
         "agriculture": "0.166",
         "industry": "0.255",
-        "service": "0.579",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.579"
       },
       {
         "country": "Seychelles",
@@ -3852,9 +3479,7 @@ module.exports = {
         "deathrate": "6.29",
         "agriculture": "0.032",
         "industry": "0.304",
-        "service": "0.665",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.665"
       },
       {
         "country": "Sierra Leone",
@@ -3873,9 +3498,7 @@ module.exports = {
         "deathrate": "23.03",
         "agriculture": "0.49",
         "industry": "0.31",
-        "service": "0.21",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.21"
       },
       {
         "country": "Singapore",
@@ -3894,9 +3517,7 @@ module.exports = {
         "deathrate": "4.28",
         "agriculture": 0,
         "industry": "0.339",
-        "service": "0.661",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.661"
       },
       {
         "country": "Slovakia",
@@ -3915,9 +3536,7 @@ module.exports = {
         "deathrate": "9.45",
         "agriculture": "0.035",
         "industry": "0.294",
-        "service": "0.672",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.672"
       },
       {
         "country": "Slovenia",
@@ -3936,9 +3555,7 @@ module.exports = {
         "deathrate": "10.31",
         "agriculture": "0.028",
         "industry": "0.369",
-        "service": "0.603",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.603"
       },
       {
         "country": "Solomon Islands",
@@ -3957,9 +3574,7 @@ module.exports = {
         "deathrate": "3.92",
         "agriculture": "0.42",
         "industry": "0.11",
-        "service": "0.47",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.47"
       },
       {
         "country": "Somalia",
@@ -3978,9 +3593,7 @@ module.exports = {
         "deathrate": "16.63",
         "agriculture": "0.65",
         "industry": "0.1",
-        "service": "0.25",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.25"
       },
       {
         "country": "South Africa",
@@ -3999,9 +3612,7 @@ module.exports = {
         "deathrate": 22,
         "agriculture": "0.025",
         "industry": "0.303",
-        "service": "0.671",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.671"
       },
       {
         "country": "Spain",
@@ -4020,9 +3631,7 @@ module.exports = {
         "deathrate": "9.72",
         "agriculture": "0.04",
         "industry": "0.295",
-        "service": "0.665",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.665"
       },
       {
         "country": "Sri Lanka",
@@ -4041,9 +3650,7 @@ module.exports = {
         "deathrate": "6.52",
         "agriculture": "0.178",
         "industry": "0.276",
-        "service": "0.545",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.545"
       },
       {
         "country": "Sudan",
@@ -4062,9 +3669,7 @@ module.exports = {
         "deathrate": "8.97",
         "agriculture": "0.387",
         "industry": "0.203",
-        "service": "0.41",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.41"
       },
       {
         "country": "Suriname",
@@ -4083,9 +3688,7 @@ module.exports = {
         "deathrate": "7.27",
         "agriculture": "0.13",
         "industry": "0.22",
-        "service": "0.65",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.65"
       },
       {
         "country": "Swaziland",
@@ -4104,9 +3707,7 @@ module.exports = {
         "deathrate": "29.74",
         "agriculture": "0.119",
         "industry": "0.515",
-        "service": "0.366",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.366"
       },
       {
         "country": "Sweden",
@@ -4125,9 +3726,7 @@ module.exports = {
         "deathrate": "10.31",
         "agriculture": "0.011",
         "industry": "0.282",
-        "service": "0.707",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.707"
       },
       {
         "country": "Switzerland",
@@ -4146,9 +3745,7 @@ module.exports = {
         "deathrate": "8.49",
         "agriculture": "0.015",
         "industry": "0.34",
-        "service": "0.645",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.645"
       },
       {
         "country": "Syria",
@@ -4167,9 +3764,7 @@ module.exports = {
         "deathrate": "4.81",
         "agriculture": "0.249",
         "industry": "0.23",
-        "service": "0.519",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.519"
       },
       {
         "country": "Taiwan",
@@ -4188,9 +3783,7 @@ module.exports = {
         "deathrate": "6.48",
         "agriculture": "0.018",
         "industry": "0.259",
-        "service": "0.723",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.723"
       },
       {
         "country": "Tajikistan",
@@ -4209,9 +3802,7 @@ module.exports = {
         "deathrate": "8.25",
         "agriculture": "0.234",
         "industry": "0.286",
-        "service": "0.48",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.48"
       },
       {
         "country": "Tanzania",
@@ -4230,9 +3821,7 @@ module.exports = {
         "deathrate": "16.39",
         "agriculture": "0.432",
         "industry": "0.172",
-        "service": "0.396",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.396"
       },
       {
         "country": "Thailand",
@@ -4251,9 +3840,7 @@ module.exports = {
         "deathrate": "7.04",
         "agriculture": "0.099",
         "industry": "0.441",
-        "service": "0.46",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.46"
       },
       {
         "country": "Togo",
@@ -4272,9 +3859,7 @@ module.exports = {
         "deathrate": "9.83",
         "agriculture": "0.395",
         "industry": "0.204",
-        "service": "0.401",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.401"
       },
       {
         "country": "Tonga",
@@ -4293,9 +3878,7 @@ module.exports = {
         "deathrate": "5.28",
         "agriculture": "0.23",
         "industry": "0.27",
-        "service": "0.5",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.5"
       },
       {
         "country": "Trinidad & Tobago",
@@ -4314,9 +3897,7 @@ module.exports = {
         "deathrate": "10.57",
         "agriculture": "0.007",
         "industry": "0.57",
-        "service": "0.423",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.423"
       },
       {
         "country": "Tunisia",
@@ -4335,9 +3916,7 @@ module.exports = {
         "deathrate": "5.13",
         "agriculture": "0.132",
         "industry": "0.318",
-        "service": "0.55",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.55"
       },
       {
         "country": "Turkey",
@@ -4356,9 +3935,7 @@ module.exports = {
         "deathrate": "5.97",
         "agriculture": "0.117",
         "industry": "0.298",
-        "service": "0.585",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.585"
       },
       {
         "country": "Turkmenistan",
@@ -4377,9 +3954,7 @@ module.exports = {
         "deathrate": "8.6",
         "agriculture": "0.209",
         "industry": "0.38",
-        "service": "0.411",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.411"
       },
       {
         "country": "Turks & Caicos Is",
@@ -4398,9 +3973,7 @@ module.exports = {
         "deathrate": "4.21",
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "Tuvalu",
@@ -4419,9 +3992,7 @@ module.exports = {
         "deathrate": "7.11",
         "agriculture": "0.166",
         "industry": "0.272",
-        "service": "0.562",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.562"
       },
       {
         "country": "Uganda",
@@ -4440,9 +4011,7 @@ module.exports = {
         "deathrate": "12.24",
         "agriculture": "0.311",
         "industry": "0.222",
-        "service": "0.469",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.469"
       },
       {
         "country": "Ukraine",
@@ -4461,9 +4030,7 @@ module.exports = {
         "deathrate": "14.39",
         "agriculture": "0.187",
         "industry": "0.452",
-        "service": "0.361",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.361"
       },
       {
         "country": "United Arab Emirates",
@@ -4482,9 +4049,7 @@ module.exports = {
         "deathrate": "4.4",
         "agriculture": "0.04",
         "industry": "0.585",
-        "service": "0.375",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.375"
       },
       {
         "country": "United Kingdom",
@@ -4503,9 +4068,7 @@ module.exports = {
         "deathrate": "10.13",
         "agriculture": "0.005",
         "industry": "0.237",
-        "service": "0.758",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.758"
       },
       {
         "country": "United States",
@@ -4524,9 +4087,7 @@ module.exports = {
         "deathrate": "8.26",
         "agriculture": "0.01",
         "industry": "0.204",
-        "service": "0.787",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.787"
       },
       {
         "country": "Uruguay",
@@ -4545,9 +4106,7 @@ module.exports = {
         "deathrate": "9.05",
         "agriculture": "0.093",
         "industry": "0.311",
-        "service": "0.596",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.596"
       },
       {
         "country": "Uzbekistan",
@@ -4566,9 +4125,7 @@ module.exports = {
         "deathrate": "7.84",
         "agriculture": "0.342",
         "industry": "0.229",
-        "service": "0.43",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.43"
       },
       {
         "country": "Vanuatu",
@@ -4587,9 +4144,7 @@ module.exports = {
         "deathrate": "7.82",
         "agriculture": "0.26",
         "industry": "0.12",
-        "service": "0.62",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.62"
       },
       {
         "country": "Venezuela",
@@ -4608,9 +4163,7 @@ module.exports = {
         "deathrate": "4.92",
         "agriculture": "0.04",
         "industry": "0.419",
-        "service": "0.541",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.541"
       },
       {
         "country": "Vietnam",
@@ -4629,9 +4182,7 @@ module.exports = {
         "deathrate": "6.22",
         "agriculture": "0.209",
         "industry": "0.41",
-        "service": "0.381",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.381"
       },
       {
         "country": "Virgin Islands",
@@ -4650,9 +4201,7 @@ module.exports = {
         "deathrate": "6.43",
         "agriculture": "0.01",
         "industry": "0.19",
-        "service": "0.8",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.8"
       },
       {
         "country": "Wallis and Futuna",
@@ -4671,9 +4220,7 @@ module.exports = {
         "deathrate": null,
         "agriculture": null,
         "industry": null,
-        "service": null,
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": null
       },
       {
         "country": "West Bank",
@@ -4692,9 +4239,7 @@ module.exports = {
         "deathrate": "3.92",
         "agriculture": "0.09",
         "industry": "0.28",
-        "service": "0.63",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.63"
       },
       {
         "country": "Western Sahara",
@@ -4713,9 +4258,7 @@ module.exports = {
         "deathrate": null,
         "agriculture": null,
         "industry": null,
-        "service": "0.4",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.4"
       },
       {
         "country": "Yemen",
@@ -4734,9 +4277,7 @@ module.exports = {
         "deathrate": "8.3",
         "agriculture": "0.135",
         "industry": "0.472",
-        "service": "0.393",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.393"
       },
       {
         "country": "Zambia",
@@ -4755,9 +4296,7 @@ module.exports = {
         "deathrate": "19.93",
         "agriculture": "0.22",
         "industry": "0.29",
-        "service": "0.489",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.489"
       },
       {
         "country": "Zimbabwe",
@@ -4776,9 +4315,7 @@ module.exports = {
         "deathrate": "21.84",
         "agriculture": "0.179",
         "industry": "0.243",
-        "service": "0.579",
-        "createdAt": new Date(),
-        "updatedAt": new Date()
+        "service": "0.579"
       }
     ]);
   },
