@@ -2,22 +2,35 @@ const models = require('./models');
 const Sequelize = require('sequelize');
 const { Op, literal } = require('sequelize');
 const { generateQuestion, getQuestion, generateFirst } = require('./utils')
+const fs = require('fs');
 // const generateQuestion = requ
 // models.Avatar.create(
 //     {
 //         imgSrc: "asdfjhgadfjkng"
 //     }
 // )
+// const allImages = [];
+// const imageData = fs.readdirSync('./avatars');
+// imageData.length
+// for (image of imageData) {
+//     allImages.push(fs.readFileSync(`./avatars/${image}`))
+// }
 
-
-// models.Avatar.create(
-//     {
-//         imgSrc: "qwereryrtitiuyoyup"
+// fixedImagesArray = allImages.map(image => {
+//     return {
+//         img_src: image,
+//         created_at: new Date(),
+//         updated_at: new Date()
 //     }
-// )
+// })
+// for (image of fixedImagesArray) {
+//     models.Avatar.create(
+//         image
+//     );
+// }
 
-
-// models.Player.create({
+// console.log(allImages);
+        // models.Player.create({
 //     name: "KingCas",
 //     score: 0,
 //     avatarId: 1
@@ -64,4 +77,4 @@ const { generateQuestion, getQuestion, generateFirst } = require('./utils')
 //     include: models.QuestionStats
 // })
 
-generateQuestion(124).then(console.log)
+// generateQuestion(124).then(console.log)

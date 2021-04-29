@@ -123,4 +123,15 @@
 .start #leader-board table body {
   padding: 1rem;
 }
+
+.start .avatar {
+  border: 2px solid #6600cc77;
+  opacity: 0.9;
+  height: 40px;
+  width: 40px;
+  border-radius: 25px;
+  margin: 5px;
+  -webkit-box-shadow: 1px 1px 2px 2px #28775d;
+          box-shadow: 1px 1px 2px 2px #28775d;
+}
 /*# sourceMappingURL=Start.css.map */

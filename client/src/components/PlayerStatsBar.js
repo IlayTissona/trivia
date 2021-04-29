@@ -7,6 +7,7 @@ function PlayerStatsBar(props) {
 
     const player = useSelector((store) => store.player);
     const { name, score, strikes, avatarUrl } = player;
+    console.log(avatarUrl);
     return (
         <div id="playerStatsBar">
             <img className="avatar" src={avatarUrl} alt="AVATAR" />

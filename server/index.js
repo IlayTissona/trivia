@@ -3,6 +3,9 @@ const express = require("express");
 const app = express();
 let port = process.env.PORT || 3005;
 let game = require("./routes/game");
+const fs = require('fs');
+
+
 
 app.use(express.json());
 app.use("/api/game", game);
@@ -16,7 +19,7 @@ const lastRoute = (req, res, next) => {
 
 const errorHandler = (error, req, res, next) => {
   console.log("internal error!");
-  console.log(req.path);
+  console.log(req.path, error);
   res.status(500).send("oops! something went wrong..")
 }
 app.use(lastRoute)

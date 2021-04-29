@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setPlayer } from "../store/actions/playerActions";
@@ -6,11 +6,20 @@ import LeaderBoard from './LeaderBoard';
 import axios from "axios";
 import '../styles/Start.css';
 
-
 function Start() {
   const inputRef = useRef();
+  const avatarRef = useRef()
   const dispatch = useDispatch();
   const player = useSelector(state => state.player)
+  // const imageRef = useRef(false)
+  const [images, setImages] = useState()
+  useEffect(() => {
+    if (!images) {
+      getAllImages()
+        .catch(console.log)
+    }
+  }, [])
+
   const start = (e) => {
     e.preventDefault();
     const userName = inputRef.current.value;
@@ -40,8 +49,18 @@ function Start() {
               placeholder="password"
             />
           </label>
+
+
           <button onClick={start}> Start </button>
         </form>
+        <div id="avatar-selection">
+
+          {images?.map((image, i) => {
+            return (
+              < img key={i} onClick={chooseAvatar} className="avatar" src={image} alt={`avatar${i + 1}`} />
+            )
+          })}
+        </div>
         <LeaderBoard />
       </div>
 
@@ -49,6 +68,28 @@ function Start() {
       <Redirect to={`/game`} />
     )
   );
+  async function getAllImages() {
+    const images = [];
+    const { data: imageCount } = await axios.get("/api/avatar/count");
+    console.log("bla");
+    for (let i = 1; i < imageCount; i++) {
+      images.push(`/api/avatar/avatar${i}`)
+    }
+    console.log(images);
+    setImages(images)
+  }
+
+  function chooseAvatar(e) {
+    e.preventDefault();
+    const allAvatars = e.target.parentNode.children
+    // const allAvatarsArray = Array.from(allAvatars);
+    // for (i of allAvatarsArray) {
+    //   // console.log(avatar.classList);
+    // }
+
+
+  }
+
 }
 
 export default Start;
