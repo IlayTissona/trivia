@@ -27,9 +27,18 @@ function Start() {
       <div className="start">
         <h1 id="landing-page-title">Welcome To Trivia Game</h1>
         <form id="start-form">
-          <label htmlFor="name">
-
-            <input required type="text" name="name" ref={inputRef} placeholder="Name..." />
+          <label htmlFor="name" className="label">
+            Name :
+          <input type="text" name="name" ref={inputRef} placeholder="Name" />
+          </label>
+          <label htmlFor="password" className="label">
+            Password :
+          <input
+              type="password"
+              name="password"
+              ref={inputRef}
+              placeholder="password"
+            />
           </label>
           <button onClick={start}> Start </button>
         </form>
