@@ -25,6 +25,7 @@ const questionReducer = (state = initialState, action) => {
             break;
 
         case "SET_ANSWER":
+
             newState.correctAnswer = action.answer;
             break;
 

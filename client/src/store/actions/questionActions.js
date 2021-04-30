@@ -48,32 +48,26 @@ export const correctAnswer = (answer, score) => {
 export const postAnswer = (playerId, questionId, answer) => {
   return (dispatch, getState) => {
     const { totalTime, timePassed } = getState().timer
-    console.log(playerId,
-      questionId,
-      answer,
-      totalTime,
-      timePassed,
-    )
     dispatch(loadingAnswer());
     dispatch(start())
     axios
-      .post(`/answer/${playerId}`, {
+      .post(`/game/answer/${playerId}`, {
         questionId,
         answer,
         totalTime,
         timePassed,
       })
       .then((res) => {
+        console.log(res);
         if (res.isCorrect) {
 
           dispatch(totalTimeDecrease());
           dispatch(setScore(res.newScore));
-          dispatch(setAnswer(answer));
         }
         else {
           dispatch(setStrikes(res.strikes));
-          dispatch(setAnswer(answer));
         }
+        dispatch(setAnswer(answer));
       }).catch(e => {
         console.log(e)
       })

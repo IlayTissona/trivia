@@ -10,11 +10,11 @@ function GameOver() {
     const [endGameData, setEndGameData] = useState(null)
     const player = useSelector(state => state.player)
     useEffect(() => {
-        axios.get(`/end_session/${player.id}`).then(endGame => {
+        axios.get(`/game/end_session/${player.id}`).then(endGame => {
             setEndGameData(endGame)
         })
     }, [])
-    if (!player.id) return <Redirect to="/" />;
+    if (!player) return <Redirect to="/" />;
     return !endGameData ? <Loader /> :
         <div id="game-over">
 

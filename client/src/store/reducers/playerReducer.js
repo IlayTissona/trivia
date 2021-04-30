@@ -11,7 +11,6 @@ const playerInitialState = {
 const playerReducer = (state = null, action) => {
   if (action.type === "TICK") return state;
   let newState = { ...state };
-  console.log("player reducer", action);
   switch (action.type) {
     case "SET_STRIKES":
       newState.strikes++;

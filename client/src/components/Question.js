@@ -61,7 +61,7 @@ function Question({ }) {
         <>
             <div id="question">
                 <h1>{question.text}</h1>
-                <ul id="options">{createOptions(question.correctAnswer)}</ul>
+                <div id="options">{createOptions(question.correctAnswer)}</div>
                 {question.timeUp ? "TIME UP" :
                     question.correctAnswer ? (
                         <Rank
@@ -87,10 +87,10 @@ function Question({ }) {
         const questionOptions = [];
         for (let i = 0; i < options.length; i++) {
             questionOptions.push(
-                <li
+                <div
                     key={i}
-                    className={
-                        "option" + correctAnswer === options[i] ? " correct" : " incorrect"
+                    className={"option"
+                        // "option" + correctAnswer === options[i] ? " correct" : " incorrect"
                     }
                     onClick={() => {
                         if (correctAnswer) return;
@@ -104,8 +104,8 @@ function Question({ }) {
                         );
                     }}
                 >
-                    {correctAnswer === "LOADING" ? <MiniLoader /> : options[i]}
-                </li>
+                    {correctAnswer === "LOADING" ? <MiniLoader /> : correctAnswer === options[i] ? <strong>{options[i]}</strong> : options[i]}
+                </div>
             );
         }
         return questionOptions;
