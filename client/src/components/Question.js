@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Redirect } from "react-router-dom";
 import Rank from "./Rank";
 import axios from "../store/axiosWraper"

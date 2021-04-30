@@ -1,12 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setPlayer } from "../store/actions/playerActions";
 import LeaderBoard from './LeaderBoard';
-import MiniLoader from "./MiniLoader"
 import axios from "../store/axiosWraper";
-import Register from './Register'
-import Login from './Login'
 import '../styles/Start.css';
 
 function Profile() {
@@ -30,8 +27,6 @@ function Profile() {
       </div>
       <LeaderBoard />
     </>)
-  // <div className="start">
-  //   <h1 id="landing-page-title">Welcome To Trivia Game</h1>
 
   async function startButtonHandler(e) {
     e.preventDefault();

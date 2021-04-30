@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom'
 import Loader from './Loader'
 import LeaderBoard from "./LeaderBoard";

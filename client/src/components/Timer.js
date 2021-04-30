@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import { tick } from "../store/actions/timerActions";
-import { setAnswer, setTimeUp } from "../store/actions/questionActions"
-
-// const timeUpAnswer =mashu
+import { setTimeUp } from "../store/actions/questionActions"
 
 export default function Timer({ timeUp, goToNextQuestion, nextQuestion }) {
     const dispatch = useDispatch();

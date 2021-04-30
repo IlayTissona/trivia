@@ -1,9 +1,7 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/actions/userActions";
-import LeaderBoard from './LeaderBoard';
-import MiniLoader from "./MiniLoader"
 import axios from "../store/axiosWraper"
 import '../styles/Start.css';
 

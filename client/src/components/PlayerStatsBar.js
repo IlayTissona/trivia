@@ -1,7 +1,7 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 import LivesLast from "./LivesLast";
 import "../styles/PlayerStatsBar.css"
-import { useSelector } from "react-redux";
 
 function PlayerStatsBar(props) {
 
