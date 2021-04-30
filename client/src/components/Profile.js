@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPlayer } from "../store/actions/playerActions";
 import LeaderBoard from "./LeaderBoard";
 import axios from "../store/axiosWraper";
-import "../styles/Start.css";
+import "../styles/Profile.css";
 
 function Profile() {
   const avatarRef = useRef();
@@ -13,29 +13,36 @@ function Profile() {
   if (!user) return <Redirect to="/" />;
   console.log("PROFILEEEEEEEEEEEEEEEEEEEEEEE", user);
 
-  // if (player) return <Redirect to="/game" />;
+  if (player) return <Redirect to="/game" />;
   console.log(user.avatarUrl);
   return (
     <>
-      <div>
-        {user.name}
-        {user.id}
-        <img src={user.avatarUrl} alt="Avater" />
-        {user.highScore}
-        <button onClick={startButtonHandler}>Start!</button>
+      <div id='profile-div' >
+        <div id='profile-details' >
+          Best Score:  {user.highScore}
+          <br />
+        Total Games: {user.gamesPlayed}
+          <br />
+        Total Score: {user.totalScore}
+
+        </div>
+        <img className="profile-avatar" src={user.avatarUrl} alt="Avatar" />
+        <h1 id="profile-page-title">{user.name}</h1>
       </div>
+      <button id="ButtonStart" onClick={startButtonHandler}>Start!</button>
       <LeaderBoard />
     </>
   );
 
   async function startButtonHandler(e) {
     e.preventDefault();
-    const newGame = await axios.post("game/new_session", {
+    console.log("in here?");
+    const newGame = await axios.post("/game/new_session", {
       userName: user.name,
     });
 
     console.log("blahsiblahs", newGame);
-    dispatch(setPlayer(newGame));
+    dispatch(setPlayer({ ...newGame }));
   }
 }
 

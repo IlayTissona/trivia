@@ -44,6 +44,7 @@ body {
 }
 
 .container {
+  
   // max-width: 600px;
   // margin: 0 auto;
   // padding: 80px 0;
@@ -57,13 +58,14 @@ body {
     transition-timing-function: ease-in-put;
     font-weight: 200;
     margin-top: 100px;
+    
   }
 }
 
 form {
   padding: 20px 0;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 
   input {
     display: block;
@@ -103,11 +105,11 @@ form {
   left: 0;
   width: 95%;
   height: 100%;
-  z-index: 1;
   overflow: hidden;
+  z-index: 0;
 
   li {
-    z-index: 2;
+    z-index: 1;
     position: absolute;
     list-style: none;
     display: block;
@@ -148,8 +150,8 @@ form {
       height: 60px;
 
       animation-duration: 22s;
+      background-color: rgba(255, 255, 255, 0.25);
 
-      background-color: fade(white, 25%);
     }
 
     &:nth-child(5) {
@@ -162,7 +164,8 @@ form {
       height: 120px;
 
       animation-delay: 3s;
-      background-color: fade(white, 20%);
+      background-color: rgba(255, 255, 255, 0.2);
+
     }
 
     &:nth-child(7) {
@@ -189,7 +192,8 @@ form {
 
       animation-delay: 2s;
       animation-duration: 40s;
-      background-color: fade(white, 30%);
+      background-color: rgba(255, 255, 255, 0.3);
+
     }
 
     &:nth-child(10) {
@@ -210,10 +214,11 @@ form {
   100% {
     // bottom: 0;
     transform: translateY(-700px) rotate(600deg);
+
   }
 }
 
-#register {
+.redirect-button {
   position: absolute;
   left: 20px;
   top: 20px;
@@ -221,6 +226,7 @@ form {
 }
 
 button {
+  position: relative;
   appearance: none;
   outline: 0;
   background-color: white;
@@ -232,6 +238,7 @@ button {
   cursor: pointer;
   font-size: 18px;
   transition-duration: 0.25s;
+  z-index: 2;
 
   &:hover {
     background-color: rgb(245, 247, 249);

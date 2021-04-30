@@ -19,6 +19,7 @@ function Question({ }) {
     const nextQuestion = useRef({});
 
     useEffect(() => {
+        if (!player) return <Redirect to="/" />;
         getNextQuestion()
             .then((newQuestion) => {
                 nextQuestion.current = newQuestion;
@@ -38,7 +39,7 @@ function Question({ }) {
 
     useEffect(() => {
         axios.get(`/game/question/${player.id}`).then((res) => {
-            dispatch(setQuestion(res.data));
+            dispatch(setQuestion(res));
         });
     }, []);
 
@@ -50,13 +51,12 @@ function Question({ }) {
     async function getNextQuestion() {
         return axios
             .get(`/game/question/${player.id}`)
-            .then((res) => res.data)
+            .then((res) => res)
             .catch((e) => {
                 console.log(`/question/${player.id}`);
             });
     }
 
-    if (!player.id) return <Redirect to="/" />;
     return (
         <>
             <div id="question">

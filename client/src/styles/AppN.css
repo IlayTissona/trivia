@@ -46,7 +46,7 @@ body {
 form {
   padding: 20px 0;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 form input {
@@ -86,12 +86,12 @@ form input:focus {
   left: 0;
   width: 95%;
   height: 100%;
-  z-index: 1;
   overflow: hidden;
+  z-index: 0;
 }
 
 .bg-bubbles li {
-  z-index: 2;
+  z-index: 1;
   position: absolute;
   list-style: none;
   display: block;
@@ -131,7 +131,7 @@ form input:focus {
   height: 60px;
   -webkit-animation-duration: 22s;
           animation-duration: 22s;
-  background-color: fade(white, 25%);
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .bg-bubbles li:nth-child(5) {
@@ -144,7 +144,7 @@ form input:focus {
   height: 120px;
   -webkit-animation-delay: 3s;
           animation-delay: 3s;
-  background-color: fade(white, 20%);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .bg-bubbles li:nth-child(7) {
@@ -173,7 +173,7 @@ form input:focus {
           animation-delay: 2s;
   -webkit-animation-duration: 40s;
           animation-duration: 40s;
-  background-color: fade(white, 30%);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .bg-bubbles li:nth-child(10) {
@@ -206,7 +206,7 @@ form input:focus {
   }
 }
 
-#register {
+.redirect-button {
   position: absolute;
   left: 20px;
   top: 20px;
@@ -214,6 +214,7 @@ form input:focus {
 }
 
 button {
+  position: relative;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -228,6 +229,7 @@ button {
   font-size: 18px;
   -webkit-transition-duration: 0.25s;
           transition-duration: 0.25s;
+  z-index: 2;
 }
 
 button:hover {

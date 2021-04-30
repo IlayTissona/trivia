@@ -11,7 +11,7 @@ function GameOver() {
     const player = useSelector(state => state.player)
     useEffect(() => {
         axios.get(`/end_session/${player.id}`).then(endGame => {
-            setEndGameData(endGame.data)
+            setEndGameData(endGame)
         })
     }, [])
     if (!player.id) return <Redirect to="/" />;

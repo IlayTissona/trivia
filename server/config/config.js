@@ -11,7 +11,7 @@ module.exports = {
     dialect: "mysql",
     seederStorage: "sequelize",
     seederStoragePath: "sequelizeData",
-    // "logging": false
+    "logging": false
   },
   test: {
     username: DB_USERNAME,

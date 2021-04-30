@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/actions/userActions";
 import MiniLoader from "./MiniLoader"
 import axios from "../store/axiosWraper";
-import '../styles/Start.css';
+import '../styles/Register.css';
 
 
 function Register() {
+    const [login, setLogin] = useState(false);
     const [images, setImages] = useState();
     const avatarRef = useRef(4)
     const nameRef = useRef()
@@ -24,41 +25,45 @@ function Register() {
     }, [])
 
     if (user) return <Redirect to={`/Profile/${nameRef.current}`} />
+    if (login) return <Redirect to={`/`} />;
 
     return (
+        <>
+            <h1 id="landing-page-title">Welcome To Trivia Game</h1>
+            <button className="redirect-button" onClick={(e) => {
+                e.preventDefault();
+                setLogin(true)
+            }} >Login</button>
+            < form >
 
-        <div id="register">
-            <form id="register-form">
                 <label htmlFor="name" className="label">
-                    Email :
-          <input type="email" ref={emailRef} name="email" placeholder="Email" />
+                    <input type="email" ref={emailRef} name="email" placeholder="Email" />
                 </label>
                 <label htmlFor="name" className="label">
-                    Name :
-          <input type="text" ref={nameRef} name="name" placeholder="Name" />
+                    <input type="text" ref={nameRef} name="name" placeholder="Name" />
                 </label>
                 <label htmlFor="password" className="label">
-                    Password :
-          <input
+                    <input
                         type="password"
                         name="password"
                         ref={passwordRef}
                         placeholder="password"
                     />
                 </label>
+                <div id="avatar-selection">
+
+                    {images?.map((image, i) => {
+                        return (
+                            < img key={i} onClick={chooseAvatar} className="avatar" src={image} onLoadStart={() => <MiniLoader />} />
+                        )
+                    })}
+                </div>
                 <button onClick={singIn}> Sign In </button>
+
+
             </form>
-            <div id="inputs"></div>
+        </>
 
-            <div id="avatar-selection">
-
-                {images?.map((image, i) => {
-                    return (
-                        < img key={i} onClick={chooseAvatar} className="avatar" src={image} onLoadStart={() => <MiniLoader />} />
-                    )
-                })}
-            </div>
-        </div>
 
     );
 
@@ -81,7 +86,7 @@ function Register() {
         if (!nameInput || !passwordInput || !emailInput) return;
         const newUser = await axios.post("user/register", { name: nameInput, email: emailInput, password: passwordInput, avatarId: avatarRef.current })
         const { id, name, avatarUrl } = newUser;
-        // const { email, gamesPlayed, highScore, totalScore } = userStats
+        // const {email, gamesPlayed, highScore, totalScore} = userStats
         console.log(newUser);
         dispatch(setUser({ id, name, avatarUrl, email: emailInput, gamesPlayed: 0, highScore: 0, totalScore: 0 }));
 

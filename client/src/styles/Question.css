@@ -50,4 +50,8 @@
   -ms-grid-row: 4;
   grid-row: 4;
 }
+
+#question #lives {
+  margin: auto;
+}
 /*# sourceMappingURL=Question.css.map */

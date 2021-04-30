@@ -5,7 +5,7 @@ import { setUser } from "../store/actions/userActions";
 import axios from "../store/axiosWraper";
 // import "../styles/Start.css";
 
-function Login({}) {
+function Login({ }) {
   const [register, setRegister] = useState(false);
   const nameRef = useRef();
   const passwordRef = useRef();
@@ -17,7 +17,12 @@ function Login({}) {
   return (
     // <div className="start">
     <>
-      <button id="register" onClick={() => setRegister(true)}>
+      <h1 id="landing-page-title">Welcome To Trivia Game</h1>
+      <button className="redirect-button" onClick={() => {
+        console.log("register!");
+        setRegister(true)
+      }
+      }>
         {" "}
         Register{" "}
       </button>

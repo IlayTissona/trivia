@@ -64,14 +64,14 @@ export const postAnswer = (playerId, questionId, answer) => {
         timePassed,
       })
       .then((res) => {
-        if (res.data.isCorrect) {
+        if (res.isCorrect) {
 
           dispatch(totalTimeDecrease());
-          dispatch(setScore(res.data.newScore));
+          dispatch(setScore(res.newScore));
           dispatch(setAnswer(answer));
         }
         else {
-          dispatch(setStrikes(res.data.strikes));
+          dispatch(setStrikes(res.strikes));
           dispatch(setAnswer(answer));
         }
       }).catch(e => {

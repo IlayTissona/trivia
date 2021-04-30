@@ -8,16 +8,14 @@ import PlayerStatsBar from "./components/PlayerStatsBar";
 // import "./App.css";
 import "../src/styles/AppN.css";
 function App(props) {
+
   return (
     // <div id="App">
     <div className="wrapper">
       <div className="container">
-        <h1 id="landing-page-title">Welcome To Trivia Game</h1>
         <BrowserRouter>
-          <>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/register" component={Register} />
-          </>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/profile/:userId" component={Profile} />
           <Route exact path="/game">
             <PlayerStatsBar />

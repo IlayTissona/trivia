@@ -31,19 +31,19 @@
 
 @-webkit-keyframes glow {
   from {
-    text-shadow: 0 0 10px #cc4400, 0 0 20px #e64d00, 0 0 30px #ff5500, 0 0 40px #ff7733;
+    text-shadow: 0 0 10px #cc4400, 0 0 20px #e64d00, 0 0 30px #ff5500, 0 0 40px #ff7733;
   }
   to {
-    text-shadow: 0 0 40px #ff714b, 0 0 50px #ff4c4b, 0 0 60px #ff5500, 0 0 75px #ff7733;
+    text-shadow: 0 0 40px #ff714b, 0 0 50px #ff4c4b, 0 0 60px #ff5500, 0 0 75px #ff7733;
   }
 }
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 10px #cc4400, 0 0 20px #e64d00, 0 0 30px #ff5500, 0 0 40px #ff7733;
+    text-shadow: 0 0 10px #cc4400, 0 0 20px #e64d00, 0 0 30px #ff5500, 0 0 40px #ff7733;
   }
   to {
-    text-shadow: 0 0 40px #ff714b, 0 0 50px #ff4c4b, 0 0 60px #ff5500, 0 0 75px #ff7733;
+    text-shadow: 0 0 40px #ff714b, 0 0 50px #ff4c4b, 0 0 60px #ff5500, 0 0 75px #ff7733;
   }
 }
 

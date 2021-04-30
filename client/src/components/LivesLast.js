@@ -19,11 +19,11 @@ function LivesLast({ strikes }) {
         return strikes < 3 ? hearts : <Redirect to="/game-over" />
     }
 
-    return <>
+    return <div id="lives">
 
         {createStrikeIcon()}
 
-    </>
+    </div>
 
 
 }
