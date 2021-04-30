@@ -1,5 +1,4 @@
 .App {
-  
   text-align: center;
 }
 
@@ -35,5 +34,40 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+#landing-page-title {
+  -ms-grid-column: 2;
+  grid-column: 2;
+  -ms-grid-row: 1;
+  grid-row: 1;
+  margin: auto;
+  font-family: "Bangers", cursive;
+  color: #331100;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #cc4400, 0 0 20px #e64d00, 0 0 30px #ff5500,
+      0 0 40px #ff7733;
+  }
+  to {
+    text-shadow: 0 0 40px #ff714b, 0 0 50px #ff4c4b, 0 0 60px #ff5500,
+      0 0 75px #ff7733;
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #cc4400, 0 0 20px #e64d00, 0 0 30px #ff5500,
+      0 0 40px #ff7733;
+  }
+  to {
+    text-shadow: 0 0 40px #ff714b, 0 0 50px #ff4c4b, 0 0 60px #ff5500,
+      0 0 75px #ff7733;
   }
 }

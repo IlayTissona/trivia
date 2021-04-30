@@ -1,34 +1,34 @@
 const playerInitialState = {
-    id: null,
-    name: "",
-    avatarUrl: null,
-    score: 0,
-    strikes: 0
-}
+  id: null,
+  name: "",
+  avatarUrl: null,
+  score: 0,
+  strikes: 0,
+};
 
-const playerReducer = (state = playerInitialState, action) => {
-    if (action.type === "TICK") return state
-    let newState = { ...state };
-    switch (action.type) {
+// = playerInitialState
 
-        case "SET_STRIKES":
-            newState.strikes++;
-            break;
+const playerReducer = (state, action) => {
+  if (action.type === "TICK") return state;
+  let newState = { ...state };
+  switch (action.type) {
+    case "SET_STRIKES":
+      newState.strikes++;
+      break;
 
-        case "SET_SCORE":
-            newState.score = action.score
-            break;
-        case "SET_PLAYER":
-            newState = { ...action.player }
-            break;
-        case "SET_FINAL_PLAYER_STATS":
+    case "SET_SCORE":
+      newState.score = action.score;
+      break;
+    case "SET_PLAYER":
+      newState = { ...action.player };
+      break;
+    case "SET_FINAL_PLAYER_STATS":
+      break;
+    default:
+      newState = state;
+      break;
+  }
+  return newState;
+};
 
-            break;
-        default:
-            newState = state;
-            break;
-    }
-    return newState;
-}
-
-export default playerReducer
+export default playerReducer;
