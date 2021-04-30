@@ -3,12 +3,20 @@ const express = require("express");
 const app = express();
 let port = process.env.PORT || 3005;
 let game = require("./routes/game");
+const avatar = require("./routes/avatars")
+const user = require("./routes/users")
 const fs = require('fs');
 
 
 
+// app.use((req, res, next) => {
+//   console.log(req.headers)
+//   next()
+// })
 app.use(express.json());
+app.use("/api/user", user);
 app.use("/api/game", game);
+app.use("/api/avatar", avatar);
 
 
 

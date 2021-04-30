@@ -9,20 +9,29 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.hasMany(models.Player, { foreignKey: "userId" });
+      this.hasOne(models.Avatar, { foreignKey: "id" });
     }
   }
   User.init(
     {
-      name: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false
+      },
+      email: DataTypes.STRING,
+      password: DataTypes.STRING,
       totalScore: DataTypes.INTEGER,
       gamesPlayed: DataTypes.INTEGER,
-      highScore: DataTypes.INTEGER
+      highScore: DataTypes.INTEGER,
+      avatarId: DataTypes.INTEGER,
+      refreshToken: DataTypes.TEXT,
     },
     {
       sequelize,
       modelName: "User",
       tableName: "users",
-      underscored: true
+      underscored: true,
     }
   );
   return User;

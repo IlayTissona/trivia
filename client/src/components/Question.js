@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import { Redirect } from "react-router-dom";
 import Rank from "./Rank";
-import axios from "axios";
+import axios from "../store/axiosWraper"
 import "../styles/Question.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -37,7 +37,7 @@ function Question({ }) {
     }, [question.id]);
 
     useEffect(() => {
-        axios.get(`/question/${player.id}`).then((res) => {
+        axios.get(`/game/question/${player.id}`).then((res) => {
             dispatch(setQuestion(res.data));
         });
     }, []);
@@ -49,7 +49,7 @@ function Question({ }) {
 
     async function getNextQuestion() {
         return axios
-            .get(`/question/${player.id}`)
+            .get(`/game/question/${player.id}`)
             .then((res) => res.data)
             .catch((e) => {
                 console.log(`/question/${player.id}`);
@@ -62,23 +62,23 @@ function Question({ }) {
             <div id="question">
                 <h1>{question.text}</h1>
                 <ul id="options">{createOptions(question.correctAnswer)}</ul>
+                {question.timeUp ? "TIME UP" :
+                    question.correctAnswer ? (
+                        <Rank
+                            playerId={player.id}
+                            questionId={question.id}
+                            goToNextQuestion={goToNextQuestion}
+                            nextQuestion={nextQuestion}
+                        />
+                    ) : (
+                        <Timer
+                            goToNextQuestion={goToNextQuestion} nextQuestion={nextQuestion}
+                            timeUp={() => {
+                                dispatch(postAnswer(player.id, question.id, null));
+                            }}
+                        />
+                    )}
             </div>
-            {question.timeUp ? "TIME UP" :
-                question.correctAnswer ? (
-                    <Rank
-                        playerId={player.id}
-                        questionId={question.id}
-                        goToNextQuestion={goToNextQuestion}
-                        nextQuestion={nextQuestion}
-                    />
-                ) : (
-                    <Timer
-                        goToNextQuestion={goToNextQuestion} nextQuestion={nextQuestion}
-                        timeUp={() => {
-                            dispatch(postAnswer(player.id, question.id, null));
-                        }}
-                    />
-                )}
         </>
     );
 

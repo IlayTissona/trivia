@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom'
 import Loader from './Loader'
 import LeaderBoard from "./LeaderBoard";
-import axios from "axios"
+import axios from "../store/axiosWraper"
 import "../styles/GameOver.css"
 
 function GameOver() {

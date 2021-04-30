@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios"
 import "../styles/Rank.css"
+import axios from "../store/axiosWraper"
 
 function Rank({ playerId, questionId, goToNextQuestion, nextQuestion }) {
     const [ranks, setRank] = useState([false, false, false, false, false])

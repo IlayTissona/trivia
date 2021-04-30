@@ -4,7 +4,6 @@ const fs = require('fs');
 
 avatar.get("/count", (req, res) => {
     const imageData = fs.readdirSync('./avatars/');
-    console.log(imageData);
     return res.send(imageData.length.toString())
 });
 

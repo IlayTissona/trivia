@@ -5,6 +5,7 @@ import App from "./App";
 import timerReducer from "./store/reducers/timerReducer";
 import playerReducer from "./store/reducers/playerReducer"
 import questionReducer from "./store/reducers/questionReducer"
+import userReducer from "./store/reducers/userReducer"
 
 import thunk from "redux-thunk";
 
@@ -14,6 +15,7 @@ const reducers = combineReducers({
   timer: timerReducer,
   player: playerReducer,
   question: questionReducer,
+  user: userReducer
 })
 const store = createStore(reducers, applyMiddleware(thunk));
 

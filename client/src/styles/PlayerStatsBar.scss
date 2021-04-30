@@ -1,21 +1,22 @@
 #playerStatsBar{
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: space-around;
     width:100vw;
-    display:flex;
+   
     // margin:auto;
     // padding:auto;
-    background-color: #4dffc3;
-    font-family: 'Bangers', cursive;
-    color:#6600cc;
+    
+    font-family: "Bangers", cursive;
+    border: 0.01px solid #fff;
+    box-shadow: 10px 8px 15px #680c14;
     .avatar{
-        border: 2px solid #6600cc77;
+        border: 2px solid #dc1223;
         opacity:0.9;
         height:40px;
         width:40px;
         border-radius: 25px;
         margin:5px;
-        box-shadow: 1px 1px 2px 2px #28775d;
+        box-shadow: 1px 1px 2px 2px rgb(123, 27, 35);
     }
 }
