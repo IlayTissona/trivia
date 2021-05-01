@@ -6,35 +6,35 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       template_str: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       model: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       question_col: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       answer_col: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       is_first: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
       },
       type: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal("timestamp")
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
       },
       updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now")
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
       }
     });
   },

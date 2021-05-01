@@ -1,23 +1,29 @@
-import React, { useContext, useState } from 'react';
-import { GameContext } from "./GameProvider"
-import axios from "axios"
+import React, { useEffect, useState } from 'react';
 import "../styles/Rank.css"
+import axios from "../store/axiosWraper"
 
-function Rank() {
+function Rank({ playerId, questionId, goToNextQuestion, nextQuestion }) {
     const [ranks, setRank] = useState([false, false, false, false, false])
-    const game = useContext(GameContext)
+
+
 
 
     const hoverHandler = (rank) => {
-        console.log("in hover, and rank is: ", rank);
         const newRanks = ranks.map((v, i) => i < rank)
         setRank(newRanks)
     }
 
     const clickHandler = (rank) => {
-
-        axios.post(`/rank/${game.id}`, { questionId: game.question.id, rank })
+        axios.post(`/game/rank/${playerId}`, { questionId: questionId, rank }).then(() => goToNextQuestion(nextQuestion.current));
     }
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            goToNextQuestion(nextQuestion.current)
+        }, 6000);
+        return () => {
+            clearTimeout(timeOut)
+        }
+    }, []);
 
     return (
         <div id="rank">

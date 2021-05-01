@@ -123,7 +123,6 @@ async function generateThird({ templateStr, model, questionCol, answerCol, isFir
 
 // gets a question - generates a new one if needed.     V
 async function getQuestion(playerId) {
-    console.log(playerId)
     const unaskedQuestions = await getUnAskedQuestions(playerId);
     const should = shouldGenerate(unaskedQuestions.length);
     if (should) {
@@ -179,7 +178,6 @@ async function getUnAskedQuestions(playerId) {
 
 //  removes question's answer and unnessesary properties before sending to client, shuffles options #VakninInvestments       V
 function questionToClient(question) {
-    console.log(question);
     const questionText = question.text;
     const optionsArr = [
         question.option1,
@@ -205,7 +203,9 @@ async function isRightAnswer(questionId, answer) {
     const questionObj = await models.SavedQuestion.findOne({
         where: { id: questionId },
     });
-    return questionObj.answer === answer;
+    const isCorrect = (questionObj.answer === answer)
+    const correctAnswer = questionObj.answer
+    return { isCorrect, correctAnswer }
 };
 
 // updates the question statistics.         V
@@ -277,21 +277,18 @@ async function setPlayerRank(PlayerId, SavedQuestionId, rank) {
 
 //  calculates and randomize which rank should be the next saved question.  V
 function rankToSelect(unAsked) {
-    console.log("unasked!!!", unAsked);
     const ranks = [, 0, 0, 0, 0, 0];
     const probability = [];
     let ranksSum = 0;
 
     unAsked.forEach(q => {
         if (!q.QuestionStat) return
-        console.log(q.QuestionStat.finalRank);
         ranksSum += q.QuestionStat.finalRank;
         ranks[q.QuestionStat.finalRank] += q.QuestionStat.finalRank
     })
 
     for (let i = 1; i <= 5 && i <= ranksSum; i++) {
         const iProbability = Math.round((ranks[i] / ranksSum) * 100);
-        console.log("iprob", i, iProbability);
         for (let j = 0; j < iProbability; j++) {
             probability.push(i);
         }
@@ -307,11 +304,10 @@ async function isOut(playerId) {
     return player.strikes >= 3;
 }
 
-// getLeaderBoard(24).then(res => console.log(res));
 
-async function getPlayerStats(playerId) {
+async function getendGameStats(playerId) {
     const player = await models.Player.findOne({
-        where: { id: playerId }
+        where: { id: playerId },
     });
     const playerQuestions = await player.getSavedQuestions({
         through: {
@@ -319,10 +315,9 @@ async function getPlayerStats(playerId) {
         },
     })
     const { score, name, id } = player
-
-    // const playerStats = await player.get
     return { id, name, score, passed: playerQuestions.length }
 }
+
 // gets the leaderBoard
 async function getLeaderBoard(playerId) {
     const topTwenty = await models.Player.findAll({
@@ -359,4 +354,4 @@ async function getLeaderBoard(playerId) {
     return topTwenty;
 }
 
-module.exports = { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updateQuestionsRank, questionToClient, isOut, getLeaderBoard, getPlayerStats, generateQuestion, generateFirst }
+module.exports = { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updateQuestionsRank, questionToClient, isOut, getLeaderBoard, getendGameStats, generateQuestion, generateFirst }

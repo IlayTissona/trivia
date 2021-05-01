@@ -1,9 +1,36 @@
 #playerStatsBar{
+    display: flex;
+    // grid-template-columns: ;
+    align-items: center;
+    justify-content: space-between;
     width:100vw;
-    display:flex;
-    // margin:auto;
-    // padding:auto;
-    background-color: #4dffc3;
-    font-family: 'Bangers', cursive;
-    color:#6600cc;
+    font-family: "Bangers", cursive;
+    border: 0.01px solid #fff;
+    box-shadow: 10px 8px 15px #23bb9f;
+    .avatar{
+        border: 2px solid #1d9273;
+        opacity:0.9;
+        height:40px;
+        width:40px;
+        border-radius: 25px;
+        margin:5px;
+        box-shadow: 1px 1px 2px 2px #1d9273;
+    }
+    #game-stats{
+        display: flex;
+        align-items: center;
+    }
+    #lives{
+        margin-left: 2rem;
+    }
+    #score{
+        justify-self:self-end;
+        margin-left: -7rem
+    }
+    #return-arrow{
+        justify-self: flex-end;
+        margin-right:2rem;
+        z-index: 2;
+        cursor: pointer;
+    }
 }

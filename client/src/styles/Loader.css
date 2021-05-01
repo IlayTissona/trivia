@@ -1,14 +1,21 @@
-.loader { background-color: #6600cc;
-    color:  #4dffc3;
-    border: 16px solid rgb(125, 3, 247); 
-    border-top: 16px solid #4dffc3; 
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
+.loader {
+  position: relative;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 16px solid rgba(0, 0, 0, 0.8);
+  border-top: 16px solid #51c2a4;
+  border-radius: 50%;
+  width: 6rem;
+  height: 6rem;
+  animation: spin 1.5s linear infinite;
+  box-shadow: 4px 4px 4px #227457;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
   }
+}

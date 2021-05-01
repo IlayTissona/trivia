@@ -1,14 +1,9 @@
-import React, { useContext } from 'react';
-import { GameContext } from "./GameProvider";
-import { Redirect } from "react-router-dom";
+import React from 'react';
+// import { Redirect } from "react-router-dom";
 
 
-function LivesLast({ }) {
 
-    const game = useContext(GameContext)
-
-    const { strikes } = game;
-
+function LivesLast({ strikes }) {
 
     function createStrikeIcon() {
         const hearts = [];
@@ -20,14 +15,16 @@ function LivesLast({ }) {
 
         }
 
-        return strikes < 3 ? hearts : <Redirect to="/game-over" />
+        // setTimeout(() => <Redirect to="/game-over" />, 5000)
+        // return strikes < 3 ? hearts : <Redirect to="/game-over" />
+        return hearts;
     }
 
-    return <>
+    return <div id="lives">
 
         {createStrikeIcon()}
 
-    </>
+    </div>
 
 
 }

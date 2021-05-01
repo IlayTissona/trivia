@@ -650,7 +650,6 @@ module.exports = {
       }
     ]);
   },
-
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('crimeStatus', null, {})
 

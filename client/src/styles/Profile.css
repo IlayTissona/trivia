@@ -1,0 +1,62 @@
+.profile-avatar {
+  display: block;
+  z-index: 2;
+  margin: 2rem auto 20px auto;
+  border: 2px solid #03a285;
+  height: 8rem;
+  width: 8rem;
+  border-radius: 25px;
+  -webkit-box-shadow: 1px 1px 2px 2px #43b686;
+          box-shadow: 1px 1px 2px 2px #43b686;
+  -ms-grid-column: 1;
+  grid-column: 1;
+}
+
+#profile-details {
+  text-align: left;
+  -ms-grid-column: 2;
+  grid-column: 2;
+  position: absolute;
+  font-weight: 100;
+  right: 30%;
+  top: 2rem;
+}
+
+#profile-div {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: relative;
+  border-radius: 25px;
+  margin: 80px auto 1rem auto;
+  font-weight: 100;
+  font-size: 1.5rem;
+  border: 1px solid white;
+  text-align: center;
+  color: white;
+  width: 80%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  z-index: 2;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+}
+
+#profile-page-title {
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+  -webkit-transition-timing-function: ease-in-put;
+          transition-timing-function: ease-in-put;
+  margin-top: 0px;
+  font-weight: 100;
+  font-size: 2rem;
+  color: white;
+  -ms-grid-column: 1;
+  grid-column: 1;
+}
+
+#ButtonStart {
+  z-index: 2;
+}
+/*# sourceMappingURL=Profile.css.map */
