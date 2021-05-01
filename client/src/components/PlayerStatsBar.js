@@ -7,7 +7,6 @@ import LivesLast from "./LivesLast";
 import "../styles/PlayerStatsBar.css"
 
 function PlayerStatsBar(props) {
-    // const [backToProfile, setBackToProfile] = useState(false)
     const { player } = useSelector((store) => store);
     const history = useHistory();
     const dispatch = useDispatch();
