@@ -20,7 +20,6 @@ function Login() {
     <>
       <h1 id="landing-page-title">Welcome To Trivia Game</h1>
       <button className="redirect-button" onClick={() => {
-        console.log("register!");
         setRegister(true)
       }
       }>
@@ -67,7 +66,6 @@ function Login() {
         return
       }
       const { id, name, avatarUrl } = user;
-      console.log(user);
       const userStats = await axios.get("user/user-stats");
       const { email, gamesPlayed, highScore, totalScore } = userStats;
       dispatch(

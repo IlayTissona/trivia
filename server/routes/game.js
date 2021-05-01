@@ -1,5 +1,4 @@
 const express = require("express");
-const avatar = require('./avatars')
 const { tokenValidate } = require('./userController')
 
 let game = express.Router();
@@ -19,19 +18,10 @@ const {
   getPlayerStats,
 } = require("../utils");
 
-// game.use('/avatar', avatar)
-// IMORTANT!!!
-// generate first throws the error:
-//     "TypeError: Cannot read property 'findAll' of undefined"
-
-
 game.post("/new_session", tokenValidate, async (req, res) => {
   console.log(req.decoded)
   const { name, id } = req.decoded;
   const user = await User.findByPk(id)
-
-  console.log(user, name, id)
-
   // creates a new session!!!! (not a new player)
   const player = await Player.create(
     { name, avatarId: user.avatarId, score: 0, strikes: 0, userId: id },
@@ -57,7 +47,6 @@ game.get("/question/:playerId", tokenValidate, async (req, res) => {
 game.post("/answer/:playerId", tokenValidate, async (req, res) => {
   const playerId = Number(req.params.playerId);
   const { questionId, answer, totalTime, timePassed } = req.body;
-  console.log(playerId, typeof (playerId), answer, typeof (answer), totalTime, typeof (totalTime), timePassed, typeof (timePassed));
   const { isCorrect, correctAnswer } = await isRightAnswer(questionId, answer);
   const { newScore, strikes } = await setAnswer(
     playerId,
@@ -74,7 +63,6 @@ game.post("/rank/:playerId", tokenValidate, async (req, res) => {
   const { questionId, rank } = req.body;
 
   const didUpdate = await setPlayerRank(playerId, questionId, rank);
-  console.log(didUpdate);
   return res.json({ updated: Boolean(didUpdate) });
 });
 
@@ -98,7 +86,6 @@ game.get("/end_session/:playerId", tokenValidate, async (req, res) => {
 });
 
 game.get("/leader_board", async (req, res) => {
-  console.log("in the leaderBoard");
   const leaderBoard = await (await Player.findAll({
     order: [Sequelize.literal('highscore DESC')],
     where: { name: { [Op.not]: null } },
@@ -125,7 +112,6 @@ game.get("/leader_board", async (req, res) => {
     // }))
     .map((player, i) => {
       const { name, highscore, ...rest } = player.toJSON()
-      console.log({ name, rank: i + 1, highscore });
       return { name, rank: i + 1, score: highscore }
     })
   for (player of leaderBoard) {
@@ -134,13 +120,10 @@ game.get("/leader_board", async (req, res) => {
       include: { model: Avatar }
     })).toJSON().Avatar.imgSrc
   }
-
-  console.log(leaderBoard);
   return res.json(leaderBoard);
 });
 
 game.get("/retry/:playerId", tokenValidate, async (req, res) => {
-  console.log("kbnsdfknlkandsfklsdnf");
   const { playerId } = req.params;
   const Dplayer = await Player.findByPk(playerId);
   const { name, avatarId } = Dplayer;

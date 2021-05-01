@@ -10,6 +10,7 @@ import '../styles/Register.css';
 function Register() {
     const [login, setLogin] = useState(false);
     const [images, setImages] = useState();
+    const [error, setError] = useState(false)
     const avatarRef = useRef(4)
     const nameRef = useRef()
     const emailRef = useRef()
@@ -23,7 +24,6 @@ function Register() {
                 .catch(console.log)
         }
     }, [])
-
     if (user) return <Redirect to={`/Profile/${nameRef.current}`} />
     if (login) return <Redirect to={`/`} />;
 
@@ -36,6 +36,7 @@ function Register() {
             }} >Login</button>
             < form >
 
+                {error ? <div id="error" >{error}</div> : null}
                 <label htmlFor="name" className="label">
                     <input type="email" ref={emailRef} name="email" placeholder="Email" />
                 </label>
@@ -88,6 +89,7 @@ function Register() {
         const { id, name, avatarUrl } = newUser;
         // const {email, gamesPlayed, highScore, totalScore} = userStats
         console.log(newUser);
+        if (newUser === "username or email already exists") return setError("username or email already exists")
         dispatch(setUser({ id, name, avatarUrl, email: emailInput, gamesPlayed: 0, highScore: 0, totalScore: 0 }));
 
 
