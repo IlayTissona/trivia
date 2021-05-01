@@ -105,7 +105,7 @@ game.get("/leader_board", async (req, res) => {
     attributes: [
       "id",
       "score",
-      "name",
+      [Sequelize.literal("DISTINCT name")],
       [Sequelize.literal("RANK() over (order by score DESC)"), "rank"],
     ],
   }))
