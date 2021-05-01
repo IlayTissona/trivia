@@ -15,7 +15,7 @@ const {
   questionToClient,
   isOut,
   getLeaderBoard,
-  getPlayerStats,
+  getendGameStats,
 } = require("../utils");
 
 game.post("/new_session", tokenValidate, async (req, res) => {
@@ -70,17 +70,24 @@ game.get("/end_session/:playerId", tokenValidate, async (req, res) => {
   const userId = req.decoded.id;
   const playerId = Number(req.params.playerId);
   const leaderBoard = await getLeaderBoard(playerId);
-  const playerStats = await getPlayerStats(playerId);
+  const playerStats = await getendGameStats(playerId);
   const user = (await User.findByPk(userId)).toJSON()
 
   const incrementOptions = {
     total_score: playerStats.score,
     games_played: 1,
   }
+  let newHighscore;
+  const updetedUser = await User.increment(incrementOptions, { where: { id: userId } })
+  if (playerStats.score > user.highScore) {
+    newHighscore = await User.update({ highScore: playerStats.score }, { where: { id: userId }, returning: true })
+  }
 
-  await User.increment(incrementOptions, { where: { id: userId } })
-  if (playerStats.score > user.highScore) await User.update({ highScore: playerStats.score }, { where: { id: userId } })
-  res.json({ leaderBoard, playerStats });
+  const rawUpdatedUser = (await User.findByPk(userId)).toJSON();
+  const { gamesPlayed, highScore, totalScore, ...rest } = rawUpdatedUser
+  const updatedUser = { gamesPlayed, highScore, totalScore }
+
+  res.json({ leaderBoard, playerStats, updatedUser });
   updateQuestionsRank(playerId);
   return;
 });

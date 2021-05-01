@@ -311,15 +311,18 @@ async function isOut(playerId) {
 
 // getLeaderBoard(24).then(res => console.log(res));
 
-async function getPlayerStats(playerId) {
+async function getendGameStats(playerId) {
     const player = await models.Player.findOne({
-        where: { id: playerId }
+        where: { id: playerId },
+        // include: models.User
     });
     const playerQuestions = await player.getSavedQuestions({
         through: {
             where: { isPassed: true }
         },
     })
+
+    // console.log(player);
     const { score, name, id } = player
 
     // const playerStats = await player.get
@@ -361,4 +364,4 @@ async function getLeaderBoard(playerId) {
     return topTwenty;
 }
 
-module.exports = { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updateQuestionsRank, questionToClient, isOut, getLeaderBoard, getPlayerStats, generateQuestion, generateFirst }
+module.exports = { getQuestion, isRightAnswer, setAnswer, setPlayerRank, updateQuestionsRank, questionToClient, isOut, getLeaderBoard, getendGameStats, generateQuestion, generateFirst }

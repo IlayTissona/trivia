@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setPlayer } from "../store/actions/playerActions";
 import { setQuestion } from "../store/actions/questionActions";
+import { setUser } from "../store/actions/userActions";
 import { initialQuestionState } from "../store/reducers/questionReducer";
 import LeaderBoard from "./LeaderBoard";
 import axios from "../store/axiosWraper";
@@ -14,10 +15,19 @@ function Profile() {
   const [endGameData, setEndGameData] = useState(null)
   const { user, player } = useSelector((state) => state);
   useEffect(() => {
+    console.log("in the useEffect", player && player.strikes);
     player && player.strikes >= 3 && axios.get(`/game/end_session/${player.id}`).then(endGame => {
-      setEndGameData(endGame);
+      console.log(user);
+      user.highScore = endGame.updatedUser.highScore;
+      user.gamesPlayed = endGame.updatedUser.gamesPlayed;
+      user.totalScore = endGame.updatedUser.totalScore;
+      console.log(endGame.updatedUser);
+      setEndGameData({ ...endGame });
       dispatch(setQuestion(initialQuestionState));
+      dispatch(setUser(user));
+
     })
+      .catch(console.log)
   }, [])
   if (logout) {
     axios.post('/user/logout').then(console.log);
@@ -65,7 +75,9 @@ function Profile() {
     // return <Redirect to="/game" />
   }
   function lastGameStats() {
+    // console.log(player, player.gameEnded);
     if (player && !player.gameEnded) return null;
+    console.log(endGameData);
     return endGameData && (
       <>
         <br />

@@ -64,6 +64,7 @@ export const postAnswer = (playerId, questionId, answer) => {
           dispatch(setScore(res.newScore));
         }
         else {
+          console.log("in the questionAction", res.strikes);
           dispatch(setStrikes(res.strikes));
         }
         dispatch(setAnswer(answer));
