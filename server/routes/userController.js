@@ -9,6 +9,7 @@ const { ACCESS_SECRET, REFRESH_SECRET } = process.env;
 const createUser = async (req, res, next) => {
     const body = req.body;
     const passwordForLogin = body.password;
+    if (passwordForLogin.length < 6) return res.status(400).send("password length must be 6 or longer");
     body.password = hashSync(body.password, genSaltSync(10));
     console.log(body)
 

@@ -11,6 +11,11 @@ axios.interceptors.request.use((req) => {
 axios.interceptors.response.use(
   ({ data: res }) => {
     console.log(res)
+    if (res.success) {
+      Cookies.remove("accessToken")
+      Cookies.remove("refreshToken")
+      return res
+    }
     if (res.accessToken) Cookies.set("accessToken", res.accessToken, { expires: 1 })
     if (res.refreshToken) Cookies.set("refreshToken", res.refreshToken, { expires: 1 })
     return res;

@@ -15,6 +15,7 @@ function Login() {
   if (user) return <Redirect to={`/profile/${user.id}`} />;
   if (register) return <Redirect to={`/register`} />;
 
+
   return (
     // <div className="start">
     <>

@@ -10,6 +10,7 @@ import "../styles/Profile.css";
 
 function Profile() {
   const dispatch = useDispatch();
+  const [logout, setLogout] = useState(false);
   const [endGameData, setEndGameData] = useState(null)
   const { user, player } = useSelector((state) => state);
   useEffect(() => {
@@ -18,12 +19,21 @@ function Profile() {
       dispatch(setQuestion(initialQuestionState));
     })
   }, [])
+  if (logout) {
+    axios.post('/user/logout').then(console.log);
+    return < Redirect to={`/`} />
+
+  }
   if (!user) return <Redirect to="/" />;
   console.log("PROFILEEEEEEEEEEEEEEEEEEEEEEE", user);
   if (player && !player.gameEnded) return <Redirect to="/game" />;
   console.log(user.avatarUrl);
   return (
     <>
+      <button className="redirect-button" onClick={() => {
+        setLogout(true)
+      }
+      }>Logout</button>
       <div id='profile-div' >
         <div id='profile-details' >
           Best Score:  {user.highScore}

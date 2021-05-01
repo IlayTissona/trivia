@@ -90,6 +90,7 @@ function Register() {
         // const {email, gamesPlayed, highScore, totalScore} = userStats
         console.log(newUser);
         if (newUser === "username or email already exists") return setError("username or email already exists")
+        if (newUser === "password length must be 6 or longer") return setError("password length must be 6 or longer")
         dispatch(setUser({ id, name, avatarUrl, email: emailInput, gamesPlayed: 0, highScore: 0, totalScore: 0 }));
 
 
