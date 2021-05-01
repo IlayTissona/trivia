@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+@import url("https://fonts.googleapis.com/css2?family=Teko&display=swap");
 #App {
   width: 100vw;
   height: 100vh;
@@ -238,5 +239,13 @@ button {
 
 button:hover {
   background-color: #f5f7f9;
+}
+
+#error {
+  font-size: 2rem;
+  color: #8d1313;
+  letter-spacing: 0.5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-family: "Teko", sans-serif;
 }
 /*# sourceMappingURL=AppN.css.map */

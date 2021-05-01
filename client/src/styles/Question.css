@@ -25,7 +25,7 @@
   margin: auto;
   font-size: 5rem;
   margin-top: 2rem;
-  font-family: 'Bangers', cursive;
+  font-family: "Bangers", cursive;
   text-shadow: 0 0 10px #2dd5a8, 0 0 20px #1d9273, 0 0 30px #149774;
 }
 
@@ -53,8 +53,13 @@
   word-wrap: break-word;
   font-size: 2rem;
   text-align: center;
-  margin: 0  2rem;
+  margin: 0 2rem;
   cursor: pointer;
+}
+
+#question .option:hover {
+  font-size: 2.3rem;
+  text-shadow: 3px 3px 3px rgba(255, 255, 255, 0.8);
 }
 
 #question #rank {
@@ -74,5 +79,29 @@
       -ms-flex-align: space-between;
           align-items: space-between;
   margin-bottom: 2rem;
+}
+
+#question #timer {
+  font-size: 3rem;
+  position: relative;
+  padding-top: 9rem;
+  font-weight: 550;
+  text-shadow: 3px 3px 3px black;
+}
+
+#game-over {
+  font-family: "Bangers", cursive;
+  position: relative;
+  margin: auto;
+  padding: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#game-over h1 {
+  font-size: 4rem;
+}
+
+#game-over h3 {
+  font-size: 2.5rem;
 }
 /*# sourceMappingURL=Question.css.map */

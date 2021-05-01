@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
-
+@import url("https://fonts.googleapis.com/css2?family=Teko&display=swap");
 $prim: #53e3a6;
 
 #App {
@@ -44,7 +44,6 @@ body {
 }
 
 .container {
-  
   // max-width: 600px;
   // margin: 0 auto;
   // padding: 80px 0;
@@ -58,7 +57,6 @@ body {
     transition-timing-function: ease-in-put;
     font-weight: 200;
     margin-top: 100px;
-    
   }
 }
 
@@ -101,7 +99,7 @@ form {
 
 #bg-bubbles {
   padding: 0;
-  margin:0;
+  margin: 0;
   position: absolute;
   top: 0;
   left: 0;
@@ -112,7 +110,7 @@ form {
 
   .bubble {
     padding: 0;
-    margin:0;
+    margin: 0;
     z-index: 1;
     position: absolute;
     list-style: none;
@@ -155,7 +153,6 @@ form {
 
       animation-duration: 22s;
       background-color: rgba(255, 255, 255, 0.25);
-
     }
 
     &:nth-child(5) {
@@ -169,7 +166,6 @@ form {
 
       animation-delay: 3s;
       background-color: rgba(255, 255, 255, 0.2);
-
     }
 
     &:nth-child(7) {
@@ -197,7 +193,6 @@ form {
       animation-delay: 2s;
       animation-duration: 40s;
       background-color: rgba(255, 255, 255, 0.3);
-
     }
 
     &:nth-child(10) {
@@ -218,7 +213,6 @@ form {
   100% {
     // bottom: 0;
     transform: translateY(-700px) rotate(600deg);
-
   }
 }
 
@@ -247,4 +241,12 @@ button {
   &:hover {
     background-color: rgb(245, 247, 249);
   }
+}
+
+#error {
+  font-size: 2rem;
+  color: rgb(141, 19, 19);
+  letter-spacing: 0.5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-family: "Teko", sans-serif;
 }
