@@ -54,11 +54,11 @@ function Register() {
 
                     {images?.map((image, i) => {
                         return (
-                            < img key={i} onClick={chooseAvatar} className="avatar" src={image} onLoadStart={() => <MiniLoader />} />
+                            < img key={i} onClick={chooseAvatar} className="avatar" src={image} alt="" onLoadStart={() => <MiniLoader />} />
                         )
                     })}
                 </div>
-                <button onClick={singIn}> Sign In </button>
+                <button onClick={singIn}>Sign Up</button>
 
 
             </form>

@@ -5,8 +5,9 @@ import { setUser } from "../store/actions/userActions";
 import axios from "../store/axiosWraper";
 // import "../styles/Start.css";
 
-function Login({ }) {
+function Login() {
   const [register, setRegister] = useState(false);
+  const [error, setError] = useState(false)
   const nameRef = useRef();
   const passwordRef = useRef();
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function Login({ }) {
   if (user) return <Redirect to={`/profile/${user.id}`} />;
   if (register) return <Redirect to={`/register`} />;
 
+  console.log(error);
   return (
     // <div className="start">
     <>
@@ -23,10 +25,11 @@ function Login({ }) {
         setRegister(true)
       }
       }>
-        {" "}
-        Register{" "}
+        Sign Up
       </button>
       <form className="form">
+
+        {error ? <div id="error" >{error}</div> : null}
         <input type="text" name="name" ref={nameRef} placeholder="Name" />
 
         <input
@@ -49,24 +52,40 @@ function Login({ }) {
     const nameInput = nameRef.current.value;
     const passwordInput = passwordRef.current.value;
     if (!nameInput || !passwordInput) return;
-    const user = await axios.post("user/login", {
-      name: nameInput,
-      password: passwordInput,
-    });
-    const { id, name, avatarUrl } = user;
-    const userStats = await axios.get("user/user-stats");
-    const { email, gamesPlayed, highScore, totalScore } = userStats;
-    dispatch(
-      setUser({
-        id,
-        name,
-        avatarUrl,
-        email,
-        gamesPlayed,
-        highScore,
-        totalScore,
-      })
-    );
+    try {
+
+      const user = await axios.post("user/login", {
+        name: nameInput,
+        password: passwordInput,
+      });
+
+      if (user === "Password incorrect") {
+        setError("Password incorrect...")
+        return
+      }
+      else if (user === "cannot find user") {
+        setError("No such user, please register first")
+        return
+      }
+      const { id, name, avatarUrl } = user;
+      console.log(user);
+      const userStats = await axios.get("user/user-stats");
+      const { email, gamesPlayed, highScore, totalScore } = userStats;
+      dispatch(
+        setUser({
+          id,
+          name,
+          avatarUrl,
+          email,
+          gamesPlayed,
+          highScore,
+          totalScore,
+        })
+      );
+    } catch (err) {
+      console.log(err);
+      return
+    }
   }
 }
 

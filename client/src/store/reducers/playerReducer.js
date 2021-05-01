@@ -1,12 +1,3 @@
-const playerInitialState = {
-  id: null,
-  name: "",
-  avatarUrl: null,
-  score: 0,
-  strikes: 0,
-};
-
-// = playerInitialState
 
 const playerReducer = (state = null, action) => {
   if (action.type === "TICK") return state;

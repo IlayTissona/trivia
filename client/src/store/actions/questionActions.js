@@ -1,6 +1,5 @@
 import axios from "../axiosWraper";
 import { setScore, setStrikes } from "./playerActions";
-import timerReducer from "../reducers/timerReducer"
 import { start, totalTimeDecrease } from "../actions/timerActions"
 
 

@@ -1,6 +1,6 @@
 
 
-const initialState = {
+export const initialQuestionState = {
     id: null,
     text: null,
     options: [],
@@ -8,7 +8,7 @@ const initialState = {
     timeUp: false
 };
 
-const questionReducer = (state = initialState, action) => {
+const questionReducer = (state = initialQuestionState, action) => {
     if (action.type === "TICK") return state
     let newState = { ...state };
 

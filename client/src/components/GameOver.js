@@ -9,9 +9,11 @@ import "../styles/GameOver.css"
 function GameOver() {
     const [endGameData, setEndGameData] = useState(null)
     const player = useSelector(state => state.player)
+    console.log(player);
     useEffect(() => {
-        axios.get(`/game/end_session/${player.id}`).then(endGame => {
+        player && axios.get(`/game/end_session/${player.id}`).then(endGame => {
             setEndGameData(endGame)
+            console.log(endGame);
         })
     }, [])
     if (!player) return <Redirect to="/" />;

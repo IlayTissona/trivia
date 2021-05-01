@@ -16,12 +16,12 @@ axios.interceptors.response.use(
     return res;
   },
   async (err) => {
-    if (err.response.status !== 403) return err;
-
+    if (err.response.status !== 403) return err.response.data;
+    if (err.response.data === "Password incorrect") return err.response.data;
     const originalRequest = err.config;
     try {
       const refreshToken = Cookies.get("refreshToken");
-      console.log(err);
+      console.log(err.response.data);
       const newTokenRes = await axios.post("/user/token", {
         refreshToken: refreshToken ? refreshToken : "",
       });
@@ -33,7 +33,8 @@ axios.interceptors.response.use(
       const originalResponse = await axios(originalRequest);
       return originalResponse;
     } catch (e) {
-      return e;
+      console.log(e.message);
+      return e.response.data;
     }
   }
 );

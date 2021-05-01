@@ -2,7 +2,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
 import Profile from "./components/Profile.js";
-import GameOver from "./components/GameOver";
+// import GameOver from "./components/GameOver";
 import Question from "./components/Question";
 import PlayerStatsBar from "./components/PlayerStatsBar";
 // import "./App.css";
@@ -10,7 +10,6 @@ import "../src/styles/AppN.css";
 function App(props) {
 
   return (
-    // <div id="App">
     <div className="wrapper">
       <div className="container">
         <BrowserRouter>
@@ -21,7 +20,7 @@ function App(props) {
             <PlayerStatsBar />
             <Question />
           </Route>
-          <Route exact path="/game-over" component={GameOver} />
+          {/* <Route exact path="/game-over" component={GameOver} /> */}
         </BrowserRouter>
       </div>
 
@@ -38,7 +37,6 @@ function App(props) {
         <li></li>
       </ul>
     </div>
-    // </div>
   );
 }
 export default App;

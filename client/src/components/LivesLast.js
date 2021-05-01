@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 
 
@@ -15,8 +15,9 @@ function LivesLast({ strikes }) {
 
         }
 
-
-        return strikes < 3 ? hearts : <Redirect to="/game-over" />
+        // setTimeout(() => <Redirect to="/game-over" />, 5000)
+        // return strikes < 3 ? hearts : <Redirect to="/game-over" />
+        return hearts;
     }
 
     return <div id="lives">

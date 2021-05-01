@@ -14,7 +14,7 @@ function Rank({ playerId, questionId, goToNextQuestion, nextQuestion }) {
     }
 
     const clickHandler = (rank) => {
-        axios.post(`/rank/${playerId}`, { questionId: questionId, rank }).then(() => goToNextQuestion(nextQuestion.current));
+        axios.post(`/game/rank/${playerId}`, { questionId: questionId, rank }).then(() => goToNextQuestion(nextQuestion.current));
     }
     useEffect(() => {
         const timeOut = setTimeout(() => {

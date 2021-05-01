@@ -1,4 +1,3 @@
-import { postAnswer } from '../actions/questionActions'
 
 const initialState = {
   totalTime: 20,

@@ -27,7 +27,6 @@ function LeaderBoard() {
                 </thead>
                 <tbody>
                     {leaderBoard.map((player, i) => {
-                        console.log(player);
                         return (
                             <tr key={i} className="lb-player">
                                 <td>
