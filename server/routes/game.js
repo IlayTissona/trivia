@@ -6,6 +6,7 @@ let game = express.Router();
 
 const { Player, Avatar, User } = require("../models");
 const Sequelize = require("sequelize");
+const { Op } = require("sequelize");
 const {
   getQuestion,
   isRightAnswer,
@@ -98,22 +99,43 @@ game.get("/end_session/:playerId", tokenValidate, async (req, res) => {
 
 game.get("/leader_board", async (req, res) => {
   console.log("in the leaderBoard");
-  const leaderBoard = (await Player.findAll({
-    order: Player.score,
+  const leaderBoard = await (await Player.findAll({
+    order: [Sequelize.literal('highscore DESC')],
+    where: { name: { [Op.not]: null } },
     limit: 20,
-    include: { model: Avatar },
+    group: ["name"],
+    // include: { model: Avatar },
     attributes: [
-      "id",
-      "score",
-      [Sequelize.literal("DISTINCT name")],
-      [Sequelize.literal("RANK() over (order by score DESC)"), "rank"],
+      "name",
+      [Sequelize.fn('max', Sequelize.col("score")), "highscore"]
+      // [Sequelize.literal("RANK() over (order by score DESC)"), "rank"],
     ],
   }))
-    .map(player => {
-      const avatarUrl = player.Avatar.imgSrc
-      const { id, name, rank, score, ...rest } = player.toJSON()
-      return { id, name, rank, score, avatarUrl }
+
+    // const leaderBoard = (await Player.findAll({
+    //   order: Player.score,
+    //   limit: 20,
+    //   include: { model: Avatar },
+    //   attributes: [
+    //     "id",
+    //     "score",
+    //     "name",
+    //     [Sequelize.literal("RANK() over (order by score DESC)"), "rank"],
+    //   ],
+    // }))
+    .map((player, i) => {
+      const { name, highscore, ...rest } = player.toJSON()
+      console.log({ name, rank: i + 1, highscore });
+      return { name, rank: i + 1, score: highscore }
     })
+  for (player of leaderBoard) {
+    player.avatarUrl = (await Player.findOne({
+      where: { name: player.name },
+      include: { model: Avatar }
+    })).toJSON().Avatar.imgSrc
+  }
+
+  console.log(leaderBoard);
   return res.json(leaderBoard);
 });
 
