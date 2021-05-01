@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { setPlayer } from "../store/actions/playerActions";
@@ -12,7 +12,6 @@ function PlayerStatsBar(props) {
     const dispatch = useDispatch();
     if (!player) return <Redirect to="/" />;
     const { name, score, strikes, avatarUrl } = player;
-    console.log(avatarUrl);
     return (
         <div id="playerStatsBar">
             <div id="game-stats">
@@ -29,7 +28,6 @@ function PlayerStatsBar(props) {
     );
 
     function resetGame(e) {
-        console.log("changing the state");
         player.gameEnded = true
         dispatch(setPlayer({ ...player }))
         setTimeout(() => history.push(`/profile/${player.id}`), 4000)

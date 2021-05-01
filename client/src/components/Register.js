@@ -71,11 +71,9 @@ function Register() {
     async function getAllImages() {
         const images = [];
         const imageCount = await axios.get("/avatar/count");
-        console.log("bla");
         for (let i = 1; i < imageCount; i++) {
             images.push(`/avatar/avatar${i}`)
         }
-        console.log(images);
         setImages(images)
     }
 
@@ -87,8 +85,6 @@ function Register() {
         if (!nameInput || !passwordInput || !emailInput) return;
         const newUser = await axios.post("user/register", { name: nameInput, email: emailInput, password: passwordInput, avatarId: avatarRef.current })
         const { id, name, avatarUrl } = newUser;
-        // const {email, gamesPlayed, highScore, totalScore} = userStats
-        console.log(newUser);
         if (newUser === "username or email already exists") return setError("username or email already exists")
         if (newUser === "password length must be 6 or longer") return setError("password length must be 6 or longer")
         dispatch(setUser({ id, name, avatarUrl, email: emailInput, gamesPlayed: 0, highScore: 0, totalScore: 0 }));
@@ -100,7 +96,6 @@ function Register() {
     function chooseAvatar(e) {
         e.preventDefault();
         const allAvatars = e.target.parentNode.children
-        console.log(allAvatars.length);
         for (let i = 0; i < allAvatars.length; i++) {
             if (allAvatars[i] === e.target) {
                 avatarRef.current = i + 1;

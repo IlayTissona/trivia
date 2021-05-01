@@ -57,19 +57,14 @@ export const postAnswer = (playerId, questionId, answer) => {
         timePassed,
       })
       .then((res) => {
-        console.log(res);
         if (res.isCorrect) {
-
           dispatch(totalTimeDecrease());
           dispatch(setScore(res.newScore));
         }
         else {
-          console.log("in the questionAction", res.strikes);
           dispatch(setStrikes(res.strikes));
         }
         dispatch(setAnswer(answer));
-      }).catch(e => {
-        console.log(e)
-      })
+      }).catch(console.log)
   };
 };

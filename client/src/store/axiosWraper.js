@@ -10,7 +10,6 @@ axios.interceptors.request.use((req) => {
 
 axios.interceptors.response.use(
   ({ data: res }) => {
-    console.log(res)
     if (res.success) {
       Cookies.remove("accessToken")
       Cookies.remove("refreshToken")
@@ -26,7 +25,6 @@ axios.interceptors.response.use(
     const originalRequest = err.config;
     try {
       const refreshToken = Cookies.get("refreshToken");
-      console.log(err.response.data);
       const newTokenRes = await axios.post("/user/token", {
         refreshToken: refreshToken ? refreshToken : "",
       });
@@ -38,7 +36,6 @@ axios.interceptors.response.use(
       const originalResponse = await axios(originalRequest);
       return originalResponse;
     } catch (e) {
-      console.log(e.message);
       return e.response.data;
     }
   }

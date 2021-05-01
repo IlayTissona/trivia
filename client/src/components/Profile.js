@@ -15,13 +15,10 @@ function Profile() {
   const [endGameData, setEndGameData] = useState(null)
   const { user, player } = useSelector((state) => state);
   useEffect(() => {
-    console.log("in the useEffect", player && player.strikes);
     player && player.strikes >= 3 && axios.get(`/game/end_session/${player.id}`).then(endGame => {
-      console.log(user);
       user.highScore = endGame.updatedUser.highScore;
       user.gamesPlayed = endGame.updatedUser.gamesPlayed;
       user.totalScore = endGame.updatedUser.totalScore;
-      console.log(endGame.updatedUser);
       setEndGameData({ ...endGame });
       dispatch(setQuestion(initialQuestionState));
       dispatch(setUser(user));
@@ -31,13 +28,11 @@ function Profile() {
   }, [])
   if (logout) return < Redirect to={`/`} />
   if (!user) return <Redirect to="/" />;
-  console.log("PROFILEEEEEEEEEEEEEEEEEEEEEEE", user);
   if (player && !player.gameEnded) return <Redirect to="/game" />;
-  console.log(user.avatarUrl);
   return (
     <>
       <button className="redirect-button" onClick={() => {
-        axios.post('/user/logout').then(console.log);
+        axios.post('/user/logout')
         dispatch(setUser(false))
         setLogout(true)
       }
@@ -61,21 +56,14 @@ function Profile() {
 
   async function startButtonHandler(e) {
     e.preventDefault();
-    console.log("in here?");
     const newGame = await axios.post("/game/new_session", {
       userName: user.name,
     });
-
-    console.log("blahsiblahs", newGame);
     newGame.gameEnded = false;
     dispatch(setPlayer({ ...newGame }));
-
-    // return <Redirect to="/game" />
   }
   function lastGameStats() {
-    // console.log(player, player.gameEnded);
     if (player && !player.gameEnded) return null;
-    console.log(endGameData);
     return endGameData && (
       <>
         <br />

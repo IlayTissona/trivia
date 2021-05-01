@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import Rank from "./Rank";
 import axios from "../store/axiosWraper";
@@ -16,8 +16,7 @@ import Timer from "./Timer";
 function Question(props) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const player = useSelector((store) => store.player);
-  const question = useSelector((store) => store.question);
+  const { player, user, question } = useSelector((store) => store);
   const nextQuestion = useRef({});
 
   useEffect(() => {
@@ -40,6 +39,8 @@ function Question(props) {
   }, [question.id]);
 
   useEffect(() => {
+    if (!user) return <Redirect to={`/profile/${user.id}`} />;
+
     axios.get(`/game/question/${player.id}`).then((res) => {
       dispatch(setQuestion(res));
     });
@@ -61,13 +62,10 @@ function Question(props) {
   }
 
   async function getNextQuestion() {
-    // if (player && player.strikes >= 3) return;
     return axios
       .get(`/game/question/${player.id}`)
       .then((res) => res)
-      .catch((e) => {
-        console.log(`/question/${player.id}`);
-      });
+      .catch(console.log);
   }
   return (
     player && (

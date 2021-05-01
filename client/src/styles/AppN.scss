@@ -83,7 +83,9 @@ form {
 
     transition-duration: 0.25s;
     font-weight: 300;
-
+    &::placeholder{
+      color:rgba(255, 255, 255, 0.63);
+    }
     &:hover {
       background-color: rgba(255, 255, 255, 0.5);
     }
@@ -223,6 +225,7 @@ form {
   width: 100px;
 }
 
+
 button {
   position: relative;
   appearance: none;
@@ -239,7 +242,7 @@ button {
   z-index: 2;
 
   &:hover {
-    background-color: rgb(245, 247, 249);
+    background-color: rgb(233, 240, 240);
   }
 }
 

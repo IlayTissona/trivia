@@ -1,7 +1,6 @@
 .profile-avatar{
-    position: relative;
+    display: block;
     z-index:2;
-    // margin: 5px;
     margin: 2rem auto 20px auto;
     border: 2px solid #03a285;
     height: 8rem;
@@ -26,19 +25,17 @@
       background-color: rgba(0, 0, 0, 0.3);
     position: relative;
     border-radius: 25px;
-      margin:80px 50px 1rem 50px ;
-    position: relative;
+      margin:80px auto 1rem auto ;
     font-weight: 100;
     font-size: 1.5rem;
     border: 1px solid white;
     text-align: center;
-    align-items: center;
     color:rgba(255, 255, 255, 1);
     width:80%;
+    height: fit-content;
     z-index:2;
     display:grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 100% ;
   }
 
 #profile-page-title{

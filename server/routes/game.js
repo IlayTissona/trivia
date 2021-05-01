@@ -19,7 +19,6 @@ const {
 } = require("../utils");
 
 game.post("/new_session", tokenValidate, async (req, res) => {
-  console.log(req.decoded)
   const { name, id } = req.decoded;
   const user = await User.findByPk(id)
   // creates a new session!!!! (not a new player)
