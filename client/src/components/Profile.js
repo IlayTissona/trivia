@@ -29,11 +29,7 @@ function Profile() {
     })
       .catch(console.log)
   }, [])
-  if (logout) {
-    axios.post('/user/logout').then(console.log);
-    return < Redirect to={`/`} />
-
-  }
+  if (logout) return < Redirect to={`/`} />
   if (!user) return <Redirect to="/" />;
   console.log("PROFILEEEEEEEEEEEEEEEEEEEEEEE", user);
   if (player && !player.gameEnded) return <Redirect to="/game" />;
@@ -41,6 +37,8 @@ function Profile() {
   return (
     <>
       <button className="redirect-button" onClick={() => {
+        axios.post('/user/logout').then(console.log);
+        dispatch(setUser(false))
         setLogout(true)
       }
       }>Logout</button>
