@@ -41,19 +41,19 @@
   padding: 12px 15px;
 }
 
-#leader-board #leader-board #table-headers tbody tr {
+#leader-board #leader-board tbody tr {
   border-bottom: 1px solid #dddddd;
 }
 
-#leader-board #leader-board #table-headers tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
+#leader-board #leader-board tbody tr:nth-of-type(even) {
+  background-color: rgba(0, 152, 121, 0.5);
 }
 
-#leader-board #leader-board #table-headers tbody tr:last-of-type {
+#leader-board #leader-board tbody tr:last-of-type {
   border-bottom: 2px solid #009879;
 }
 
-#leader-board #leader-board #table-headers tbody tr.active-row {
+#leader-board #leader-board tbody tr.active-row {
   font-weight: bold;
   color: #009879;
 }
