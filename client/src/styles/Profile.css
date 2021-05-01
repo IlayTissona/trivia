@@ -26,7 +26,7 @@
   background-color: rgba(0, 0, 0, 0.3);
   position: relative;
   border-radius: 25px;
-  margin: 50px 50px 1rem 50px;
+  margin: 80px 50px 1rem 50px;
   position: relative;
   font-weight: 100;
   font-size: 1.5rem;
@@ -61,6 +61,5 @@
 
 #ButtonStart {
   z-index: 2;
-  margin-bottom: 1rem;
 }
 /*# sourceMappingURL=Profile.css.map */
