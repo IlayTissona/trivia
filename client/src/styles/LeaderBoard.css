@@ -10,51 +10,55 @@
 }
 
 #leader-board {
-  height: 100%;
-  width: 100%;
-  overflow-y: scroll;
-  margin: auto;
-  -ms-grid-column: 2;
-  grid-column: 2;
-  -ms-grid-row: 4;
-  grid-row: 4;
-}
-
-#leader-board #leader-board {
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 0.9em;
   font-family: sans-serif;
-  min-width: 400px;
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  scroll-behavior: smooth;
+  overflow-y: auto;
 }
 
-#leader-board #leader-board #table-headers tr {
+#leader-board #table-headers tr {
   background-color: #009879;
   color: #ffffff;
   text-align: left;
 }
 
-#leader-board #leader-board #table-headers th,
-#leader-board #leader-board #table-headers td {
+#leader-board #table-headers th,
+#leader-board #table-headers td {
   padding: 12px 15px;
+  text-align: center;
 }
 
-#leader-board #leader-board tbody tr {
+#leader-board tbody tr {
   border-bottom: 1px solid #dddddd;
 }
 
-#leader-board #leader-board tbody tr:nth-of-type(even) {
+#leader-board tbody tr:nth-of-type(even) {
   background-color: rgba(0, 152, 121, 0.5);
 }
 
-#leader-board #leader-board tbody tr:last-of-type {
+#leader-board tbody tr:last-of-type {
   border-bottom: 2px solid #009879;
 }
 
-#leader-board #leader-board tbody tr.active-row {
+#leader-board tbody tr.active-row {
   font-weight: bold;
   color: #009879;
+}
+
+#leader-board::scroll {
+  position: relative;
+  background: rgba(0, 0, 0, 0.1);
+  width: 9px;
+  border-radius: 4px;
+  top: 0;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0;
+  -webkit-transition: opacity 0.25s linear;
+  transition: opacity 0.25s linear;
 }
 /*# sourceMappingURL=LeaderBoard.css.map */
