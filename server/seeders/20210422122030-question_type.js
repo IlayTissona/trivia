@@ -52,10 +52,25 @@ module.exports = {
         "type": 1
       },
       {
+        "template_str": "Which country is the highest crime rate?",
+        "model": "CrimeStatus",
+        "answer_col": "country",
+        "question_col": "crimeIndex",
+        "is_first": false,
+        "type": 1
+      },
+      {
         "template_str": "Which country has the most cell phones per person?",
         "model": "CountriesGeneral",
         "answer_col": "country",
         "question_col": "phonesPer1000",
+        "is_first": true,
+        "type": 1
+      }, {
+        "template_str": "Which country has the most children rate per population?",
+        "model": "AgeStructure",
+        "answer_col": "country",
+        "question_col": "age0To14Years",
         "is_first": true,
         "type": 1
       },
@@ -124,10 +139,26 @@ module.exports = {
         "type": 3
       },
       {
+        "template_str": "Is <value1> safer than <value2>?",
+        "model": "CrimeStatus",
+        "answer_col": "country",
+        "question_col": "crimeIndex",
+        "is_first": null,
+        "type": 3
+      },
+      {
         "template_str": "Are restaurants in <value1> more expensive than restaurants in <value2>?",
         "model": "CostOfLiving",
         "answer_col": "country",
         "question_col": "RestaurantPriceIndex",
+        "is_first": null,
+        "type": 3
+      },
+      {
+        "template_str": "Are there more boomers in <value1> than <value2>?",
+        "model": "AgeStructure",
+        "answer_col": "country",
+        "question_col": "ageAbove65Years",
         "is_first": null,
         "type": 3
       }
