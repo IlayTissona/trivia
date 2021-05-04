@@ -73,8 +73,11 @@ function Question(props) {
         <div id="question">
           <h1>{question.text}</h1>
           <div id="options">{createOptions(question.correctAnswer)}</div>
+        </div>
+
+        <div id="footer" >
           {question.timeUp ? (
-            "TIME UP"
+            <div id="time-up"> TIME UP </div>
           ) : question.correctAnswer ? (
             <Rank
               playerId={player.id}

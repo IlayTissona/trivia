@@ -35,14 +35,18 @@
           align-items: center;
 }
 
-#playerStatsBar #lives {
-  margin-left: 2rem;
-}
-
 #playerStatsBar #score {
-  -ms-grid-column-align: self-end;
-      justify-self: self-end;
-  margin-left: -7rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 #playerStatsBar #return-arrow {

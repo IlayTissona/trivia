@@ -35,7 +35,7 @@ body {
 }
 
 .container h1 {
-  font-size: 4.5rem;
+  font-size: 9vw;
   -webkit-transition-duration: 1s;
           transition-duration: 1s;
   -webkit-transition-timing-function: ease-in-put;
