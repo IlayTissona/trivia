@@ -3,7 +3,22 @@ env: flex
 
 manual_scaling:
   instances: 1
+
 resources:
   cpu: 1
   memory_gb: 0.5
   disk_size_gb: 10
+
+beta_settings:
+  cloud_sql_instances: silken-avatar-312712:europe-west4:trivia
+
+env_variables:
+  DB_USERNAME: root
+  PASS: 9c2HM6Nh7o5LIevn
+  DB_DEV: trivia_dev
+  DB_PROD: trivia_dev
+  DB_TEST: trivia_test
+  ACCESS_SECRET: "b132d9639ae1a5f778e09f687504e7d8f608fc2ac0c5479fcb71b7a94f5ab61decad72104f8ed639c34b70356e72834226d01c4b457f088347d2d7f9ad235fb5"
+  REFRESH_SECRET: "f6a61f060365f05388de14eae891f8178fe6760258f4d708ea3dc0ddefc3dc2be3cbca1891db88b2fbde75d5f8566f2e90de4727c3ab5a3db47bbe3cf153c9f1"
+  NODE_ENV: production
+  INSTANCE_CONNECTION_NAME: silken-avatar-312712:europe-west4:trivia

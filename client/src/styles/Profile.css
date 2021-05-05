@@ -20,6 +20,15 @@
   font-weight: 100;
   right: 30%;
   top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 #profile-div {
@@ -58,5 +67,15 @@
 
 #ButtonStart {
   z-index: 2;
+}
+
+@media (max-width: 600px) {
+  #profile-details {
+    font-size: 1.1rem;
+    right: 15%;
+  }
+  #profile-page-title {
+    font-size: 1.6rem;
+  }
 }
 /*# sourceMappingURL=Profile.css.map */
