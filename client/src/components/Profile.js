@@ -48,10 +48,8 @@ function Profile() {
         <div id="profile-details">
           <span className="detail">Best Score: {user.highScore}</span>
           <span className="detail">Total Games: {user.gamesPlayed}</span>
-          <span className="detail">
-            Total Score: {user.totalScore}
-            {lastGameStats()}
-          </span>
+          <span className="detail">Total Score: {user.totalScore}</span>
+          {lastGameStats()}
         </div>
         <img className="profile-avatar" src={user.avatarUrl} alt="Avatar" />
         <h1 id="profile-page-title">{user.name}</h1>
