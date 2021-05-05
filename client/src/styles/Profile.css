@@ -77,5 +77,8 @@
   #profile-page-title {
     font-size: 1.6rem;
   }
+  tbody {
+    max-height: 45vh;
+  }
 }
 /*# sourceMappingURL=Profile.css.map */

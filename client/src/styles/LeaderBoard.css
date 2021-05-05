@@ -1,18 +1,13 @@
 .lb-player-avatar {
   border: 2px solid #0cf393;
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   border-radius: 10px;
-  margin: 5px;
+  top: 5px;
+  left: 1.3vw;
+  position: absolute;
   -webkit-box-shadow: 1px 1px 1px 1px #0cf393;
           box-shadow: 1px 1px 1px 1px #0cf393;
-}
-
-.scroller {
-  border: none;
-  padding: 5px;
-  font: 24px/36px sans-serif;
-  overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {
@@ -49,7 +44,13 @@
 #leader-board #table-headers tr {
   background-color: #009879;
   color: #ffffff;
-  text-align: left;
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 10% 15% 50% 17%;
+      grid-template-columns: 10% 15% 50% 17%;
+  height: 50px;
+  font-size: 1rem;
 }
 
 #leader-board #table-headers th,
@@ -60,6 +61,12 @@
 
 #leader-board tbody tr {
   border-bottom: 1px solid #dddddd;
+  width: 100vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 15% 10% 50% 17%;
+      grid-template-columns: 15% 10% 50% 17%;
+  height: 55px;
 }
 
 #leader-board tbody tr:nth-of-type(even) {
@@ -75,16 +82,20 @@
   color: #009879;
 }
 
-#leader-board::scroll {
+tbody {
+  position: absolute;
+  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 50vh;
+  z-index: 4;
+}
+
+tbody td {
+  text-align: center;
+  padding-left: 3px;
+  font-size: 0.9rem;
   position: relative;
-  background: rgba(0, 0, 0, 0.1);
-  width: 9px;
-  border-radius: 4px;
-  top: 0;
-  z-index: 2;
-  cursor: pointer;
-  opacity: 0;
-  -webkit-transition: opacity 0.25s linear;
-  transition: opacity 0.25s linear;
+  line-height: 50px;
 }
 /*# sourceMappingURL=LeaderBoard.css.map */
