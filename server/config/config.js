@@ -4,20 +4,20 @@ const { DB_USERNAME, PASS, DB_DEV, DB_PROD, HOST, DB_TEST } = process.env;
 
 module.exports = {
   development: {
-    username: DB_USERNAME,
+    username: DB_USERNAME || 'root',
     password: PASS,
     database: DB_DEV,
-    host: HOST,
+    host: HOST || 'localhost',
     dialect: "mysql",
     seederStorage: "sequelize",
     seederStoragePath: "sequelizeData",
     logging: true,
   },
   test: {
-    username: DB_USERNAME,
+    username: DB_USERNAME || 'root',
     password: PASS,
-    database: DB_TEST,
-    host: HOST,
+    database: DB_TEST || '',
+    host: HOST || 'localhost',
     dialect: "mysql",
   },
   production: {
