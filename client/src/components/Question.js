@@ -4,11 +4,7 @@ import Rank from "./Rank";
 import axios from "../store/axiosWraper";
 import "../styles/Question.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  postAnswer,
-  setQuestion,
-  setAnswer,
-} from "../store/actions/questionActions";
+import { postAnswer, setQuestion } from "../store/actions/questionActions";
 import { setPlayer } from "../store/actions/playerActions";
 import MiniLoader from "./MiniLoader";
 import Timer from "./Timer";
@@ -58,7 +54,6 @@ function Question(props) {
   }
   function goToNextQuestion(next) {
     dispatch(setQuestion(next));
-    dispatch(setAnswer(null));
   }
 
   async function getNextQuestion() {
@@ -72,9 +67,14 @@ function Question(props) {
       <>
         <div id="question">
           <h1>{question.text}</h1>
-          <div id="options">{createOptions(question.correctAnswer)}</div>
+          <div id="options">
+            {createOptions(question.correctAnswer, question.answered)}
+          </div>
+        </div>
+
+        <div id="footer">
           {question.timeUp ? (
-            "TIME UP"
+            <div id="time-up"> TIME UP </div>
           ) : question.correctAnswer ? (
             <Rank
               playerId={player.id}
@@ -96,17 +96,20 @@ function Question(props) {
     )
   );
 
-  function createOptions(correctAnswer) {
+  function createOptions(correctAnswer, answered) {
     const { options } = question;
     const questionOptions = [];
     for (let i = 0; i < options.length; i++) {
+      let className = "option";
+      if (String(correctAnswer) === String(options[i])) className += " correct";
+      else if (correctAnswer) className += " incorrect";
+      if (String(answered) === String(options[i]))
+        className += " picked-option";
+
       questionOptions.push(
         <div
           key={i}
-          className={
-            "option"
-            // "option" + correctAnswer === options[i] ? " correct" : " incorrect"
-          }
+          className={className}
           onClick={() => {
             if (correctAnswer) return;
             if (question.timeUp) return;

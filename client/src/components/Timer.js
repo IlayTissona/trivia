@@ -21,6 +21,7 @@ export default function Timer({ timeUp, goToNextQuestion, nextQuestion }) {
 
   return (
     <>
+      <div id="timer-div" style={{ animationDuration: timer.totalTime + "s" }}></div>
       <div id="timer">
         {timer.totalTime - timer.timePassed > 0
           ? timer.totalTime - timer.timePassed

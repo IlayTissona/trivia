@@ -1,5 +1,5 @@
 const express = require("express");
-const { tokenValidate } = require('./userController')
+const { tokenValidate } = require("./userController");
 
 let game = express.Router();
 
@@ -20,7 +20,7 @@ const {
 
 game.post("/new_session", tokenValidate, async (req, res) => {
   const { name, id } = req.decoded;
-  const user = await User.findByPk(id)
+  const user = await User.findByPk(id);
   // creates a new session!!!! (not a new player)
   const player = await Player.create(
     { name, avatarId: user.avatarId, score: 0, strikes: 0, userId: id },
@@ -54,7 +54,7 @@ game.post("/answer/:playerId", tokenValidate, async (req, res) => {
     totalTime,
     timePassed
   );
-  return res.json({ isCorrect, newScore, strikes, correctAnswer });
+  return res.json({ isCorrect, newScore, strikes, correctAnswer, answer });
 });
 
 game.post("/rank/:playerId", tokenValidate, async (req, res) => {
@@ -70,21 +70,26 @@ game.get("/end_session/:playerId", tokenValidate, async (req, res) => {
   const playerId = Number(req.params.playerId);
   const leaderBoard = await getLeaderBoard(playerId);
   const playerStats = await getendGameStats(playerId);
-  const user = (await User.findByPk(userId)).toJSON()
+  const user = (await User.findByPk(userId)).toJSON();
 
   const incrementOptions = {
     total_score: playerStats.score,
     games_played: 1,
-  }
+  };
   let newHighscore;
-  const updetedUser = await User.increment(incrementOptions, { where: { id: userId } })
+  const updetedUser = await User.increment(incrementOptions, {
+    where: { id: userId },
+  });
   if (playerStats.score > user.highScore) {
-    newHighscore = await User.update({ highScore: playerStats.score }, { where: { id: userId }, returning: true })
+    newHighscore = await User.update(
+      { highScore: playerStats.score },
+      { where: { id: userId }, returning: true }
+    );
   }
 
   const rawUpdatedUser = (await User.findByPk(userId)).toJSON();
-  const { gamesPlayed, highScore, totalScore, ...rest } = rawUpdatedUser
-  const updatedUser = { gamesPlayed, highScore, totalScore }
+  const { gamesPlayed, highScore, totalScore, ...rest } = rawUpdatedUser;
+  const updatedUser = { gamesPlayed, highScore, totalScore };
 
   res.json({ leaderBoard, playerStats, updatedUser });
   updateQuestionsRank(playerId);
@@ -92,18 +97,20 @@ game.get("/end_session/:playerId", tokenValidate, async (req, res) => {
 });
 
 game.get("/leader_board", async (req, res) => {
-  const leaderBoard = await (await Player.findAll({
-    order: [Sequelize.literal('highscore DESC')],
-    where: { name: { [Op.not]: null } },
-    limit: 20,
-    group: ["name"],
-    // include: { model: Avatar },
-    attributes: [
-      "name",
-      [Sequelize.fn('max', Sequelize.col("score")), "highscore"]
-      // [Sequelize.literal("RANK() over (order by score DESC)"), "rank"],
-    ],
-  }))
+  const leaderBoard = await (
+    await Player.findAll({
+      order: [Sequelize.literal("highscore DESC")],
+      where: { name: { [Op.not]: null } },
+      limit: 20,
+      group: ["name"],
+      // include: { model: Avatar },
+      attributes: [
+        "name",
+        [Sequelize.fn("max", Sequelize.col("score")), "highscore"],
+        // [Sequelize.literal("RANK() over (order by score DESC)"), "rank"],
+      ],
+    })
+  )
 
     // const leaderBoard = (await Player.findAll({
     //   order: Player.score,
@@ -117,14 +124,16 @@ game.get("/leader_board", async (req, res) => {
     //   ],
     // }))
     .map((player, i) => {
-      const { name, highscore, ...rest } = player.toJSON()
-      return { name, rank: i + 1, score: highscore }
-    })
+      const { name, highscore, ...rest } = player.toJSON();
+      return { name, rank: i + 1, score: highscore };
+    });
   for (player of leaderBoard) {
-    player.avatarUrl = (await Player.findOne({
-      where: { name: player.name },
-      include: { model: Avatar }
-    })).toJSON().Avatar.imgSrc
+    player.avatarUrl = (
+      await Player.findOne({
+        where: { name: player.name },
+        include: { model: Avatar },
+      })
+    ).toJSON().Avatar.imgSrc;
   }
   return res.json(leaderBoard);
 });

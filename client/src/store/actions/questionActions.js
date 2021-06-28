@@ -1,7 +1,6 @@
 import axios from "../axiosWraper";
 import { setScore, setStrikes } from "./playerActions";
-import { start, totalTimeDecrease } from "../actions/timerActions"
-
+import { start, totalTimeDecrease } from "../actions/timerActions";
 
 export const setQuestion = (nQuestion) => {
   return {
@@ -12,10 +11,9 @@ export const setQuestion = (nQuestion) => {
 
 export const setTimeUp = () => {
   return {
-    type: "TIME_UP"
+    type: "TIME_UP",
   };
 };
-
 
 export const loadingAnswer = () => {
   return {
@@ -26,6 +24,12 @@ export const loadingAnswer = () => {
 export const setAnswer = (answer) => {
   return {
     type: "SET_ANSWER",
+    answer,
+  };
+};
+export const setAnswered = (answer) => {
+  return {
+    type: "SET_ANSWERED",
     answer,
   };
 };
@@ -46,9 +50,9 @@ export const correctAnswer = (answer, score) => {
 
 export const postAnswer = (playerId, questionId, answer) => {
   return (dispatch, getState) => {
-    const { totalTime, timePassed } = getState().timer
+    const { totalTime, timePassed } = getState().timer;
     dispatch(loadingAnswer());
-    dispatch(start())
+    dispatch(start());
     axios
       .post(`/game/answer/${playerId}`, {
         questionId,
@@ -60,11 +64,12 @@ export const postAnswer = (playerId, questionId, answer) => {
         if (res.isCorrect) {
           dispatch(totalTimeDecrease());
           dispatch(setScore(res.newScore));
-        }
-        else {
+        } else {
           dispatch(setStrikes(res.strikes));
         }
-        dispatch(setAnswer(answer));
-      }).catch(console.log)
+        dispatch(setAnswer(res.correctAnswer));
+        dispatch(setAnswered(res.answer));
+      })
+      .catch(console.log);
   };
 };

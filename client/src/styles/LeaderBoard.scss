@@ -1,9 +1,11 @@
 .lb-player-avatar {
   border: 2px solid #0cf393;
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   border-radius: 10px;
-  margin: 5px;
+  top: 5px;
+  left: 1.3vw;
+  position: absolute;
   box-shadow: 1px 1px 1px 1px #0cf393;
 }
 // .scroller {
@@ -20,13 +22,13 @@
 //   background-color: #52d6a5;
 // }
 
-.scroller {
-  border: none;
-  padding: 5px;
-  font: 24px/36px sans-serif;
+// .scroller {
+//   border: none;
+//   padding: 5px;
+//   font: 24px/36px sans-serif;
 
-  overflow-y: scroll;
-}
+//   overflow-y: scroll;
+// }
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
@@ -47,7 +49,6 @@
   height: 100%;
   width: 100%;
   margin: auto;
-
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 0.9em;
@@ -59,7 +60,11 @@
     tr {
       background-color: #009879;
       color: #ffffff;
-      text-align: left;
+      text-align: center;
+      display: grid;
+      grid-template-columns: 10% 15% 50% 17%;
+      height: 50px;
+      font-size: 1rem;
     }
     th,
     td {
@@ -69,6 +74,10 @@
   }
   tbody tr {
     border-bottom: 1px solid #dddddd;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 15% 10% 50% 17%;
+    height: 55px;
   }
   tbody tr:nth-of-type(even) {
     background-color: rgba(0, 152, 121, 0.5);
@@ -82,14 +91,31 @@
   }
 }
 
-#leader-board::scroll {
-  position: relative;
-  background: rgba(0, 0, 0, 0.1);
-  width: 9px;
-  border-radius: 4px;
-  top: 0;
-  z-index: 2;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.25s linear;
+// #leader-board::scroll {
+//   position: relative;
+//   background: rgba(0, 0, 0, 0.1);
+//   width: 9px;
+//   border-radius: 4px;
+//   top: 0;
+//   z-index: 2;
+//   cursor: pointer;
+//   opacity: 0;
+//   transition: opacity 0.25s linear;
+// }
+
+tbody {
+  position: absolute;
+  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 50vh;
+  z-index: 4;
+  td {
+    text-align: center;
+    padding-left: 3px;
+    // padding-top: 10px;
+    font-size: 0.9rem;
+    position: relative;
+    line-height: 50px;
+  }
 }

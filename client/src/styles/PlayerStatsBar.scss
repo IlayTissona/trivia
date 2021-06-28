@@ -21,11 +21,17 @@
         align-items: center;
     }
     #lives{
-        margin-left: 2rem;
+        // margin-left: 2rem;
     }
     #score{
-        justify-self:self-end;
-        margin-left: -7rem
+        margin-left: 3rem;
+        margin-right: 3rem;
+        display: flex;
+        width: 50%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        // justify-self:self-end;
+        // margin-left: -7rem;
     }
     #return-arrow{
         justify-self: flex-end;

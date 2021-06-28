@@ -52,7 +52,7 @@ body {
   text-align: center;
 
   h1 {
-    font-size: 4.5rem;
+    font-size: 9vw;
     transition-duration: 1s;
     transition-timing-function: ease-in-put;
     font-weight: 200;
@@ -83,8 +83,8 @@ form {
 
     transition-duration: 0.25s;
     font-weight: 300;
-    &::placeholder{
-      color:rgba(255, 255, 255, 0.63);
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.63);
     }
     &:hover {
       background-color: rgba(255, 255, 255, 0.5);
@@ -224,7 +224,6 @@ form {
   top: 20px;
   width: 100px;
 }
-
 
 button {
   position: relative;
