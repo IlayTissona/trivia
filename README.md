@@ -23,5 +23,5 @@
 ### Setup Client + Server + Migrate & Seed Database
 5. Install server + client dependencies + load all migrations and seeds: `npm run setup`
 
-6. In your brouser go to [http://localhost:3005/](http://localhost:3005).
+6. In your browser go to [http://localhost:3005/](http://localhost:3005).
 
